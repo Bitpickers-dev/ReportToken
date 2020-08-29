@@ -54,20 +54,6 @@
             </div>
         </div>
 
-        <div class="upload-content">
-            <el-upload
-            drag
-            class="upload-demo"
-            action="https://jsonplaceholder.typicode.com/posts/"
-            :on-preview="handlePreview"
-            :on-remove="handleRemove"
-            :file-list="fileList"
-            >
-            <i class="el-icon-upload"></i>
-            <div class="el-upload__text">ドラッグまたは <em>クリックしてアップロード</em></div>
-            <div class="el-upload__tip" slot="tip">jpg/png 拡張子に対応するファイルを指定してください</div>
-            </el-upload>
-        </div>
     </div>
 </template>
 
