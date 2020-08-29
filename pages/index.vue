@@ -17,7 +17,11 @@
       <div class="image-content">
         <img src="~/assets/images/b0207.png" class="report-img">
       </div>
-      <h3>レポートークンとは、大学生を主とした学生のためのレポートの譲渡アプリです。</h3>
+        <div class="subtitle">
+          <h2>〜全学生のための世界初の分散型レポート共有アプリ</h2>
+          <img src="~/assets/images/reportoken-logo.png" class="reportoken-logo">
+          <h2>〜</h2>
+      </div>
       <div class="image-content">
         <img src="~/assets/images/b0301.png" class="report-img">
       </div>
@@ -47,11 +51,25 @@ export default {
       padding-left: 10px;
       text-align: center;
     }
+    h2{
+      text-align: center;
+    }
     h3{
       text-align: center;
     }
     h5{
       text-align: center;
+    }
+    .reportoken-logo{
+      text-align: center;
+      width: 50px;
+      height: 50px;
+      margin-top: 15px;
+      padding:0 15px;
+    }
+    .subtitle{
+      display: flex;
+      padding-left: 20%;
     }
     .image-content{
       text-align: center;
@@ -59,6 +77,7 @@ export default {
     .report-img{
       width: 300px;
       height: auto;
+      text-align: center;
     }
     .link-detail_top{
       text-decoration: none;

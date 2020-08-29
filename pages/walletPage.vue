@@ -2,6 +2,9 @@
     <div class="wallet-content">
         <Header />
       <div class="wallet-main_content">
+        <!-- <div class="side-content">
+          <Folder />
+        </div> -->
         <h1>ウォレット</h1>
              <div class="home-btn">
                 <el-button type="primary">

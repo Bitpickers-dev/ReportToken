@@ -1,6 +1,6 @@
 <template>
       <div class="header-content">
-        <img src="https://pbs.twimg.com/profile_images/1238812638387163136/xVj9-uVR_400x400.jpg" width="50px" height="50px" class="reportoken-logo" alt="">
+                <img src="~/assets/images/reportoken-logo_header.png" class="reportoken-logo_header">
           <el-autocomplete
             class="serch-input"
             v-model="state"
@@ -74,9 +74,10 @@ export default {
   background-color:#8cbef0;
 }
 
-.reportoken-logo{
+.reportoken-logo_header{
   padding: 5px;
-  border-radius: 50%;
+  width: 48px;
+  height: 48px;
 }
 .serch-input{
   padding: 10px;
