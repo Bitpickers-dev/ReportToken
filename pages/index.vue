@@ -51,9 +51,6 @@ export default {
       padding-left: 10px;
       text-align: center;
     }
-    h2{
-      text-align: center;
-    }
     h3{
       text-align: center;
     }
@@ -69,7 +66,8 @@ export default {
     }
     .subtitle{
       display: flex;
-      padding-left: 20%;
+      margin: 0 auto;
+      width: 700px;
     }
     .image-content{
       text-align: center;
