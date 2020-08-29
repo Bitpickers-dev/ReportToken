@@ -10,10 +10,10 @@
             placeholder="検索"
             @select="handleSelect"
           ></el-autocomplete>
-          <div class="hoge">
-            <el-link　style="font-size:20px;"   href="https://element.eleme.io" target="_blank">ホーム</el-link>
-            <el-link　style="font-size:20px;"   href="/walletPage.vue" target="_blank">ウォレット</el-link>
-            <el-link　style="font-size:20px;"   href="https://element.eleme.io" target="_blank">履歴</el-link>
+          <div class="page-link">
+            <nuxt-link to="/homePage" class="link-detail">ホーム</nuxt-link>
+            <nuxt-link to="/historyPage" class="link-detail">履歴</nuxt-link>
+            <nuxt-link to="/walletPage" class="link-detail">ウォレット</nuxt-link>
           </div>
       </div>
       <div class="main-contents">
@@ -97,23 +97,30 @@ h3{
 .header-content{
   display: flex;
   width: 100%;
-  height: 10vh;
+  height: 8vh;
   background-color:#8cbef0;
 }
 
 .reportoken-logo{
-  padding: 10px;
+  padding: 5px;
   border-radius: 50%;
 }
 .serch-input{
   padding: 10px;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
-.hoge{
+.page-link{
   position: absolute;
   right: 30px;
-  top: 50px;
+  top: 20px;
+}
+
+.link-detail{
+  text-decoration: none;
+  color: #f4f4f4;
+  font-size: 16px;
+  padding: 8px;
 }
 
 
