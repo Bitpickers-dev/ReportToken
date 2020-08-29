@@ -1,6 +1,17 @@
 <template>
     <div>
-      <h1>ようこそ</h1>
+      <div class="calousel">
+        <el-carousel :interval="5000" arrow="always">
+          <el-carousel-item v-for="item in 4" :key="item">
+              <h3>{{ item }}hello</h3>
+          </el-carousel-item>
+        </el-carousel>
+      </div>
+      <div class="home-btn">
+        <el-button type="primary">
+            <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
+        </el-button>
+      </div>
       <h3>一人でレポートに悩む日々とはもうお別れ</h3>
 
       <div class="image-content">
@@ -11,11 +22,6 @@
         <img src="~/assets/images/b0301.png" class="report-img">
       </div>
       <!-- <nuxt-link to="/homePage" class="link-detail_top">ホームへ</nuxt-link> -->
-      <div class="home-btn">
-        <el-button type="primary">
-            <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
-        </el-button>
-      </div>
     </div>
 </template>
 
@@ -57,7 +63,27 @@ export default {
     .link-detail_top{
       text-decoration: none;
     }
+
+    .carousel{
+      width: 300px;
+    }
+      .el-carousel__item h3{
+        color: #475669;
+        font-size: 18px;
+        opacity: 0.75;
+        line-height: 300px;
+        margin: 0;
+      }
+
+      .el-carousel__item:nth-child(2n) {
+        background-color: #99a9bf;
+      }
+
+      .el-carousel__item:nth-child(2n+1) {
+        background-color: #d3dce6;
+      }
     .home-btn{
       text-align: center;
+      padding: 10px;
     }
 </style>

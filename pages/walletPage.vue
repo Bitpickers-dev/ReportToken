@@ -1,10 +1,13 @@
 <template>
     <div class="wallet-content">
+        <Header />
       <div class="wallet-main_content">
         <h1>ウォレット</h1>
-         <el-button type="primary">
-            <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
-         </el-button>
+             <div class="home-btn">
+                <el-button type="primary">
+                        <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
+                </el-button>
+             </div>
         <div class="about-account">
           <h4>アカウント</h4>
           <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
@@ -32,7 +35,14 @@
       </div>
     </div>
 </template>
-
+<script>
+import Header from '~/components/header.vue'
+export default {
+    components:{
+        Header
+    },
+}
+</script>
 <style>
     body{
         margin: 0;
@@ -51,10 +61,10 @@
       text-align: center;
     }
     .wallet-main_content{
-      height: 40vh;
+      height: 60vh;
     }
     .wallet-detail_content{
-      max-height: 50vh;
-      overflow: scroll;
+      /* max-height: 30vh; */
+      /* overflow: scroll; */
     }
 </style>
