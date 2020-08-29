@@ -1,36 +1,39 @@
 <template>
-    <div class="wallet-content">
-      <div class="wallet-main_content">
-        <h1>ウォレット</h1>
-        <div class="about-account">
-          <h4>アカウント</h4>
-          <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-          <p>0x5A2B93AB2bAe9D319b49d1AeB54840f1C8D0918c</p>
-        </div>
-        <h3>所持中のレポートークン:50RPT</h3>
-        <div class="wallet_btn">
-          <el-button type="primary" icon="el-icon-s-promotion" class="send_btn">送信する</el-button>
-          <el-button type="primary" icon="el-icon-sell" class="receive_btn">取得する</el-button>
-        </div>
+    <div>
+      <h1>ようこそ</h1>
+      <h3>一人でレポートに悩む日々とはもうお別れ</h3>
+
+      <div class="image-content">
+        <img src="~/assets/images/b0207.png" class="report-img">
       </div>
-      <div class="wallet-detail_content">
-          <el-tabs type="card" @tab-click="handleClick">
-            <el-tab-pane label="送信履歴">
-              <p>2020/08/24   10RPT to 0x5A2B93AB2bAe9D319b49d1Adkrid40f1Cdaferfa</p>
-              <p>2020/08/20   10RPT to 0x5A2B93AB2bAe9D319b49d1Adkrid40f1C8D0918c</p>
-              <p>2020/08/15   10RPT to 0x5A2B93AB2bAe9D319b49daerfaerfaergd3r4f4r</p>
-              <p>2020/08/02   10RPT to 0x5A2B93AB2bAe9D31afrfsergfrtghvd0495jeg94</p>
-            </el-tab-pane>
-            <el-tab-pane label="取得履歴">
-              <p>2020/08/24   +50RPT from 0x5A2Bdkeijadofislerfjleiorfnse0f1C8D0918c</p>
-              <p>2020/08/20   +40RPT from 0x5A2B93AB2bAe9D319b49d1Adkrid40f1C8D0918c</p>
-            </el-tab-pane>
-          </el-tabs>
+      <h3>レポートークンとは、大学生を主とした学生のためのレポートの譲渡アプリです。</h3>
+      <div class="image-content">
+        <img src="~/assets/images/b0301.png" class="report-img">
+      </div>
+      <!-- <nuxt-link to="/homePage" class="link-detail_top">ホームへ</nuxt-link> -->
+      <div class="home-btn">
+        <el-button type="primary">
+            <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
+        </el-button>
       </div>
     </div>
 </template>
 
-<style>
+<script>
+import Vue from 'vue';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+import lang from 'element-ui/lib/locale/lang/ja'
+import locale from 'element-ui/lib/locale'
+
+
+locale.use(lang)
+Vue.use(ElementUI)
+export default {
+  
+}
+</script>
+<style scoped>
     body{
         margin: 0;
     }
@@ -38,22 +41,23 @@
       padding-left: 10px;
       text-align: center;
     }
-    p{
-      margin-left: 10px;
-    }
-    .about-account{
+    h3{
       text-align: center;
     }
-    .wallet_btn{
+    h5{
       text-align: center;
     }
-    .wallet-main_content{
-      height: 40vh;
+    .image-content{
+      text-align: center;
     }
-    .wallet-detail_content{
-      max-height: 50vh;
-      overflow: scroll;
+    .report-img{
+      width: 300px;
+      height: auto;
     }
-
-
+    .link-detail_top{
+      text-decoration: none;
+    }
+    .home-btn{
+      text-align: center;
+    }
 </style>

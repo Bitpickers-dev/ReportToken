@@ -63,7 +63,7 @@ h3{
     text-align: center;
 }
 .folder-content{
-    height: 50vh;
+    height: 80vh;
     overflow: scroll;
 }
 
