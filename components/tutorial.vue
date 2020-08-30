@@ -1,7 +1,7 @@
 <template>
     <div class="calousel">
         <el-carousel :interval="15000" arrow="always">
-          <el-carousel-item v-for="item in 9" :key="item">
+          <el-carousel-item v-for="item in 8" :key="item">
               <div v-if="item == 1">
                 <h1>レポートークンチュートリアル</h1>
                 <p>本アプリの使い方のチュートリアルです。</p>
@@ -72,18 +72,10 @@
                 <h4>本アプリではセメスターで頑張った人へのご褒美があります</h4>
                 <p>本アプリに貢献した度合いを示すPoC(Proof of Contribute)という独自アルゴリズムを開発しました。</p>
                 <p>PoCを使ってセメスター毎にランキングを作成し、上位に入った方にご褒美としてETHを還元します。</p>
-                <p>表彰台の画像があったらいいな</p>
-              </div>
-              <div v-if="item == 9">
-                <h1>PoCの概要</h1>
-                <p>PoCではRP(ReportPoint)という点数によってランキングをつけています。RPはRP1とRP2の総和によって求められます。</p>
-                <h4>RP1とは</h4>
-                <p>レポートが閲覧された数が多い人にポイントが付与されます。</p>
-                <h4>RP2とは</h4>
-                <p>レポートークンを多く取得した人にポイントが付与されます。</p>
                 <h4>
                     <a href="https://docs.google.com/document/d/10qbXv29_khkfTspkmpGD7JL8YUpoq1gE8EWXJfOIKCg/edit" class="link-detail">詳しくはこちら</a>
                 </h4>
+                <p>表彰台の画像があったらいいな</p>
               </div>
               
           </el-carousel-item>
