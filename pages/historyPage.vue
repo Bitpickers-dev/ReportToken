@@ -6,7 +6,7 @@
             <Folder />
             </div>
     <div class="main-content">
-       <h1>ウォレット</h1>
+       <h1>履歴</h1>
              <div class="home-btn">
                 <el-button type="primary">
                         <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>

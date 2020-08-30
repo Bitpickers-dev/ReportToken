@@ -6,7 +6,13 @@
           <Folder />
         </div>
         <div class="main-content">
-          <h1>おかえりなさい</h1>
+          <div class="rank-content">
+            <h1>おかえりなさい</h1>
+          </div>
+
+          <div class="tutoriual-content">
+            <Tutorial />
+          </div>
         </div>
       </div>
     </div>
@@ -48,10 +54,12 @@ h3{
   background-color:#fafafa;
 }
 
-.main-content{
-  height: 90vh;
-  width: 100%;
-  background-color:#f4f4f4;
+.rank-content{
+    height: 65%;
 }
+.tutorial-content{
+    height: auto;
+}
+
 
 </style>
