@@ -1,5 +1,4 @@
 <template>
-  <div class="">
     <div class="app-layout">
         <Header />
       <div class="main-contents">
@@ -7,11 +6,10 @@
           <Folder />
         </div>
         <div class="main-content">
-          
+          <h1>おかえりなさい</h1>
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -44,11 +42,6 @@ h3{
  display: flex;
 }
 
-
-
-
-
-
 .side-content {
   height: 90vh;
   width: 400px;
@@ -60,8 +53,5 @@ h3{
   width: 100%;
   background-color:#f4f4f4;
 }
-
-
-
 
 </style>

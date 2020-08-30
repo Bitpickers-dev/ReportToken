@@ -1,11 +1,12 @@
 <template>
-    <div class="wallet-content">
-        <Header />
-      <div class="wallet-main_content">
-        <!-- <div class="side-content">
-          <Folder />
-        </div> -->
-        <h1>ウォレット</h1>
+    　<div class="app-layout">
+            <Header />
+        <div class="main-contents">
+            <div class="side-content">
+            <Folder />
+            </div>
+    <div class="main-content">
+       <h1>ウォレット</h1>
              <div class="home-btn">
                 <el-button type="primary">
                         <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
@@ -21,7 +22,6 @@
           <el-button type="primary" icon="el-icon-s-promotion" class="send_btn">送信する</el-button>
           <el-button type="primary" icon="el-icon-sell" class="receive_btn">取得する</el-button>
         </div>
-      </div>
       <div class="wallet-detail_content">
           <el-tabs type="card">
             <el-tab-pane label="送信履歴">
@@ -36,7 +36,9 @@
             </el-tab-pane>
           </el-tabs>
       </div>
-    </div>
+      </div>
+            </div>
+        </div>
 </template>
 <script>
 import Header from '~/components/header.vue'
@@ -54,6 +56,21 @@ export default {
       padding-left: 10px;
       text-align: center;
     }
+    .main-contents{
+    display: flex;
+    }
+
+    .side-content {
+    height: 90vh;
+    width: 400px;
+    background-color:#fafafa;
+    }
+
+    .main-content{
+    height: 90vh;
+    width: 100%;
+    background-color:#f4f4f4;
+    }
     p{
       margin-left: 10px;
     }
@@ -63,11 +80,8 @@ export default {
     .wallet_btn{
       text-align: center;
     }
-    .wallet-main_content{
-      height: 60vh;
-    }
     .wallet-detail_content{
-      /* max-height: 30vh; */
-      /* overflow: scroll; */
+      max-height: 50vh;
+      overflow: scroll;
     }
 </style>

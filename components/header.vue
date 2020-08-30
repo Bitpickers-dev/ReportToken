@@ -75,7 +75,7 @@ export default {
 }
 
 .reportoken-logo_header{
-  padding: 5px;
+  padding: 10px;
   width: 48px;
   height: 48px;
 }
