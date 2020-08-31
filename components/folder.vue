@@ -63,13 +63,16 @@ h3{
     text-align: center;
 }
 .folder-content{
-    height: 80vh;
     overflow: scroll;
 }
 
 .folder-repository{
     padding-left: 20px;
     margin: 10px;
+}
+.side-contents{
+    background:#fff;
+    height: 100%;
 }
 
 .upload-demo{

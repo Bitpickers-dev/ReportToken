@@ -1,6 +1,6 @@
 <template>
     <div class="app-layout">
-        <Header />
+            <Header />
       <div class="main-contents">
         <div class="side-content">
           <Folder />
@@ -9,9 +9,8 @@
           <!-- ランキングコンテンツはcomponentにしてもいいかも -->
           <div class="rank-content">
             <h1>おかえりなさい</h1>
-            <Filecards />
+                <Filecards />
           </div>
-
           <div class="tutoriual-content">
             <Tutorial />
           </div>
@@ -49,15 +48,19 @@ h3{
 .main-contents{
  display: flex;
 }
+.main-content{
+    height: 92vh;
+    width: 100%;
+    background-color:#f4f4f4;
+}
 
 .side-content {
-  height: 90vh;
-  width: 400px;
-  background-color:#fafafa;
+  height: 92vh;
+  width: 300px;
 }
 
 .rank-content{
-    height: 65%;
+    height: 60%;
 }
 .tutorial-content{
     height: auto;

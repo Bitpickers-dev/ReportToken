@@ -56,21 +56,6 @@ export default {
       padding-left: 10px;
       text-align: center;
     }
-    .main-contents{
-    display: flex;
-    }
-
-    .side-content {
-    height: 90vh;
-    width: 400px;
-    background-color:#fafafa;
-    }
-
-    .main-content{
-    height: 90vh;
-    width: 100%;
-    background-color:#f4f4f4;
-    }
     p{
       margin-left: 10px;
     }

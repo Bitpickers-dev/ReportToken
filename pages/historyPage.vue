@@ -25,27 +25,7 @@ export default {
 }
 </script>
 <style>
-.link-detail{
-  text-decoration: none;
-  color: #f4f4f4;
-  font-size: 16px;
-  padding: 8px;
-}
-    .main-contents{
-    display: flex;
-    }
 
-    .side-content {
-    height: 90vh;
-    width: 400px;
-    background-color:#fafafa;
-    }
-
-    .main-content{
-    height: 90vh;
-    width: 100%;
-    background-color:#f4f4f4;
-    }
     .home-btn{
       text-align: center;
       padding: 10px;
