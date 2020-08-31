@@ -5,7 +5,11 @@
                 <div class="report-details">
                     <el-tag class="report-period" size="mini">1Q</el-tag>
                     <el-tag class="report-grade" size="mini">B1</el-tag>
-                    <i class="el-icon-download">12</i>
+                    <div class="download">
+                        <i class="el-icon-download"></i>
+                        <h5>14</h5>
+                    </div>
+
                 </div>
                 <h5 class="report-title">情報通信工学実験</h5>
                 <p class="report-exp">第4回Arduinoの実験レポートです。</p>
@@ -16,13 +20,14 @@
 
 
 <style scoped>
+.filecard-content{
+    display: inline-block;
+}
 .file-card{
     width: 300px;
     height: 120px;
-    margin: 30px;
-    display: inline-block;
+    margin: 15px;
     border-radius: 15px;
-
 }
 .report-details{
     position: relative;
@@ -47,8 +52,9 @@
     margin: 0;
     padding: 0;
 }
-.el-icon-download{
+.download{
     position: absolute;
+    display: flex;
     right: -10px;
     top: 75px;
 }

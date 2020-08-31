@@ -57,10 +57,13 @@ h3{
 .side-content {
   height: 92vh;
   width: 300px;
+  width: 350px;
 }
 
 .rank-content{
-    height: 60%;
+    height: 59%;
+    overflow-x: scroll;
+    margin-bottom: 10px;
 }
 .tutorial-content{
     height: auto;
