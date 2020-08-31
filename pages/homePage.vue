@@ -6,8 +6,10 @@
           <Folder />
         </div>
         <div class="main-content">
+          <!-- ランキングコンテンツはcomponentにしてもいいかも -->
           <div class="rank-content">
             <h1>おかえりなさい</h1>
+            <Filecards />
           </div>
 
           <div class="tutoriual-content">

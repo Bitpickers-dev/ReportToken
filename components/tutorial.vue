@@ -73,9 +73,11 @@
                 <p>本アプリに貢献した度合いを示すPoC(Proof of Contribute)という独自アルゴリズムを開発しました。</p>
                 <p>PoCを使ってセメスター毎にランキングを作成し、上位に入った方にご褒美としてETHを還元します。</p>
                 <h4>
-                    <a href="https://docs.google.com/document/d/10qbXv29_khkfTspkmpGD7JL8YUpoq1gE8EWXJfOIKCg/edit" class="link-detail">詳しくはこちら</a>
+                    <a href="https://docs.google.com/document/d/10qbXv29_khkfTspkmpGD7JL8YUpoq1gE8EWXJfOIKCg/edit" class="link-detail" style="margin:0;padding:0">詳しくはこちら</a>
                 </h4>
-                <p>表彰台の画像があったらいいな</p>
+                <div class="img-center">
+                      <img src="~/assets/images/b0550.png" style="width:130px;height:auto;margin:0 auto;padding-top:0;" class="tutorial-last_image">
+                </div>
               </div>
               
           </el-carousel-item>
@@ -135,5 +137,8 @@ export default {
           display: flex;
           margin: 0 auto;
           width: 260px;
+      }
+      .tutorial-last_image{
+        
       }
 </style>

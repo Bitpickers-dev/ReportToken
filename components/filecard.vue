@@ -1,0 +1,55 @@
+<template>
+    <div class="filecard-content">
+        <nuxt-link to="/">
+            <el-card class="file-card" shadow="hover">
+                <div class="report-details">
+                    <el-tag class="report-period" size="mini">1Q</el-tag>
+                    <el-tag class="report-grade" size="mini">B1</el-tag>
+                    <i class="el-icon-download">12</i>
+                </div>
+                <h5 class="report-title">情報通信工学実験</h5>
+                <p class="report-exp">第4回Arduinoの実験レポートです。</p>
+            </el-card>
+        </nuxt-link>
+    </div>
+</template>
+
+
+<style scoped>
+.file-card{
+    width: 300px;
+    height: 120px;
+    margin: 30px;
+    display: inline-block;
+    border-radius: 15px;
+
+}
+.report-details{
+    position: relative;
+}
+.report-period{
+    position: absolute;
+    right: -10px;
+    top: -12px;
+}
+.report-grade{
+    position: absolute;
+    top: -12px;
+    right: 30px;
+}
+.report-exp{
+    margin: 0;
+    padding: 0;
+    height: 75px;
+    overflow: scroll;
+}
+.report-title{
+    margin: 0;
+    padding: 0;
+}
+.el-icon-download{
+    position: absolute;
+    right: -10px;
+    top: 75px;
+}
+</style>
