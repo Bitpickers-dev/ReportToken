@@ -134,6 +134,9 @@ export default {
 .el-dropdown-link {
     cursor: pointer;
 }
+.el-icon-bell{
+  color: #f4f4f4;
+}
 .notification-btn{
   background-color: #8cbef0;
 }

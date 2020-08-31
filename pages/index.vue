@@ -60,7 +60,6 @@ export default {
       text-align: center;
       width: 50px;
       height: 50px;
-      margin-top: 15px;
       padding:0 15px;
     }
     .subtitle{
