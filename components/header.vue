@@ -12,6 +12,45 @@
             <!-- <nuxt-link to="/homePage" class="link-detail">ホーム</nuxt-link> -->
             <nuxt-link to="/historyPage" class="link-detail">履歴</nuxt-link>
             <nuxt-link to="/walletPage" class="link-detail">ウォレット</nuxt-link>
+            <el-badge is-dot class="item">
+            <el-dropdown>
+              <span class="el-dropdown-link">
+                <i class="el-icon-bell"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item>
+                  <nuxt-link to="/historyPage" class="link-detail_notification">                 
+                    <p>Aさんが「情報通信工学実験」を購入しました</p>
+                    <p class="timestamp">2020/09/03</p>
+                  </nuxt-link>
+                </el-dropdown-item>
+                <el-dropdown-item>
+                  <nuxt-link to="/historyPage" class="link-detail_notification">                 
+                    <p>Bさんが「情報通信工学実験」を購入しました</p>
+                    <p class="timestamp">2020/09/04</p>
+                  </nuxt-link>
+                </el-dropdown-item>
+                <el-dropdown-item>
+                  <nuxt-link to="/historyPage" class="link-detail_notification">                 
+                    <p>Aさんが「情報倫理期末レポート」を購入しました</p>
+                    <p class="timestamp">2020/09/12</p>
+                  </nuxt-link>
+                </el-dropdown-item>
+                <el-dropdown-item>
+                  <nuxt-link to="/historyPage" class="link-detail_notification">                 
+                    <p>Bさんが「化学中間レポート」を購入しました</p>
+                    <p class="timestamp">2020/09/13</p>
+                  </nuxt-link>
+                </el-dropdown-item>
+                <el-dropdown-item>
+                  <nuxt-link to="/historyPage" class="link-detail_notification">                 
+                    <p>Eさんが「情報倫理中間レポート」を購入しました</p>
+                    <p class="timestamp">2020/09/15</p>
+                  </nuxt-link>
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+            </el-badge>
           </div>
       </div>
 </template>
@@ -89,7 +128,25 @@ export default {
   right: 30px;
   top: 20px;
 }
-
+.el-icon-message-solid{
+  color: #fff;
+}
+.el-dropdown-link {
+    cursor: pointer;
+}
+.notification-btn{
+  background-color: #8cbef0;
+}
+.timestamp{
+  color: rgb(184, 184, 184);
+  font-size: 12px;
+  position: relative;
+  right: -220px;
+  bottom: 15px;
+}
+.link-detail_notification{
+  text-decoration: none;
+}
 .link-detail{
   text-decoration: none;
   color: #f4f4f4;
