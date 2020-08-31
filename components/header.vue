@@ -1,15 +1,12 @@
 <template>
       <div class="header-content">
                 <img src="~/assets/images/reportoken-logo_header.png" class="reportoken-logo_header">
-          <el-autocomplete
-            class="serch-input"
-            v-model="state"
-            :fetch-suggestions="querySearchAsync"
-            placeholder="検索"
-            @select="handleSelect"
-          ></el-autocomplete>
+            <el-input placeholder="レポート名で検索" v-model="input" class="serch-input">
+              <el-button slot="append" icon="el-icon-search"></el-button>
+            </el-input>
           <div class="page-link">
             <!-- <nuxt-link to="/homePage" class="link-detail">ホーム</nuxt-link> -->
+            <nuxt-link to="/serchPage" class="link-detail">検索</nuxt-link>
             <nuxt-link to="/historyPage" class="link-detail">履歴</nuxt-link>
             <nuxt-link to="/walletPage" class="link-detail">ウォレット</nuxt-link>
             <el-badge is-dot class="item">
@@ -71,13 +68,14 @@ export default {
       return {
         links: [],
         state: '',
+        input:'',
         timeout:  null
       };
     },
     methods: {
       loadAll() {
         return [
-          { "value": "Ethereum", "link": "https://ethereum.org/ja/" },
+          { "value": "情報通信工学", "link": "https://ethereum.org/ja/" },
           { "value": "Solidity", "link": "https://solidity-jp.readthedocs.io/ja/latest/" },
          ];
       },
@@ -121,8 +119,8 @@ export default {
 .serch-input{
   padding: 10px;
   padding-top: 10px;
+  width: 300px;
 }
-
 .page-link{
   position: absolute;
   right: 30px;
