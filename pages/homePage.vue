@@ -9,8 +9,9 @@
           <!-- ランキングコンテンツはcomponentにしてもいいかも -->
           <div class="rank-content">
             <h1>おかえりなさい</h1>
-            
+
                 <Filecards />
+                <Upload />
           </div>
           <div class="tutorial-content">
             <Tutorial />
@@ -67,7 +68,8 @@ h3{
     margin-bottom: 10px;
 }
 .tutorial-content{
+    /* position: absolute;
+    z-index: 1;
+    bottom: 0px; */
 }
-
-
 </style>

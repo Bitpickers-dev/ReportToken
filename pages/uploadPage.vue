@@ -6,14 +6,12 @@
             <Folder />
             </div>
     <div class="main-content">
-       <h1>検索</h1>
+       <h1>共有</h1>
              <div class="home-btn">
                 <el-button type="primary">
                         <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
                 </el-button>
              </div>
-        <h3>カテゴリ別に検索</h3>
-        <Upload />
       </div>
             </div>
         </div>

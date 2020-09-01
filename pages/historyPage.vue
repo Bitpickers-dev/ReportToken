@@ -12,6 +12,7 @@
                         <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
                 </el-button>
              </div>
+        <Upload />
       </div>
             </div>
         </div>

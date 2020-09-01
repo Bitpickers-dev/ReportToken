@@ -36,6 +36,7 @@
             </el-tab-pane>
           </el-tabs>
       </div>
+      <Upload />
       </div>
             </div>
         </div>
