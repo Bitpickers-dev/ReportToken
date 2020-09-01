@@ -1,36 +1,45 @@
 <template>
-    <div class="wallet-content">
-      <div class="wallet-main_content">
-        <h1>ウォレット</h1>
-        <div class="about-account">
-          <h4>アカウント</h4>
-          <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-          <p>0x5A2B93AB2bAe9D319b49d1AeB54840f1C8D0918c</p>
-        </div>
-        <h3>所持中のレポートークン:50RPT</h3>
-        <div class="wallet_btn">
-          <el-button type="primary" icon="el-icon-s-promotion" class="send_btn">送信する</el-button>
-          <el-button type="primary" icon="el-icon-sell" class="receive_btn">取得する</el-button>
-        </div>
+    <div>
+      <div class="home-btn">
+        <el-button type="primary">
+            <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
+        </el-button>
       </div>
-      <div class="wallet-detail_content">
-          <el-tabs type="card" @tab-click="handleClick">
-            <el-tab-pane label="送信履歴">
-              <p>2020/08/24   10RPT to 0x5A2B93AB2bAe9D319b49d1Adkrid40f1Cdaferfa</p>
-              <p>2020/08/20   10RPT to 0x5A2B93AB2bAe9D319b49d1Adkrid40f1C8D0918c</p>
-              <p>2020/08/15   10RPT to 0x5A2B93AB2bAe9D319b49daerfaerfaergd3r4f4r</p>
-              <p>2020/08/02   10RPT to 0x5A2B93AB2bAe9D31afrfsergfrtghvd0495jeg94</p>
-            </el-tab-pane>
-            <el-tab-pane label="取得履歴">
-              <p>2020/08/24   +50RPT from 0x5A2Bdkeijadofislerfjleiorfnse0f1C8D0918c</p>
-              <p>2020/08/20   +40RPT from 0x5A2B93AB2bAe9D319b49d1Adkrid40f1C8D0918c</p>
-            </el-tab-pane>
-          </el-tabs>
+
+      <div class="image-content">
+        <img src="~/assets/images/b0207.png" class="report-img">
       </div>
+      <h3>一人でレポートに悩む日々とはもうお別れ</h3>
+        <div class="subtitle">
+          <h2>〜これは、学生のための世界初の分散型レポート共有アプリ</h2>
+          <img src="~/assets/images/reportoken-logo.png" class="reportoken-logo">
+          <h2>〜</h2>
+      </div>
+      <div class="image-content">
+        <img src="~/assets/images/b0302.png" class="report-img">
+      </div>
+      <Tutorial />
     </div>
 </template>
 
-<style>
+<script>
+import Vue from 'vue';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+import lang from 'element-ui/lib/locale/lang/ja'
+import locale from 'element-ui/lib/locale'
+
+
+locale.use(lang)
+Vue.use(ElementUI)
+export default {
+    data(){
+      return{
+      }
+    }
+}
+</script>
+<style scoped>
     body{
         margin: 0;
     }
@@ -38,22 +47,39 @@
       padding-left: 10px;
       text-align: center;
     }
+    h3{
+      text-align: center;
+    }
+    h5{
+      text-align: center;
+    }
     p{
-      margin-left: 10px;
-    }
-    .about-account{
       text-align: center;
     }
-    .wallet_btn{
+    .reportoken-logo{
+      text-align: center;
+      width: 50px;
+      height: 50px;
+      padding:0 15px;
+    }
+    .subtitle{
+      display: flex;
+      margin: 0 auto;
+      width: 800px;
+    }
+    .image-content{
       text-align: center;
     }
-    .wallet-main_content{
-      height: 40vh;
+    .report-img{
+      width: 300px;
+      height: auto;
+      text-align: center;
     }
-    .wallet-detail_content{
-      max-height: 50vh;
-      overflow: scroll;
+    .link-detail_top{
+      text-decoration: none;
     }
-
-
+    .home-btn{
+      text-align: center;
+      padding: 10px;
+    }
 </style>

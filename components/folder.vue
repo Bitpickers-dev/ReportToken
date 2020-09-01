@@ -3,19 +3,25 @@
             <h3>マイフォルダーリポジトリ</h3>
         <div class="folder-content">
             <div class="">
-                <el-badge :value="20" class="item folder-repository" type="primary">
-                    <el-button size="small">情報工学通信実験</el-button>
-                </el-badge>
+                <nuxt-link :to="{name: 'folders-id',params:{id:'情報工学通信実験'}}">
+                    <el-badge :value="6" class="item folder-repository" type="primary">
+                        <el-button size="small">情報工学通信実験</el-button>
+                    </el-badge>
+                </nuxt-link>
             </div>
             <div class="">
-                <el-badge :value="13" class="item folder-repository" type="primary">
+                <nuxt-link :to="{name: 'folders-id',params:{id:'線形代数小レポート_0802'}}">
+                <el-badge :value="4" class="item folder-repository" type="primary">
                     <el-button size="small">線形代数小レポート_0802</el-button>
                 </el-badge>
+                </nuxt-link>
             </div>
             <div class="">
+                <nuxt-link :to="{name: 'folders-id',params:{id:'情報倫理期末レポート'}}">
                 <el-badge :value="4" class="item folder-repository" type="primary">
                     <el-button size="small">情報倫理期末レポート</el-button>
                 </el-badge>
+                </nuxt-link>
             </div>
             <div class="">
                 <el-badge :value="2" class="item folder-repository" type="primary">
@@ -54,20 +60,6 @@
             </div>
         </div>
 
-        <div class="upload-content">
-            <el-upload
-            drag
-            class="upload-demo"
-            action="https://jsonplaceholder.typicode.com/posts/"
-            :on-preview="handlePreview"
-            :on-remove="handleRemove"
-            :file-list="fileList"
-            >
-            <i class="el-icon-upload"></i>
-            <div class="el-upload__text">ドラッグまたは <em>クリックしてアップロード</em></div>
-            <div class="el-upload__tip" slot="tip">jpg/png 拡張子に対応するファイルを指定してください</div>
-            </el-upload>
-        </div>
     </div>
 </template>
 
@@ -77,13 +69,16 @@ h3{
     text-align: center;
 }
 .folder-content{
-    height: 50vh;
     overflow: scroll;
 }
 
 .folder-repository{
     padding-left: 20px;
     margin: 10px;
+}
+.side-contents{
+    background:#fff;
+    height: 100%;
 }
 
 .upload-demo{
