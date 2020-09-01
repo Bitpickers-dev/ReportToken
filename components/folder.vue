@@ -3,19 +3,25 @@
             <h3>マイフォルダーリポジトリ</h3>
         <div class="folder-content">
             <div class="">
-                <el-badge :value="20" class="item folder-repository" type="primary">
-                    <el-button size="small">情報工学通信実験</el-button>
-                </el-badge>
+                <nuxt-link :to="{name: 'folders-id',params:{id:'情報工学通信実験'}}">
+                    <el-badge :value="6" class="item folder-repository" type="primary">
+                        <el-button size="small">情報工学通信実験</el-button>
+                    </el-badge>
+                </nuxt-link>
             </div>
             <div class="">
-                <el-badge :value="13" class="item folder-repository" type="primary">
+                <nuxt-link :to="{name: 'folders-id',params:{id:'線形代数小レポート_0802'}}">
+                <el-badge :value="4" class="item folder-repository" type="primary">
                     <el-button size="small">線形代数小レポート_0802</el-button>
                 </el-badge>
+                </nuxt-link>
             </div>
             <div class="">
+                <nuxt-link :to="{name: 'folders-id',params:{id:'情報倫理期末レポート'}}">
                 <el-badge :value="4" class="item folder-repository" type="primary">
                     <el-button size="small">情報倫理期末レポート</el-button>
                 </el-badge>
+                </nuxt-link>
             </div>
             <div class="">
                 <el-badge :value="2" class="item folder-repository" type="primary">

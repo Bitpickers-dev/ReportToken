@@ -1,13 +1,13 @@
 <template>
     <div class="filecard-content">
-        <nuxt-link to="/">
+        <nuxt-link :to="{name: 'folders-id',params:{id:'情報工学通信実験'}}">
             <el-card class="file-card" shadow="hover">
                 <div class="report-details">
                     <el-tag class="report-period" size="mini">1Q</el-tag>
                     <el-tag class="report-grade" size="mini">B1</el-tag>
                     <div class="download">
                         <i class="el-icon-download"></i>
-                        <h5>14</h5>
+                        <h5>6</h5>
                     </div>
 
                 </div>
