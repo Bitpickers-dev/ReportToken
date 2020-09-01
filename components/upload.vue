@@ -19,5 +19,7 @@
 .upload_btn{
     width: 100px;
     height: 100px;
+box-shadow:  5px 5px 37px #b8b8b8, 
+             -5px -5px 37px #ffffff;
 }
 </style>

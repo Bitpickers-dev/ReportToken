@@ -39,6 +39,7 @@
                     </el-table>
                  </div>
              </div>
+            <Upload />
       </div>
             </div>
         </div>
@@ -95,7 +96,7 @@ export default {
     text-align: center;
 }
 .report-table_info{
-    margin: 40px;
+    margin-left: 10%;
     width: 80%;
     text-align: center;
 }
