@@ -3,6 +3,13 @@
         <nuxt-link :to="{name: 'folders-id',params:{id:'情報工学通信実験'}}">
             <el-card class="file-card" shadow="hover">
                 <div class="report-details">
+                    <el-rate
+                    v-model="value"
+                    disabled
+                    show-score
+                    text-color="#ff9900"
+                    score-template="{value}">
+                    </el-rate>
                     <el-tag class="report-period" size="mini">1Q</el-tag>
                     <el-tag class="report-grade" size="mini">B1</el-tag>
                     <div class="download">
@@ -17,7 +24,15 @@
         </nuxt-link>
     </div>
 </template>
-
+<script>
+  export default {
+    data() {
+      return {
+        value: 3.7
+      }
+    }
+  }
+</script>
 
 <style scoped>
 .filecard-content{
