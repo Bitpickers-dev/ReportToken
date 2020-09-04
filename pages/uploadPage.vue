@@ -86,7 +86,7 @@
                     cancelButtonText='キャンセル'
                     icon="el-icon-info"
                     iconColor="red"
-                    title="本当に共有してよろしいですか?一度共有したレポートは削除することができません。"
+                    title="本アプリはユーザー様に生じた損害について、本アプリの故意または重大な過失を原因とする場合を除いて、一切の責任を負いません。"
                     >
                     <el-button slot="reference">レポートを共有</el-button>
                     </el-popconfirm>

@@ -8,7 +8,6 @@
         <div class="main-content">
           <!-- ランキングコンテンツはcomponentにしてもいいかも -->
           <div class="rank-content">
-            <h1>おかえりなさい</h1>
 
                 <Filecards />
                 <Upload />
