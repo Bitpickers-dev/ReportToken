@@ -8,13 +8,12 @@
         <div class="main-content">
           <!-- ランキングコンテンツはcomponentにしてもいいかも -->
           <div class="rank-content">
-            <h1>おかえりなさい</h1>
 
                 <Filecards />
                 <Upload />
           </div>
           <div class="tutorial-content">
-            <Tutorial />
+            <!-- <Tutorial /> -->
           </div>
         </div>
       </div>
