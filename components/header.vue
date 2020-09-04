@@ -6,6 +6,11 @@
             </el-input>
           <div class="page-link">
             <!-- <nuxt-link to="/homePage" class="link-detail">ホーム</nuxt-link> -->
+            <nuxt-link to="/rewardPage" class="link-detail">
+                <el-tooltip class="item" effect="dark" content="ご褒美" placement="bottom-end">
+                <i class="el-icon-present"></i>
+              </el-tooltip>
+            </nuxt-link>
             <nuxt-link to="/serchPage" class="link-detail">検索</nuxt-link>
             <nuxt-link to="/historyPage" class="link-detail">履歴</nuxt-link>
             <nuxt-link to="/walletPage" class="link-detail">ウォレット</nuxt-link>
