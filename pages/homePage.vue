@@ -14,7 +14,7 @@
                 <Upload />
           </div>
           <div class="tutorial-content">
-            <Tutorial />
+            <!-- <Tutorial /> -->
           </div>
         </div>
       </div>
