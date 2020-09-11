@@ -1,4 +1,4 @@
-# reportoken_wallet
+# ReportToken_wallet
 
 ## ローカルホストへの接続
 
