@@ -1,6 +1,6 @@
 # reportoken_wallet
 
-## Build Setup
+## ローカルホストへの接続
 
 ```bash
 # install dependencies
@@ -10,7 +10,6 @@ $ npm install
 $ npm run dev
 
 ```
-
 
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
