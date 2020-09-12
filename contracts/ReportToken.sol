@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract ReportToken is ERC20 {
   constructor(uint initialSupply) public ERC20 ('ReportToken', 'RPT'){
-//    _mint(msg.sender, initialSupply);
+    _mint(msg.sender, initialSupply);
   }
 
   //event setup
@@ -30,7 +30,7 @@ contract ReportToken is ERC20 {
 
   //レポート購入時に呼び出される関数
   //Transfer function
-  function transfer(address _to, uint256 _value) public override returns (bool success) {
+  function transfer(address _to, uint256 _value) public payable override returns (bool success) {
     require(balances[msg.sender] >= _value);
     balances[msg.sender] -= _value;
     balances[_to] += _value;
