@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract ReportToken is ERC20 {
   constructor(uint initialSupply) public ERC20 ('ReportToken', 'RPT'){
-    _mint(msg.sender, initialSupply);
+//    _mint(msg.sender, initialSupply);
   }
 
   //event setup
