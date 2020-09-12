@@ -18,7 +18,7 @@
                 <el-step title="ステップ2" description="レポートアップロード"></el-step>
                 <el-step title="ステップ3" description="最終確認"></el-step>
                 </el-steps>
-                <div class="input-form_contents"  v-if="this.active == 0">
+                <!-- <div class="input-form_contents"  v-if="this.active == 0">
                     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
                     <el-form-item label="大学名" prop="university" style="margin-bottom:5px;">
                         <el-input v-model="ruleForm.university">{{this.ruleForm.university}}</el-input>
@@ -58,28 +58,33 @@
                         <el-button @click="resetForm('ruleForm')">リセット</el-button>
                     </el-form-item>
                     </el-form>
-                </div>
-                <div class="upload-contents" v-if="this.active == 1">
-                    <p>科目名:{{this.ruleForm.subject}}</p>
-                    <p>レポートの詳細:{{this.ruleForm.detail}}</p>
-                    <el-upload
+                </div> -->
+                <div class="upload-contents" v-if="this.active == 1 || this.active == 0">
+                    <!-- <p>科目名:{{this.ruleForm.subject}}</p>
+                    <p>レポートの詳細:{{this.ruleForm.detail}}</p> -->
+                    <!-- <el-upload
                     class="upload-demo"
                     ref="upload"
                     action="https://jsonplaceholder.typicode.com/posts/"
                     :auto-upload="false">
                     <el-button slot="trigger" size="small" type="primary">レポートを選択</el-button>
                     <div class="el-upload__tip" slot="tip">jpg/pngファイルで500kb未満にしてください</div>
-                    </el-upload>
-                    <el-button style="margin-top: 12px;" @click="next">最終確認に進む</el-button>
-                    <el-button style="margin-top: 12px;" @click="back">戻る</el-button>
+                    </el-upload> -->
+                    <form onSubmit="onSubmit">
+                      <input type="file" @change="setImage" ref="file">
+                      
+
+                      <el-button style="margin-top: 12px;" @click="next">最終確認に進む</el-button>
+                      <el-button style="margin-top: 12px;" @click="back">戻る</el-button>
+                    </form>
                 </div>
                 <div class="confirm-contents" v-if="this.active == 2">
-                    <p>大学名:{{this.ruleForm.university}}</p>
+                    <!-- <p>大学名:{{this.ruleForm.university}}</p>
                     <p>学年:{{this.ruleForm.grade}}</p>
                     <p>セメスター:{{this.ruleForm.semester}}</p>
                     <p>科目名:{{this.ruleForm.subject}}</p>
                     <p>レポートの詳細:{{this.ruleForm.detail}}</p>
-                    <p>ユーザー名の表示:{{this.ruleForm.isDisplay}}</p>
+                    <p>ユーザー名の表示:{{this.ruleForm.isDisplay}}</p> -->
                     <el-popconfirm
                     @onConfirm = "reportUpload"
                     confirmButtonText='確認'
@@ -96,6 +101,7 @@
                     <h1>あなたの貢献度が上がりました。</h1>
                     <h3>お疲れ様でした。レポートが共有されました。</h3>
                     <h2>誰かにあなたのレポートが閲覧された時、あなたにレポートークンが送信されます</h2>
+                    <h3>{{image}}</h3>
                     <div class="home-btn">
                         <el-button type="primary">
                                 <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
@@ -115,6 +121,7 @@ export default {
     },
     data() {
       return {
+        image:"",
         active: 0,
         visible: false,
         ruleForm: {
@@ -147,6 +154,19 @@ export default {
     },
 
     methods: {
+      setImage(e) {
+        const files = this.$refs.file;
+        const fileImg = files.files[0];
+        // if (fileImg.type.startsWith("image/")) {
+        //   this.data.image = window.URL.createObjectURL(fileImg);
+        //   console.log("data.image="+this.data.image)
+        // }
+        console.log("filesは"+files)
+        console.log("typeは"+fileImg.type)
+        console.log("fileimgは"+fileImg)
+        this.image = fileImg.type
+
+      },
       next() {
         if (this.active++ > 2) this.active = 0;
       },
