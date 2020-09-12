@@ -21,7 +21,7 @@ contract ReportToken is ERC20 {
   //コントラクトのアドレスがETHを受け付けるようにする
   function purchaseToken(address user, uint256 balance) public payable returns (bool){
     _mint(user, balance);
-    userBalance(user, balance);
+    userBalance[user] += balance;
     return true;
   }
   //リワード送金時に呼び出される関数
