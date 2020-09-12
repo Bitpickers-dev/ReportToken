@@ -115,6 +115,7 @@
 </template>
 <script>
 import Header from '~/components/header.vue'
+import {ipfs} from '~/plugins/ipfs'
 export default {
     components:{
         Header
