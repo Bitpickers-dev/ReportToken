@@ -14,8 +14,8 @@ contract ReportToken is ERC20 {
   mapping(address => mapping(address => uint256)) public allowed;
   mapping(address => uint256) public userBalance;
 
-//  string public constant name = 'ReportToken';
-//  string public constant symbol = 'RPT';
+  //  string public constant name = 'ReportToken';
+  //  string public constant symbol = 'RPT';
 
   constructor(uint initialSupply) public ERC20 ('ReportToken', 'RPT'){
     _mint(msg.sender, initialSupply);
@@ -24,32 +24,31 @@ contract ReportToken is ERC20 {
   //トークン購入時に呼び出される関数
   //コントラクトのアドレスがETHを受け付けるようにする
   //purchase Token
-  function purchaseToken(address _user, uint256 _balance) public payable returns (bool){
-    _mint(_user, _balance);
-    userBalance[_user] += _balance;
+  function purchaseToken(address _to, uint256 _balance) public payable returns (bool){
+    _mint(_to, _balance);
+    userBalance[_to] += _balance;
     return true;
   }
 
-
   //リワード送金時に呼び出される関数
+  //第一引数をmsg.senderにすればfaucetみたいになる
   // withdraw関数
-  //Todo
-  function withdraw(address _user, uint withdraw_amount) public {
+  function withdraw(address payable _to, uint256 withdraw_amount) public {
 
     //引き出し額を制限する
     require(withdraw_amount <= 0.1 ether);
-    require(this.balance >= withdraw_amount,
+    require(address(this).balance >= withdraw_amount,
       "Insufficient balance in reward for withdrawal request");
 
     //リクエストしたアドレスにその金額を送る
-    _user.transfer(_user,withdraw_amount);
-    emit withdraw(_user, withdraw_amount);
+    transfer(_to, withdraw_amount);
+    //    emit withdraw(_user, withdraw_amount);
   }
 
   //レポート購入時に呼び出される関数
   //購入者のアドレスから供給者へトークンを送信する
   //Transfer function
-  function transfer(address _to, uint256 _value) public payable override returns (bool) {
+  function transfer(address _to, uint256 _value) public  override returns (bool) {
     require(balances[msg.sender] >= _value);
     balances[msg.sender] -= _value;
     balances[_to] += _value;
