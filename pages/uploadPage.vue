@@ -62,16 +62,13 @@
                 <div class="upload-contents" v-if="this.active == 1">
                     <p>科目名:{{this.ruleForm.subject}}</p>
                     <p>レポートの詳細:{{this.ruleForm.detail}}</p>
-                    <el-upload
-                    class="upload-demo"
-                    ref="upload"
-                    action="https://jsonplaceholder.typicode.com/posts/"
-                    :auto-upload="false">
-                    <el-button slot="trigger" size="small" type="primary">レポートを選択</el-button>
-                    <div class="el-upload__tip" slot="tip">jpg/pngファイルで500kb未満にしてください</div>
-                    </el-upload>
-                    <el-button style="margin-top: 12px;" @click="next">最終確認に進む</el-button>
-                    <el-button style="margin-top: 12px;" @click="back">戻る</el-button>
+                    <form onSubmit="onSubmit">
+                      <input type="file" @change="captureFile" ref="file">
+                      
+
+                      <el-button style="margin-top: 12px;" @click="next">最終確認に進む</el-button>
+                      <el-button style="margin-top: 12px;" @click="back">戻る</el-button>
+                    </form>
                 </div>
                 <div class="confirm-contents" v-if="this.active == 2">
                     <p>大学名:{{this.ruleForm.university}}</p>
@@ -96,6 +93,10 @@
                     <h1>あなたの貢献度が上がりました。</h1>
                     <h3>お疲れ様でした。レポートが共有されました。</h3>
                     <h2>誰かにあなたのレポートが閲覧された時、あなたにレポートークンが送信されます</h2>
+                    <!-- 非同期処理をしなきゃいけない。ロードを数秒間入れるとか... -->
+                    <p>共有されたレポートのハッシュ値は{{ipfsHash}}です!</p>
+                    <a :href="`https://ipfs.io/ipfs/${ipfsHash}`" target="brank">レポートはこちら</a>
+                    <img :src="`https://ipfs.io/ipfs/${ipfsHash}`" alt="共有したレポートの画像">
                     <div class="home-btn">
                         <el-button type="primary">
                                 <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
@@ -109,12 +110,15 @@
 </template>
 <script>
 import Header from '~/components/header.vue'
+import {ipfs} from '~/plugins/ipfs'
 export default {
     components:{
         Header
     },
     data() {
       return {
+        setBuffer:[],
+        ipfsHash:'',
         active: 0,
         visible: false,
         ruleForm: {
@@ -147,6 +151,35 @@ export default {
     },
 
     methods: {
+      captureFile(event){
+        const files = this.$refs.file;
+        const fileImg = files.files[0];
+        
+        event.preventDefault()
+        const file = event.target.files[0]
+        const reader = new window.FileReader()
+        //ファイルを読み取ってバッファに変えることでIPFSに送信できる
+        reader.readAsArrayBuffer(file)
+
+        reader.onloadend = () =>{
+          this.setBuffer = Buffer(reader.result)
+        }
+
+      },
+      reportUpload() {
+         //   IPFSにアップロード
+        // console.log(this.setBuffer)
+        ipfs.add(this.setBuffer).then((value)=>{
+          this.ipfsHash = value.path
+          // console.log("ipfsHash is ",this.ipfsHash)
+        })
+        if (this.active++ > 2) this.active = 0;
+          this.$notify({
+          title: '成功',
+          message: 'レポートの共有に成功しました！',
+          type: 'success'
+        });
+      },
       next() {
         if (this.active++ > 2) this.active = 0;
       },
@@ -179,16 +212,6 @@ export default {
       resetForm(formName) {
         //   フォームのリセット
         this.$refs[formName].resetFields();
-      },
-      reportUpload() {
-        //   IPFSにアップロード
-        // this.$refs.upload.submit();
-        if (this.active++ > 2) this.active = 0;
-        this.$notify({
-          title: '成功',
-          message: 'レポートの共有に成功しました！',
-          type: 'success'
-        });
       },
       handleClose(done) {
         this.$confirm('本当に閉じてもよろしいですか？')
