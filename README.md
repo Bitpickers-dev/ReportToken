@@ -46,9 +46,6 @@ https://www.trufflesuite.com/ganache
 ・truffle-config.jsファイルのパスをGanacheのワークスペースに追加する。
 ・セーブして終了
 
-## RemixIDE
-Web上でスマートコントラクトを開発できるオンラインIDE
-Metamaskと一緒に使うことができ、メインネットにデプロイしたいときに利用できる。
 
 ## Metamask
 Ethereumのウォレットで、Googleのアプリケーションとして利用できる。
