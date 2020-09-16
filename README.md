@@ -25,12 +25,12 @@ https://github.com/trufflesuite/ganache
 npm install -g truffle
 ```
 /truffleのコマンド/
-```
-Compile:        truffle compile
-Migrate:        truffle migrate
-Console:        truffle console
-Test:           truffle test
-```
+|  動作  | コマンド  |
+| ---- | ---- |              
+|Compile   |truffle compile    |
+|Migrate     |truffle migrate      |
+|Console   |truffle console      |
+|Test   |truffle test      |
 
 ## Ganache
 チェーンの動作を制御しながらテストの実行、コマンドの実行、ステートの精査に使用できる
