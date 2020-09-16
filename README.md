@@ -34,7 +34,8 @@ npm install -g truffle
 
 ## Ganache
 チェーンの動作を制御しながらテストの実行、コマンドの実行、ステートの精査に使用できる
-「個人のイーサリアムブロックチェーン」です。
+「個人のイーサリアムブロックチェーン」
+V2.4.0で作業するように
 
 https://github.com/trufflesuite/ganache
 
