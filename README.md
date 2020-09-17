@@ -29,8 +29,10 @@ npm install -g truffle
 | ---- | ---- |              
 |Compile   |truffle compile    |
 |Migrate     |truffle migrate      |
+|create migration file   |truffle create migraton 名前     |
 |Console   |truffle console      |
 |Test   |truffle test      |
+
 
 ## Ganache
 チェーンの動作を制御しながらテストの実行、コマンドの実行、ステートの精査に使用できる
