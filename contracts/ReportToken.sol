@@ -18,6 +18,7 @@ contract ReportToken is ERC20 {
   //  string public constant symbol = 'RPT';
 
   constructor(uint initialSupply) public ERC20 ('ReportToken', 'RPT'){
+    uint256 rate = 0.5;
     _mint(msg.sender, initialSupply);
   }
 
@@ -32,7 +33,7 @@ contract ReportToken is ERC20 {
 
   //リワード送金時に呼び出される関数
   //第一引数をmsg.senderにすればfaucetみたいになる
-  // withdraw関数
+  // withdraw
   function withdraw(address payable _to, uint256 withdraw_amount) public {
 
     //引き出し額を制限する
