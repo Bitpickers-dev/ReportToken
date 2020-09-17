@@ -41,7 +41,7 @@ contract ReportToken is ERC20 {
       "Insufficient balance in reward for withdrawal request");
 
     //リクエストしたアドレスにその金額を送る
-    transfer(_to, withdraw_amount);
+    Transfer(msg.sender, _to, withdraw_amount);
     //    emit withdraw(_user, withdraw_amount);
   }
 
