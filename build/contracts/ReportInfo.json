@@ -1,0 +1,989 @@
+{
+  "contractName": "ReportInfo",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "Reports",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "_reportHash",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_reportHash",
+          "type": "string"
+        }
+      ],
+      "name": "set",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "get",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"Reports\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"_reportHash\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"get\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_reportHash\",\"type\":\"string\"}],\"name\":\"set\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/nishinosatsushin/Desktop/ReportToken/contracts/ReportInfo.sol\":\"ReportInfo\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/nishinosatsushin/Desktop/ReportToken/contracts/ReportInfo.sol\":{\"keccak256\":\"0xafe89dcf94eedd6b78262683751b7449340c5761d8de009b422c0badef02f639\",\"urls\":[\"bzz-raw://6df52de8025eae036ed1626c5857c40dd9f614f736fe228b9b139d76da71e638\",\"dweb:/ipfs/QmQHkiUGJBmVzRQnahNzp1U7CTs8PLj34VSi6EfRkLLUh6\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610568806100206000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c8063467f2cd8146100465780634ed3885e146100ed5780636d4ce63c146101a8575b600080fd5b6100726004803603602081101561005c57600080fd5b810190808035906020019092919050505061022b565b6040518080602001828103825283818151815260200191508051906020019080838360005b838110156100b2578082015181840152602081019050610097565b50505050905090810190601f1680156100df5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b6101a66004803603602081101561010357600080fd5b810190808035906020019064010000000081111561012057600080fd5b82018360208201111561013257600080fd5b8035906020019184600183028401116401000000008311171561015457600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506102ea565b005b6101b06103f3565b6040518080602001828103825283818151815260200191508051906020019080838360005b838110156101f05780820151818401526020810190506101d5565b50505050905090810190601f16801561021d5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b6001818154811061023857fe5b90600052602060002001600091509050806000018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156102e05780601f106102b5576101008083540402835291602001916102e0565b820191906000526020600020905b8154815290600101906020018083116102c357829003601f168201915b5050505050905081565b8060009080519060200190610300929190610495565b506001604051806020016040528060008054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103a45780601f10610379576101008083540402835291602001916103a4565b820191906000526020600020905b81548152906001019060200180831161038757829003601f168201915b50505050508152509080600181540180825580915050600190039060005260206000200160009091909190915060008201518160000190805190602001906103ed929190610495565b50505050565b606060008054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561048b5780601f106104605761010080835404028352916020019161048b565b820191906000526020600020905b81548152906001019060200180831161046e57829003601f168201915b5050505050905090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106104d657805160ff1916838001178555610504565b82800160010185558215610504579182015b828111156105035782518255916020019190600101906104e8565b5b5090506105119190610515565b5090565b5b8082111561052e576000816000905550600101610516565b509056fea2646970667358221220587c0a8a030d049d434f75a4d204e05a108d551f4ff71f0708d2e7a8ae1671fc64736f6c634300060c0033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c8063467f2cd8146100465780634ed3885e146100ed5780636d4ce63c146101a8575b600080fd5b6100726004803603602081101561005c57600080fd5b810190808035906020019092919050505061022b565b6040518080602001828103825283818151815260200191508051906020019080838360005b838110156100b2578082015181840152602081019050610097565b50505050905090810190601f1680156100df5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b6101a66004803603602081101561010357600080fd5b810190808035906020019064010000000081111561012057600080fd5b82018360208201111561013257600080fd5b8035906020019184600183028401116401000000008311171561015457600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506102ea565b005b6101b06103f3565b6040518080602001828103825283818151815260200191508051906020019080838360005b838110156101f05780820151818401526020810190506101d5565b50505050905090810190601f16801561021d5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b6001818154811061023857fe5b90600052602060002001600091509050806000018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156102e05780601f106102b5576101008083540402835291602001916102e0565b820191906000526020600020905b8154815290600101906020018083116102c357829003601f168201915b5050505050905081565b8060009080519060200190610300929190610495565b506001604051806020016040528060008054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103a45780601f10610379576101008083540402835291602001916103a4565b820191906000526020600020905b81548152906001019060200180831161038757829003601f168201915b50505050508152509080600181540180825580915050600190039060005260206000200160009091909190915060008201518160000190805190602001906103ed929190610495565b50505050565b606060008054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561048b5780601f106104605761010080835404028352916020019161048b565b820191906000526020600020905b81548152906001019060200180831161046e57829003601f168201915b5050505050905090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106104d657805160ff1916838001178555610504565b82800160010185558215610504579182015b828111156105035782518255916020019190600101906104e8565b5b5090506105119190610515565b5090565b5b8082111561052e576000816000905550600101610516565b509056fea2646970667358221220587c0a8a030d049d434f75a4d204e05a108d551f4ff71f0708d2e7a8ae1671fc64736f6c634300060c0033",
+  "immutableReferences": {},
+  "sourceMap": "25:399:1:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "25:399:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;170:23;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;200:131;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;337:85;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;170:23;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;200:131::-;271:11;258:10;:24;;;;;;;;;;;;:::i;:::-;;292:7;305:18;;;;;;;;312:10;305:18;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;292:32;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;200:131;:::o;337:85::-;373:13;405:10;398:17;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;337:85;:::o;-1:-1:-1:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.6.0;\n\ncontract ReportInfo{\n    string reportHash;\n    // constructor(){\n        struct Report {\n            string _reportHash;\n        }\n    // }\n    Report[] public Reports;\n\n    function set(string memory _reportHash) public {\n\n        reportHash = _reportHash;\n        Reports.push(Report(reportHash));\n    }\n\n    function get() public view returns (string memory) {\n        return reportHash;\n    }\n}",
+  "sourcePath": "/Users/nishinosatsushin/Desktop/ReportToken/contracts/ReportInfo.sol",
+  "ast": {
+    "absolutePath": "/Users/nishinosatsushin/Desktop/ReportToken/contracts/ReportInfo.sol",
+    "exportedSymbols": {
+      "ReportInfo": [
+        69
+      ]
+    },
+    "id": 70,
+    "license": null,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 34,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 69,
+        "linearizedBaseContracts": [
+          69
+        ],
+        "name": "ReportInfo",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 36,
+            "mutability": "mutable",
+            "name": "reportHash",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 69,
+            "src": "50:17:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 35,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "50:6:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "canonicalName": "ReportInfo.Report",
+            "id": 39,
+            "members": [
+              {
+                "constant": false,
+                "id": 38,
+                "mutability": "mutable",
+                "name": "_reportHash",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 39,
+                "src": "127:18:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 37,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "127:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Report",
+            "nodeType": "StructDefinition",
+            "scope": 69,
+            "src": "99:57:1",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "467f2cd8",
+            "id": 42,
+            "mutability": "mutable",
+            "name": "Reports",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 69,
+            "src": "170:23:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_struct$_Report_$39_storage_$dyn_storage",
+              "typeString": "struct ReportInfo.Report[]"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 40,
+                "name": "Report",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 39,
+                "src": "170:6:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Report_$39_storage_ptr",
+                  "typeString": "struct ReportInfo.Report"
+                }
+              },
+              "id": 41,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "170:8:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_struct$_Report_$39_storage_$dyn_storage_ptr",
+                "typeString": "struct ReportInfo.Report[]"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 59,
+              "nodeType": "Block",
+              "src": "247:84:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 49,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 47,
+                      "name": "reportHash",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 36,
+                      "src": "258:10:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 48,
+                      "name": "_reportHash",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 44,
+                      "src": "271:11:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "258:24:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 50,
+                  "nodeType": "ExpressionStatement",
+                  "src": "258:24:1"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 55,
+                            "name": "reportHash",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 36,
+                            "src": "312:10:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          ],
+                          "id": 54,
+                          "name": "Report",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 39,
+                          "src": "305:6:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_struct$_Report_$39_storage_ptr_$",
+                            "typeString": "type(struct ReportInfo.Report storage pointer)"
+                          }
+                        },
+                        "id": 56,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "structConstructorCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "305:18:1",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Report_$39_memory_ptr",
+                          "typeString": "struct ReportInfo.Report memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_Report_$39_memory_ptr",
+                          "typeString": "struct ReportInfo.Report memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 51,
+                        "name": "Reports",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 42,
+                        "src": "292:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_Report_$39_storage_$dyn_storage",
+                          "typeString": "struct ReportInfo.Report storage ref[] storage ref"
+                        }
+                      },
+                      "id": 53,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "292:12:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_Report_$39_storage_$returns$__$",
+                        "typeString": "function (struct ReportInfo.Report storage ref)"
+                      }
+                    },
+                    "id": 57,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "292:32:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 58,
+                  "nodeType": "ExpressionStatement",
+                  "src": "292:32:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "4ed3885e",
+            "id": 60,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "set",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 45,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 44,
+                  "mutability": "mutable",
+                  "name": "_reportHash",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 60,
+                  "src": "213:25:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 43,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "213:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "212:27:1"
+            },
+            "returnParameters": {
+              "id": 46,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "247:0:1"
+            },
+            "scope": 69,
+            "src": "200:131:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 67,
+              "nodeType": "Block",
+              "src": "388:34:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 65,
+                    "name": "reportHash",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 36,
+                    "src": "405:10:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 64,
+                  "id": 66,
+                  "nodeType": "Return",
+                  "src": "398:17:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "6d4ce63c",
+            "id": 68,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "get",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 61,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "349:2:1"
+            },
+            "returnParameters": {
+              "id": 64,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 63,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 68,
+                  "src": "373:13:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 62,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "373:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "372:15:1"
+            },
+            "scope": 69,
+            "src": "337:85:1",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 70,
+        "src": "25:399:1"
+      }
+    ],
+    "src": "0:424:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/nishinosatsushin/Desktop/ReportToken/contracts/ReportInfo.sol",
+    "exportedSymbols": {
+      "ReportInfo": [
+        69
+      ]
+    },
+    "id": 70,
+    "license": null,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 34,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 69,
+        "linearizedBaseContracts": [
+          69
+        ],
+        "name": "ReportInfo",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 36,
+            "mutability": "mutable",
+            "name": "reportHash",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 69,
+            "src": "50:17:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 35,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "50:6:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "canonicalName": "ReportInfo.Report",
+            "id": 39,
+            "members": [
+              {
+                "constant": false,
+                "id": 38,
+                "mutability": "mutable",
+                "name": "_reportHash",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 39,
+                "src": "127:18:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 37,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "127:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Report",
+            "nodeType": "StructDefinition",
+            "scope": 69,
+            "src": "99:57:1",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "467f2cd8",
+            "id": 42,
+            "mutability": "mutable",
+            "name": "Reports",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 69,
+            "src": "170:23:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_struct$_Report_$39_storage_$dyn_storage",
+              "typeString": "struct ReportInfo.Report[]"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 40,
+                "name": "Report",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 39,
+                "src": "170:6:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Report_$39_storage_ptr",
+                  "typeString": "struct ReportInfo.Report"
+                }
+              },
+              "id": 41,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "170:8:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_struct$_Report_$39_storage_$dyn_storage_ptr",
+                "typeString": "struct ReportInfo.Report[]"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 59,
+              "nodeType": "Block",
+              "src": "247:84:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 49,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 47,
+                      "name": "reportHash",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 36,
+                      "src": "258:10:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 48,
+                      "name": "_reportHash",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 44,
+                      "src": "271:11:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "258:24:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 50,
+                  "nodeType": "ExpressionStatement",
+                  "src": "258:24:1"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 55,
+                            "name": "reportHash",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 36,
+                            "src": "312:10:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          ],
+                          "id": 54,
+                          "name": "Report",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 39,
+                          "src": "305:6:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_struct$_Report_$39_storage_ptr_$",
+                            "typeString": "type(struct ReportInfo.Report storage pointer)"
+                          }
+                        },
+                        "id": 56,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "structConstructorCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "305:18:1",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Report_$39_memory_ptr",
+                          "typeString": "struct ReportInfo.Report memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_Report_$39_memory_ptr",
+                          "typeString": "struct ReportInfo.Report memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 51,
+                        "name": "Reports",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 42,
+                        "src": "292:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_Report_$39_storage_$dyn_storage",
+                          "typeString": "struct ReportInfo.Report storage ref[] storage ref"
+                        }
+                      },
+                      "id": 53,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "292:12:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_Report_$39_storage_$returns$__$",
+                        "typeString": "function (struct ReportInfo.Report storage ref)"
+                      }
+                    },
+                    "id": 57,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "292:32:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 58,
+                  "nodeType": "ExpressionStatement",
+                  "src": "292:32:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "4ed3885e",
+            "id": 60,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "set",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 45,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 44,
+                  "mutability": "mutable",
+                  "name": "_reportHash",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 60,
+                  "src": "213:25:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 43,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "213:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "212:27:1"
+            },
+            "returnParameters": {
+              "id": 46,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "247:0:1"
+            },
+            "scope": 69,
+            "src": "200:131:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 67,
+              "nodeType": "Block",
+              "src": "388:34:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 65,
+                    "name": "reportHash",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 36,
+                    "src": "405:10:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 64,
+                  "id": 66,
+                  "nodeType": "Return",
+                  "src": "398:17:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "6d4ce63c",
+            "id": 68,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "get",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 61,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "349:2:1"
+            },
+            "returnParameters": {
+              "id": 64,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 63,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 68,
+                  "src": "373:13:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 62,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "373:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "372:15:1"
+            },
+            "scope": 69,
+            "src": "337:85:1",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 70,
+        "src": "25:399:1"
+      }
+    ],
+    "src": "0:424:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0xE9DEd4E4abaBEF3d580A5bcF051D866dcFE3d999",
+      "transactionHash": "0xf5af4947144e832f7c942a8b975d14384a49da33d8cd4142f610a8318607a178"
+    }
+  },
+  "schemaVersion": "3.2.2",
+  "updatedAt": "2020-09-20T10:00:00.495Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
