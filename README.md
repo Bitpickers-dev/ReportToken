@@ -10,9 +10,9 @@ $ npm install
 $ npm run dev
 
 ```
+http://localhost:3000/
 
 # ReportToken_eth
-repotokenのスマートコントラクト用のレポジトリー
 
 ## truffle
 Ethereumの開発プラットフォームです。(RailsとかNuxt.js的な)
@@ -35,18 +35,22 @@ npm install -g truffle
 
 
 ## Ganache
-チェーンの動作を制御しながらテストの実行、コマンドの実行、ステートの精査に使用できる
+・チェーンの動作を制御しながらテストの実行、コマンドの実行、ステートの精査に使用できる
 <br>
-「個人のイーサリアムブロックチェーン」
+・「個人のイーサリアムブロックチェーン」としてテスト用に使う
 <br>
-V2.4.0で作業するように
+・V2.4.0で作業するように
 
 https://github.com/trufflesuite/ganache
 
 /Ganacheのセッティング/
 
 https://www.trufflesuite.com/ganache
+<br>
 ↑を真似してアプリをインストール
+<br>
 ・Ganasheを開いてワークスペースは自分でテキトーに作ってね
+<br>
 ・truffle-config.jsファイルのパスをGanacheのワークスペースに追加する。
+<br>
 ・セーブして終了
