@@ -22,7 +22,7 @@ https://github.com/trufflesuite/ganache
 
 /truffleのセッティング/
 ```
-npm install -g truffle
+$npm install -g truffle
 ```
 /truffleのコマンド/
 |  動作  | コマンド  |
@@ -33,6 +33,11 @@ npm install -g truffle
 |Console   |truffle console      |
 |Test   |truffle test      |
 
+migrateがうまくいかない時は、
+```
+$truffle migrate --reset
+```
+を実行してみる。build/contractsを削除するのもあり 
 
 ## Ganache
 ・チェーンの動作を制御しながらテストの実行、コマンドの実行、ステートの精査に使用できる
