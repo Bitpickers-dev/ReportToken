@@ -36,7 +36,9 @@ npm install -g truffle
 
 ## Ganache
 チェーンの動作を制御しながらテストの実行、コマンドの実行、ステートの精査に使用できる
+<br>
 「個人のイーサリアムブロックチェーン」
+<br>
 V2.4.0で作業するように
 
 https://github.com/trufflesuite/ganache
@@ -48,12 +50,3 @@ https://www.trufflesuite.com/ganache
 ・Ganasheを開いてワークスペースは自分でテキトーに作ってね
 ・truffle-config.jsファイルのパスをGanacheのワークスペースに追加する。
 ・セーブして終了
-
-
-## Metamask
-Ethereumのウォレットで、Googleのアプリケーションとして利用できる。
-様々なEthereumネットワークに接続できる。
-
-
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
