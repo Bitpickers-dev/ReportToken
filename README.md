@@ -1,4 +1,4 @@
-# ReportToken_wallet
+# ReportToken_front
 
 ## ローカルホストへの接続
 
@@ -14,7 +14,7 @@ http://localhost:3000/
 
 # ReportToken_eth
 
-## truffle
+## Truffle
 Ethereumの開発プラットフォームです。(RailsとかNuxt.js的な)
 「スマートコントラクトをtruffleで実装→Ganacheでデプロイ」という形で開発できます。
 
