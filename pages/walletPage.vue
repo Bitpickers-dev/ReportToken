@@ -50,30 +50,22 @@ var Web3 = require('web3');
 var web3 = new Web3();
 web3.setProvider(new web3.providers.HttpProvider('http://localhost:7545'));
 web3.eth.defaultAccount = web3.eth.accounts[0]
+//todo
+//ABIを記述する
 
-var abi = [{
-  "constant": true,
-  "inputs": [{"name": "", "type": "address"}],
-  "name": "balanceOf",
-  "outputs": [{"name": "", "type": "uint256"}],
-  "payable": false,
-  "type": "function"
-}, {
-  "constant": false,
-  "inputs": [{"name": "_to", "type": "address"}, {"name": "_value", "type": "uint256"}],
-  "name": "transfer",
-  "outputs": [],
-  "payable": false,
-  "type": "function"
-}, {"inputs": [{"name": "initialSupply", "type": "uint256"}], "payable": false, "type": "constructor"}];
+var _purchaseReport = web3.eth.contract(abi).at("0x9a935ACDB7bBa49D31F63A41093E2d62733E8591").transfer.sendTransaction("送信先のアドレス", 送りたい金額);
+console.log(_purchaseReport);
 
-var _transfer = web3.eth.contract(abi).at("0x9a935ACDB7bBa49D31F63A41093E2d62733E8591").transfer.sendTransaction("送信先のアドレス", 10);
-console.log(_transfer);
+var _purchaseToken = web3.eth.contract(abi).at("0x9a935ACDB7bBa49D31F63A41093E2d62733E8591").balance.sendTransaction("送信先のアドレス", 購入したい金額);
+console.log(_purchaseToken);
+
+var _withdraw = web3.eth.contract(abi).at("0x9a935ACDB7bBa49D31F63A41093E2d62733E8591").balance.sendTransaction("送信先のアドレス", 購入したい金額);
+console.log(_withdraw);
 
 export default {
-    components:{
-        Header
-    },
+  components: {
+    Header
+  },
 }
 </script>
 
