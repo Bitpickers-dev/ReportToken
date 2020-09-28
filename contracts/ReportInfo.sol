@@ -1,20 +1,31 @@
 pragma solidity ^0.6.0;
 
 contract ReportInfo{
-    string reportHash;
-    struct Report {
-        string userAddress;
-        string reportHash;
-        uint16 downloads;
-    }
-    Report[] public Reports;
+    //mapping
+    mapping(address => uint16) public reportId;
+    mapping(address => mapping(uint16 => string)) public reports;
 
-    function set(string memory _userAddress,string memory _reportHash,uint16 _downloads) public {
-        
-        Reports.push(Report(_userAddress,_reportHash,_downloads));
+
+    //レポートを共有した時に呼び出される関数
+    //引数はレポートのハッシュ値
+    //set
+    function setReport(string memory _reportHash) public returns(uint16){
+        reportId[msg.sender]++;
+        reports[msg.sender][reportId[msg.sender]] = _reportHash;
+        return reportId[msg.sender];
     }
 
-    function get(uint _index) public view returns (string memory,string memory,uint16) {
-        return (Reports[_index].userAddress, Reports[_index].reportHash, Reports[_index].downloads);
+    //自分が共有したレポートを見る時の関数
+    //引数はレポートのID(インデックス)
+    //get owner report
+    function getOwnerReport(uint16 _index) public view returns (string memory) {
+        return reports[msg.sender][_index];
+    }
+
+    //購入したレポートを見る時の関数
+    //引数はレポートのID(インデックス)とそのレポートをシェアしたアカウントのアドレス
+    //get report
+    function getReport(uint16 _index,address _shareAddress) public view returns (string memory){
+        return reports[_shareAddress][_index];
     }
 }
