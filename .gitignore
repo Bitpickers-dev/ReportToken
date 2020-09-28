@@ -92,3 +92,6 @@ sw.*
 
 # Vim swap files
 *.swp
+
+
+.secret
