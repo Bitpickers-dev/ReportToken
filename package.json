@@ -13,6 +13,7 @@
     "@truffle/hdwallet-provider": "^1.1.0",
     "@types/ethereum-protocol": "^1.0.1",
     "@types/web3": "^1.2.2",
+    "dns": "^0.2.2",
     "element-ui": "^2.13.2",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
