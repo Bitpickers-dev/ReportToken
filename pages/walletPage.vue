@@ -46,23 +46,23 @@
 <script>
 import Header from '~/components/header.vue'
 
-var Web3 = require('web3');
-var web3 = new Web3();
-web3.setProvider(new web3.providers.HttpProvider('http://localhost:7545'));
-web3.eth.defaultAccount = web3.eth.accounts[0]
-//todo
-//ABIを記述する
-const ReportToken = require("/Users/tsudashouki/ReportToken/build/contracts/ReportToken.json");
-const abi = ReportToken.abi;
+// var Web3 = require('web3');
+// var web3 = new Web3();
+// web3.setProvider(new web3.providers.HttpProvider('http://localhost:7545'));
+// web3.eth.defaultAccount = web3.eth.accounts[0]
+// //todo
+// //ABIを記述する
+// const ReportToken = require("../build/contracts/ReportToken.json");
+// const abi = ReportToken.abi;
 
-var _purchaseReport = web3.eth.contract(abi).at("0x9a935ACDB7bBa49D31F63A41093E2d62733E8591").purchaseReport.sendTransaction("送信先のアドレス", 送りたい金額);
-console.log(_purchaseReport);
+// var _purchaseReport = web3.eth.contract(abi).at("0x9a935ACDB7bBa49D31F63A41093E2d62733E8591").purchaseReport.sendTransaction("送信先のアドレス", 送りたい金額);
+// console.log(_purchaseReport);
 
-var _purchaseToken = web3.eth.contract(abi).at("0x9a935ACDB7bBa49D31F63A41093E2d62733E8591").purchaseToken.sendTransaction("送信先のアドレス", 購入したい金額);
-console.log(_purchaseToken);
+// var _purchaseToken = web3.eth.contract(abi).at("0x9a935ACDB7bBa49D31F63A41093E2d62733E8591").purchaseToken.sendTransaction("送信先のアドレス", 購入したい金額);
+// console.log(_purchaseToken);
 
-var _withdraw = web3.eth.contract(abi).at("0x9a935ACDB7bBa49D31F63A41093E2d62733E8591").withdraw.sendTransaction("送信先のアドレス", 購入したい金額);
-console.log(_withdraw);
+// var _withdraw = web3.eth.contract(abi).at("0x9a935ACDB7bBa49D31F63A41093E2d62733E8591").withdraw.sendTransaction("送信先のアドレス", 購入したい金額);
+// console.log(_withdraw);
 
 export default {
   components: {
