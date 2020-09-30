@@ -17,6 +17,12 @@
  * phrase from a file you've .gitignored so it doesn't accidentally become public.
  *
  */
+var dns = require('dns');
+
+dns.resolve(`ropsten.infura.io`, (error, addresses) => {
+  console.error(error);
+  console.log(addresses);
+});
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
