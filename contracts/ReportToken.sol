@@ -44,7 +44,7 @@ contract ReportToken is ERC20 {
   //レポート購入時に呼び出される関数
   //購入者のアドレスから供給者へトークンを送信する
   //Transfer function
-  function transfer(address _to, uint256 _value) public override returns (bool) {
+  function purchaseReport(address _to, uint256 _value) public returns (bool) {
     require(balances[msg.sender] >= _value);
     balances[msg.sender] -= _value;
     balances[_to] += _value;
