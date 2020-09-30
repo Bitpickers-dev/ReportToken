@@ -1,23 +1,23 @@
 <template>
-    <div class="app-layout">
-            <Header />
-      <div class="main-contents">
-        <div class="side-content">
-          <Folder />
-        </div>
-        <div class="main-content">
-          <!-- ランキングコンテンツはcomponentにしてもいいかも -->
-          <div class="rank-content">
+  <div class="app-layout">
+    <Header/>
+    <div class="main-contents">
+      <div class="side-content">
+        <Folder/>
+      </div>
+      <div class="main-content">
+        <!-- ランキングコンテンツはcomponentにしてもいいかも -->
+        <div class="rank-content">
 
-                <Filecards />
-                <Upload />
-          </div>
-          <div class="tutorial-content">
-            <!-- <Tutorial /> -->
-          </div>
+          <Filecards/>
+          <Upload/>
+        </div>
+        <div class="tutorial-content">
+          <!-- <Tutorial /> -->
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -31,11 +31,11 @@ import Header from '~/components/header.vue'
 
 locale.use(lang)
 Vue.use(ElementUI)
-  export default {
-    components:{
-        Header
-    },
-  };
+export default {
+  components: {
+    Header
+  },
+};
 </script>
 
 <style>
@@ -43,16 +43,18 @@ html {
   font-family: 'Oswald', sans-serif;
 }
 
-h3{
+h3 {
   text-align: center;
 }
-.main-contents{
- display: flex;
+
+.main-contents {
+  display: flex;
 }
-.main-content{
-    height: 92vh;
-    width: 100%;
-    background-color:#f4f4f4;
+
+.main-content {
+  height: 92vh;
+  width: 100%;
+  background-color: #f4f4f4;
 }
 
 .side-content {
@@ -61,14 +63,15 @@ h3{
   width: 350px;
 }
 
-.rank-content{
-    height: 59%;
-    overflow-x: scroll;
-    margin-bottom: 10px;
+.rank-content {
+  height: 59%;
+  overflow-x: scroll;
+  margin-bottom: 10px;
 }
-.tutorial-content{
-    /* position: absolute;
-    z-index: 1;
-    bottom: 0px; */
+
+.tutorial-content {
+  /* position: absolute;
+  z-index: 1;
+  bottom: 0px; */
 }
 </style>
