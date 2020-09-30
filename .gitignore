@@ -93,5 +93,6 @@ sw.*
 # Vim swap files
 *.swp
 
+#secret files for infura
 .infuraKey
 .mnemonic
