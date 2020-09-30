@@ -9,6 +9,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/dotenv": "^1.4.1",
     "@openzeppelin/contracts": "^3.1.0",
     "@truffle/hdwallet-provider": "^1.1.0",
     "@types/ethereum-protocol": "^1.0.1",
@@ -16,6 +17,7 @@
     "dns": "^0.2.2",
     "element-ui": "^2.13.2",
     "express": "^4.17.1",
+    "firebase": "^7.21.1",
     "fs": "0.0.1-security",
     "ipfs-http-client": "^47.0.1",
     "nuxt": "^2.14.0",
