@@ -12,6 +12,23 @@ $ npm run dev
 ```
 http://localhost:3000/
 
+/firebaseのセッティング/
+```
+npm install @nuxtjs/dotenv
+npm install firebase
+```
+各自がプロジェクト直かディレクトリで.envファイルを作成、
+.envファイルにReportTokenのfirebaseの情報を<>の中身を書き換える形で記述する。
+``` :.env
+FB_API_KEY=<FIREBASE_API_KEY>
+FB_AUTH_DOMAIN=<FIREBASE_ AUTH_DOMAIN>
+FB_DATABASE_URL=<FIREBASE_DATABASE_URL>
+FB_PROJECTID=<FIREBASE_PROJECT_ID>
+FB_STORAGE_BUCKET=<FIREBASE_ STORAGE_BUCKET>
+FB_MESSAGING_SENDER_ID=<MESSAGING_SENDER_ID>
+```
+
+
 # ReportToken_eth
 
 ## Truffle
