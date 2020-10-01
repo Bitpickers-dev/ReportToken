@@ -17,7 +17,8 @@ http://localhost:3000/
 npm install @nuxtjs/dotenv
 npm install firebase
 ```
-各自がプロジェクト直かディレクトリで.envファイルを作成、
+各自がプロジェクト直下ディレクトリで.envファイルを作成、
+<br>
 .envファイルにReportTokenのfirebaseの情報を<>の中身を書き換える形で記述する。
 ``` :.env
 FB_API_KEY=<FIREBASE_API_KEY>
