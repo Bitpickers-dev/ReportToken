@@ -156,11 +156,10 @@ export default {
     };
   },
   mounted(){
+    //TODO: web3で現在のメタマスクアカウントを取得する
         const userAddress = '0x5A2B93AB2bAe9D319b49d1AeB54840f1C8D0918c'
         const userRef = db.collection('users').doc(userAddress)
         userRef.get().then((doc)=>{
-          console.log(doc.id)
-          console.log(doc.data())
           this.user = doc.data()
         })
   },
@@ -183,8 +182,13 @@ export default {
     },
     reportUpload() {
       //   IPFSにアップロード
+      ipfs.add(this.setBuffer).then((value) => {
+        this.ipfsHash = value.path
+        // console.log("ipfsHash is ",this.ipfsHash)
+      })
+      //TODO: ReportInfoコントラクトからハッシュ値を格納するsetReportを呼び出す
+      //
       //   firestoreにレポートの情報を追加する
-      //   console.log(this.setBuffer)
         const userAddress = '0x5A2B93AB2bAe9D319b49d1AeB54840f1C8D0918c'
         db.collection('users').doc(userAddress).update({
           //シェアしたレポートの数をインクリメントする。これがレポートのインデックスになる
@@ -200,11 +204,6 @@ export default {
           index: this.user.shares,
           shareUser: this.user.address
         })
-      ipfs.add(this.setBuffer).then((value) => {
-        this.ipfsHash = value.path
-        // console.log("ipfsHash is ",this.ipfsHash)
-      })
-      //TODO: ReportInfoコントラクトからハッシュ値を格納するsetReportを呼び出す
       if (this.active++ > 2) this.active = 0;
       this.$notify({
         title: '成功',
