@@ -8,6 +8,8 @@
       </div>
       <div class="main-content">
         <h1>共有</h1>
+        <p>{{user.address}}</p>
+        <p>{{user.shares}}</p>
         <div class="home-btn">
           <el-button type="primary">
             <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
@@ -97,7 +99,7 @@
             <!-- 非同期処理をしなきゃいけない。ロードを数秒間入れるとか... -->
             <p>共有されたレポートのハッシュ値は{{ ipfsHash }}です!</p>
             <a :href="`https://ipfs.io/ipfs/${ipfsHash}`" target="brank">レポートはこちら</a>
-            <img :src="`https://ipfs.io/ipfs/${ipfsHash}`" alt="共有したレポートの画像">
+            <img :src="`https://ipfs.io/ipfs/${ipfsHash}`" alt="共有したレポートの画像" style="width:20vw;">
             <div class="home-btn">
               <el-button type="primary">
                 <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
@@ -112,6 +114,7 @@
 <script>
 import Header from '~/components/header.vue'
 import {ipfs} from '~/plugins/ipfs'
+import { db,firebase } from '~/plugins/firebase'
 
 export default {
   components: {
@@ -121,6 +124,7 @@ export default {
     return {
       setBuffer: [],
       ipfsHash: '',
+      user:[],
       active: 0,
       visible: false,
       ruleForm: {
@@ -151,6 +155,15 @@ export default {
 
     };
   },
+  mounted(){
+        const userAddress = '0x5A2B93AB2bAe9D319b49d1AeB54840f1C8D0918c'
+        const userRef = db.collection('users').doc(userAddress)
+        userRef.get().then((doc)=>{
+          console.log(doc.id)
+          console.log(doc.data())
+          this.user = doc.data()
+        })
+  },
 
   methods: {
     captureFile(event) {
@@ -170,11 +183,28 @@ export default {
     },
     reportUpload() {
       //   IPFSにアップロード
-      // console.log(this.setBuffer)
+      //   firestoreにレポートの情報を追加する
+      //   console.log(this.setBuffer)
+        const userAddress = '0x5A2B93AB2bAe9D319b49d1AeB54840f1C8D0918c'
+        db.collection('users').doc(userAddress).update({
+          //シェアしたレポートの数をインクリメントする。これがレポートのインデックスになる
+          shares: firebase.firestore.FieldValue.increment(1),
+        })
+        this.user.shares++
+        db.collection('reports').add({
+          university: this.ruleForm.university,
+          grade: this.ruleForm.grade,
+          semester: this.ruleForm.semester,
+          subject: this.ruleForm.subject,
+          detail: this.ruleForm.detail,
+          index: this.user.shares,
+          shareUser: this.user.address
+        })
       ipfs.add(this.setBuffer).then((value) => {
         this.ipfsHash = value.path
         // console.log("ipfsHash is ",this.ipfsHash)
       })
+      //TODO: ReportInfoコントラクトからハッシュ値を格納するsetReportを呼び出す
       if (this.active++ > 2) this.active = 0;
       this.$notify({
         title: '成功',
