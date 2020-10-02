@@ -202,7 +202,8 @@ export default {
           subject: this.ruleForm.subject,
           detail: this.ruleForm.detail,
           index: this.user.shares,
-          shareUser: this.user.address
+          shareUser: this.user.address,
+          downloads: 0
         })
       if (this.active++ > 2) this.active = 0;
       this.$notify({
