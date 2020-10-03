@@ -48,7 +48,7 @@ $npm install -g truffle
 |Compile   |truffle compile    |
 |Migrate     |truffle migrate      |
 |create migration file   |truffle create migraton 名前     |
-|Console   |truffle console      |
+|Console   |truffle console --network ネットワーク名      |
 |Test   |truffle test      |
 
 migrateがうまくいかない時は、
@@ -56,6 +56,8 @@ migrateがうまくいかない時は、
 $truffle migrate --reset
 ```
 を実行してみる。build/contractsを削除するのもあり 
+
+
 
 ## Ganache
 ・チェーンの動作を制御しながらテストの実行、コマンドの実行、ステートの精査に使用できる
