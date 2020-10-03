@@ -26,13 +26,13 @@ export default {
             .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 //TODO: web3で現在のメタマスクアカウントを取得する
-                // const userAddress = '0x5A2B93AB2bAe9D319b49d1AeB54840f1C8D0918c'
-                const userAddress = '0xcD3Ab788fC0343C63d393000Ae70Ece96336d4a0'
+                const userAddress = '0x5A2B93AB2bAe9D319b49d1AeB54840f1C8D0918c'
+                // const userAddress = '0xcD3Ab788fC0343C63d393000Ae70Ece96336d4a0'
                    if(doc.data().shareUser == userAddress){
                     //    console.log(doc.data())
                     //    console.log("this shareUser is ",doc.data().shareUser)
                        this.shareReports.push(doc.data())
-                       console.log(this.shareReports)
+                    //    console.log(this.shareReports)
 
                    }
             })

@@ -10,22 +10,25 @@
                     text-color="#ff9900"
                     score-template="{value}">
                     </el-rate>
-                    <el-tag class="report-period" size="mini">1Q</el-tag>
+                    <!-- <div class="report-tags" v-for="period in report[0]." :key="period">
+                        <el-tag class="report-period" size="mini"></el-tag>
+                    </div> -->
                     <el-tag class="report-grade" size="mini">B1</el-tag>
                     <div class="download">
                         <i class="el-icon-download"></i>
-                        <h5>6</h5>
+                        <!-- <h5>{{report[0].downloads}}</h5> -->
                     </div>
 
                 </div>
-                <h5 class="report-title">情報通信工学実験</h5>
-                <p class="report-exp">第4回Arduinoの実験レポートです。</p>
+                <!-- <h5 class="report-title">{{report[0].subject}}</h5>
+                <p class="report-exp">{{report[0].detail}}</p> -->
             </el-card>
         </nuxt-link>
     </div>
 </template>
 <script>
   export default {
+    props:['report'],
     data() {
       return {
         value: 3.7
