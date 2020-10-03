@@ -46,9 +46,18 @@
 </template>
 <script>
 import Header from '~/components/header.vue'
+import { db,firebase } from '~/plugins/firebase'
+
 export default {
     components:{
         Header
+    },
+    mounted(){
+      const reportId = this.$route.params.id
+      const reportIndex = reportId.slice(-1)
+      const shareUserAddress = reportId.slice(0,42)
+      console.log("repotIndex is ",reportIndex)
+      console.log("shareUserAddress is ",shareUserAddress)
     },
     data() {
       return {
