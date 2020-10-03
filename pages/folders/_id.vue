@@ -66,10 +66,13 @@ export default {
             querySnapshot.forEach((doc) => {
               // console.log(doc.data().index)
               if(this.reportIndex == doc.data().index){
-                console.log(doc.id, "=>" ,doc.data())
-                this.report.push(doc.data())
-                console.log(this.report)
-                console.log(this.report[0].index)
+                // console.log(doc.id, "=>" ,doc.data())
+                this.reports.push(doc.data())
+                this.report = this.reports[0]
+                // console.log("this.reports is ",this.reports)
+                // console.log("this.report is ",this.report)
+                // console.log(this.report)
+                // console.log(this.report[0].index)
               }
             })
       })
@@ -78,7 +81,8 @@ export default {
       return {
         reportIndex:null,
         shareUserAddress:null,
-        report:[]
+        report:null,
+        reports:[]
         // tableData: [{
         //   date: '2020/05/03',
         //   name: 'Aoi',

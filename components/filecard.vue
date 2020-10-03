@@ -1,6 +1,5 @@
 <template>
     <div class="filecard-content">
-        <nuxt-link :to="{name: 'folders-id',params:{id:'情報工学通信実験'}}">
             <el-card class="file-card" shadow="hover">
                 <div class="report-details">
                     <el-rate
@@ -16,17 +15,17 @@
                     <el-tag class="report-grade" size="mini">B1</el-tag>
                     <div class="download">
                         <i class="el-icon-download"></i>
-                        <!-- <h5>{{report[0].downloads}}</h5> -->
+                        <h5>{{report.downloads}}</h5>
                     </div>
 
                 </div>
-                <!-- <h5 class="report-title">{{report[0].subject}}</h5>
-                <p class="report-exp">{{report[0].detail}}</p> -->
+                <h5 class="report-title">{{report.subject}}</h5>
+                <p class="report-exp">{{report.detail}}</p>
             </el-card>
-        </nuxt-link>
     </div>
 </template>
 <script>
+// console.log(report)
   export default {
     props:['report'],
     data() {

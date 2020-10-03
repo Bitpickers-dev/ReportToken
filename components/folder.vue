@@ -33,7 +33,6 @@ export default {
                     //    console.log("this shareUser is ",doc.data().shareUser)
                        this.shareReports.push(doc.data())
                     //    console.log(this.shareReports)
-
                    }
             })
             })
