@@ -24,7 +24,7 @@ export default {
             querySnapshot.forEach((doc) => {
                 console.log(doc.id, "=>" ,doc.data())
                 this.reports.push(doc.data())
-                console.log(this.reports)
+                // console.log(this.reports)
                 this.report = this.reports[0]
 
             })
@@ -34,5 +34,7 @@ export default {
 </script>
 
 <style scoped>
-
+.filecards{
+    display: flex;
+}
 </style>

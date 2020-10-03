@@ -28,20 +28,20 @@
               </el-form-item>
               <el-form-item label="学年" prop="grade" style="margin-bottom:10px;">
                 <el-checkbox-group v-model="ruleForm.grade">
-                  <el-checkbox label="B1(学士1年)" name="grade"></el-checkbox>
-                  <el-checkbox label="B2(学士2年)" name="grade"></el-checkbox>
-                  <el-checkbox label="B3(学士3年)" name="grade"></el-checkbox>
-                  <el-checkbox label="B4(学士4年)" name="grade"></el-checkbox>
-                  <el-checkbox label="M1 (修士1年)" name="grade"></el-checkbox>
-                  <el-checkbox label="M2(修士2年)" name="grade"></el-checkbox>
+                  <el-checkbox label="B1(1年)" name="grade"></el-checkbox>
+                  <el-checkbox label="B2(2年)" name="grade"></el-checkbox>
+                  <el-checkbox label="B3(3年)" name="grade"></el-checkbox>
+                  <el-checkbox label="B4(4年)" name="grade"></el-checkbox>
+                  <el-checkbox label="M1(1年)" name="grade"></el-checkbox>
+                  <el-checkbox label="M2(2年)" name="grade"></el-checkbox>
                 </el-checkbox-group>
               </el-form-item>
               <el-form-item label="セメスター情報" prop="semester" style="margin-bottom:20px;">
                 <el-checkbox-group v-model="ruleForm.semester">
-                  <el-checkbox label="1Q(1クォーター)" name="semester"></el-checkbox>
-                  <el-checkbox label="2Q(2クォーター)" name="semester"></el-checkbox>
-                  <el-checkbox label="3Q(3クォーター)" name="semester"></el-checkbox>
-                  <el-checkbox label="4Q(4クォーター)" name="semester"></el-checkbox>
+                  <el-checkbox label="1Q" name="semester"></el-checkbox>
+                  <el-checkbox label="2Q" name="semester"></el-checkbox>
+                  <el-checkbox label="3Q" name="semester"></el-checkbox>
+                  <el-checkbox label="4Q" name="semester"></el-checkbox>
                   <el-checkbox label="前期" name="semester"></el-checkbox>
                   <el-checkbox label="後期" name="semester"></el-checkbox>
                 </el-checkbox-group>

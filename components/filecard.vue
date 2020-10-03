@@ -2,17 +2,19 @@
     <div class="filecard-content">
             <el-card class="file-card" shadow="hover">
                 <div class="report-details">
-                    <el-rate
+                    <!-- <el-rate
                     v-model="value"
                     disabled
                     show-score
                     text-color="#ff9900"
                     score-template="{value}">
-                    </el-rate>
-                    <!-- <div class="report-tags" v-for="period in report[0]." :key="period">
-                        <el-tag class="report-period" size="mini"></el-tag>
-                    </div> -->
-                    <el-tag class="report-grade" size="mini">B1</el-tag>
+                    </el-rate> -->
+                    <div class="report-semester" v-for="semester in report.semester" :key="semester">
+                        <el-tag class="report-semester" size="mini">{{semester}}</el-tag>
+                    </div>
+                    <div class="report-grade" v-for="grade in report.grade" :key="grade">
+                        <el-tag class="report-grade" size="mini">{{grade}}</el-tag>
+                    </div>
                     <div class="download">
                         <i class="el-icon-download"></i>
                         <h5>{{report.downloads}}</h5>
@@ -25,13 +27,30 @@
     </div>
 </template>
 <script>
-// console.log(report)
+import { db,firebase } from '~/plugins/firebase'
   export default {
     props:['report'],
     data() {
       return {
         value: 3.7
       }
+    },
+    mounted(){
+        // const reportId = this.$route.params.id
+        // this.reportIndex = reportId.slice(-1)
+        // this.shareUserAddress = reportId.slice(0,42)
+
+        // db.collection('reports').where("shareUser", "==", this.shareUserAddress).get().then((querySnapshot) => {
+        //     querySnapshot.forEach((doc) => {
+        //         if(this.reportIndex == doc.data().index){
+        //             console.log(doc.id, "=>" ,doc.data())
+        //             this.reports.push(doc.data())
+        //             console.log(this.reports)
+        //             this.report = this.reports[0]
+        //         }
+
+        //     })
+        // })
     }
   }
 </script>
@@ -49,15 +68,15 @@
 .report-details{
     position: relative;
 }
-.report-period{
+.report-semester{
     position: absolute;
-    right: -10px;
-    top: -12px;
+    top: -9px;
+    right: -5px;
 }
 .report-grade{
     position: absolute;
-    top: -12px;
-    right: 30px;
+    top: -9px;
+    right: 50px;
 }
 .report-exp{
     margin: 0;
@@ -68,6 +87,7 @@
 .report-title{
     margin: 0;
     padding: 0;
+    margin-top: 10px;
 }
 .download{
     position: absolute;
