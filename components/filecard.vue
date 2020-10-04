@@ -1,14 +1,7 @@
 <template>
     <div class="filecard-content">
             <el-card class="file-card" shadow="hover">
-                <div class="report-details">
-                    <!-- <el-rate
-                    v-model="value"
-                    disabled
-                    show-score
-                    text-color="#ff9900"
-                    score-template="{value}">
-                    </el-rate> -->
+                <div class="report-details" v-if="report != null">
                     <div class="report-semester" v-for="semester in report.semester" :key="semester">
                         <el-tag class="report-semester" size="mini">{{semester}}</el-tag>
                     </div>
@@ -17,12 +10,12 @@
                     </div>
                     <div class="download">
                         <i class="el-icon-download"></i>
-                        <h5>{{report.downloads}}</h5>
+                        <!-- <h5>{{report.downloads}}</h5> -->
                     </div>
 
-                </div>
                 <h5 class="report-title">{{report.subject}}</h5>
                 <p class="report-exp">{{report.detail}}</p>
+                </div>
             </el-card>
     </div>
 </template>
@@ -32,26 +25,13 @@ import { db,firebase } from '~/plugins/firebase'
     props:['report'],
     data() {
       return {
-        value: 3.7
+        value: 3.7,
+        reportIndex:0,
+        shareUserAddress:"",
+        reports:[],
+        Report:null,
       }
     },
-    mounted(){
-        // const reportId = this.$route.params.id
-        // this.reportIndex = reportId.slice(-1)
-        // this.shareUserAddress = reportId.slice(0,42)
-
-        // db.collection('reports').where("shareUser", "==", this.shareUserAddress).get().then((querySnapshot) => {
-        //     querySnapshot.forEach((doc) => {
-        //         if(this.reportIndex == doc.data().index){
-        //             console.log(doc.id, "=>" ,doc.data())
-        //             this.reports.push(doc.data())
-        //             console.log(this.reports)
-        //             this.report = this.reports[0]
-        //         }
-
-        //     })
-        // })
-    }
   }
 </script>
 
