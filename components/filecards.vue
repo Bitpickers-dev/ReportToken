@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style scoped>
-.filecards{
-    display: flex;
+.filecard{
+    display: inline-flex;
 }
 </style>

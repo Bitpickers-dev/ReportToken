@@ -10,7 +10,7 @@
                     </div>
                     <div class="download">
                         <i class="el-icon-download"></i>
-                        <!-- <h5>{{report.downloads}}</h5> -->
+                        <h5>{{report.downloads}}</h5>
                     </div>
 
                 <h5 class="report-title">{{report.subject}}</h5>
