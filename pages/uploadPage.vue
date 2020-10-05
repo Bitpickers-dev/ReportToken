@@ -105,6 +105,9 @@
                 </el-button>
               </div>
             </div>
+            <div class="display-fash" v-else>
+              <h5>ファイルをアップロード中です。しばらくお待ちください.....</h5>
+            </div>
           </div>
         </div>
       </div>
@@ -158,6 +161,7 @@ export default {
   mounted(){
     //TODO: web3で現在のメタマスクアカウントを取得する
         const userAddress = '0x5A2B93AB2bAe9D319b49d1AeB54840f1C8D0918c'
+        // const userAddress = '0xcD3Ab788fC0343C63d393000Ae70Ece96336d4a0'
         const userRef = db.collection('users').doc(userAddress)
         userRef.get().then((doc)=>{
           this.user = doc.data()
