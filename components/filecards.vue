@@ -22,7 +22,7 @@ export default {
     mounted(){
         db.collection('reports').get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                console.log(doc.id, "=>" ,doc.data())
+                // console.log(doc.id, "=>" ,doc.data())
                 this.reports.push(doc.data())
                 // console.log(this.reports)
                 this.report = this.reports[0]

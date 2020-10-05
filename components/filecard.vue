@@ -12,7 +12,7 @@
                         <i class="el-icon-download"></i>
                         <h5>{{report.downloads}}</h5>
                     </div>
-
+                <h5>{{report.university}}</h5>
                 <h5 class="report-title">{{report.subject}}</h5>
                 <p class="report-exp">{{report.detail}}</p>
                 </div>

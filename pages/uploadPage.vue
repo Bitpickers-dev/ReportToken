@@ -8,8 +8,6 @@
       </div>
       <div class="main-content">
         <h1>共有</h1>
-        <p>{{user.address}}</p>
-        <p>{{user.shares}}</p>
         <div class="home-btn">
           <el-button type="primary">
             <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
@@ -97,13 +95,15 @@
             <h3>お疲れ様でした。レポートが共有されました。</h3>
             <h2>誰かにあなたのレポートが閲覧された時、あなたにレポートークンが送信されます</h2>
             <!-- 非同期処理をしなきゃいけない。ロードを数秒間入れるとか... -->
-            <p>共有されたレポートのハッシュ値は{{ ipfsHash }}です!</p>
-            <a :href="`https://ipfs.io/ipfs/${ipfsHash}`" target="brank">レポートはこちら</a>
-            <img :src="`https://ipfs.io/ipfs/${ipfsHash}`" alt="共有したレポートの画像" style="width:20vw;">
-            <div class="home-btn">
-              <el-button type="primary">
-                <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
-              </el-button>
+            <div class="display-hash" v-if="ipfsHash != ''">
+              <p>共有されたレポートのハッシュ値は{{ ipfsHash }}です!</p>
+              <a :href="`https://ipfs.io/ipfs/${ipfsHash}`" target="brank">レポートはこちら</a>
+              <img :src="`https://ipfs.io/ipfs/${ipfsHash}`" alt="共有したレポートの画像" style="width:20vw;">
+              <div class="home-btn">
+                <el-button type="primary">
+                  <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
+                </el-button>
+              </div>
             </div>
           </div>
         </div>
