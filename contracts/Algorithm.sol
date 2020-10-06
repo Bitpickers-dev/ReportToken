@@ -11,6 +11,8 @@ contract Algorithm {
         uint16 downloads;
     }
     Report[] public reports;
+    Report[] public reportsAbove;
+    Report[] public reportsBelow;
     
     constructor() public{
         reports.push(Report("0xc9472850C2bbEBC689b581b92A2E1A694235c9e5", "R1", 900));
@@ -28,16 +30,27 @@ contract Algorithm {
 
 
     // HPF():High Pass Filter
-    function HPF() public view returns (uint16) {
+    function HPF() public returns (uint16) {
         uint16 _median = 0;
-        uint256 n = 4;
+        uint256 _n = 4;
+        uint256 _a = 0; 
 
-        if (n % 2 == 0) {
-            _median = (reports[n/2 - 1].downloads + reports[n/2].downloads) / 2;
+        if (_n % 2 == 0) {
+            _median = (reports[_n/2 - 1].downloads + reports[_n/2].downloads) / 2;
         }
 
         else {
-            _median = reports[n/2].downloads;
+            _median = reports[_n/2].downloads;
+        }
+        
+        for(uint i = 0; i < _n; i++) {
+            if(reports[i].downloads >= _median) {
+                _a++;
+                reportsAbove.push(Report(reports[i].userAddress, reports[i].reportHash, reports[i].downloads));
+            }
+            else {
+                reportsBelow.push(Report(reports[i].userAddress, reports[i].reportHash, reports[i].downloads));
+            }
         }
         return _median;
     }
