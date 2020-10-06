@@ -11,10 +11,18 @@ contract Algorithm {
         string reportHash;
         uint16 downloads;
     }
+
+    struct Hash {
+        string reportHash;
+        uint256 RP1;
+    }
+
     Report[] public reports;
     Report[] public reportsAbove;
     Report[] public reportsBelow;
-    
+
+    Hash[] public reportsRp;
+
     constructor() public {
         reports.push(Report("0xc9472850C2bbEBC689b581b92A2E1A694235c9e5", "R1", 600));
         reports.push(Report("0x45c79bbE964d68beC3c8BeCAB9d3A7b7f7e9dDcd", "R2", 700));
@@ -50,6 +58,13 @@ contract Algorithm {
                 reportsBelow.push(Report(reports[i].userAddress, reports[i].reportHash, reports[i].downloads));
             }
         }
+
+        // 中央値以下のアイテムはRP=0
+        for (uint i = 0; i < reportsAbove.length; i++) {
+            reportsRp.push(Hash(reportsBelow[i].reportHash, 0));
+        }
+        _a = reportsRp[3].RP1;
+        return _a;
     }
 
     // swap関数
