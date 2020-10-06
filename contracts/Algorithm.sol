@@ -14,11 +14,12 @@ contract Algorithm {
   struct User {
     string userAddress;
     uint16 purchasedTokenAmount;
-    uint16 percentage;
   }
 
   Report[] public  reports;
   User[] public  users;
+  int[] public rp1;
+  int[] public rp2;
 
 
   constructor() public {
@@ -35,17 +36,17 @@ contract Algorithm {
     reports.push(Report("0x1B01Da83f3053D7BE8D06Aaf9a0A0f62EaBB6c53", "R21", 50));
 
     //RP2の情報は別途用意する
-    //RP2用のデータ
-    users.push(Report("0xc9472850C2bbEBC689b581b92A2E1A694235c9e5", 100, 0));
-    users.push(Report("0x45c79bbE964d68beC3c8BeCAB9d3A7b7f7e9dDcd", 90, 0));
-    users.push(Report("0xA4682e519519f3D461DEEa60ed8f2A07d7ed7458", 80, 0));
-    users.push(Report("0x1FC6F20f2296628a7663902144Fc2D4507cCb5BD", 70, 0));
-    users.push(Report("0x703f3570f9E4cE14a9bcD4082E6f099c74033421", 60, 0));
-    users.push(Report("0x82400A6a62150Dc6a29B966b5322b35069a9484d", 50, 0));
-    users.push(Report("0x41f3307e3693FcC9AAECa1d877B992b27B14950f", 40, 0));
-    users.push(Report("0x82C9EE99802C077F2BB13E0Fb391753dF875aC31", 30, 0));
-    users.push(Report("0xDC65E1106A1123fc00851D2e9CD8a5eDcd911afE", 20, 0));
-    users.push(Report("0x1B01Da83f3053D7BE8D06Aaf9a0A0f62EaBB6c53", 10, 0));
+    //RP2用のデータ(ユーザーアドレス、トークン購入量)
+    users.push(Report("0xc9472850C2bbEBC689b581b92A2E1A694235c9e5", 100));
+    users.push(Report("0x45c79bbE964d68beC3c8BeCAB9d3A7b7f7e9dDcd", 90));
+    users.push(Report("0xA4682e519519f3D461DEEa60ed8f2A07d7ed7458", 80));
+    users.push(Report("0x1FC6F20f2296628a7663902144Fc2D4507cCb5BD", 70));
+    users.push(Report("0x703f3570f9E4cE14a9bcD4082E6f099c74033421", 60));
+    users.push(Report("0x82400A6a62150Dc6a29B966b5322b35069a9484d", 50));
+    users.push(Report("0x41f3307e3693FcC9AAECa1d877B992b27B14950f", 40));
+    users.push(Report("0x82C9EE99802C077F2BB13E0Fb391753dF875aC31", 30));
+    users.push(Report("0xDC65E1106A1123fc00851D2e9CD8a5eDcd911afE", 20));
+    users.push(Report("0x1B01Da83f3053D7BE8D06Aaf9a0A0f62EaBB6c53", 10));
   }
 
   // HPF():High Pass Filter
@@ -68,35 +69,41 @@ contract Algorithm {
   }
 
   function RP2(){
-    uint256 i = 0;
-    //TODO:1
-    //トークンの発行数
+    uint i = 0;
+    uint j = 0;
     uint _totalIssuance = 0;
+    uint _winner = random();
 
+    //アドレスごとのトークン発行量を計算
     for (i = 0; i < 10; i++) {
       _totalIssuance += users[i].purchasedToken;
     }
 
-    //TODO:2
-    //TODO:3
-    uint _rangeMin = 0;
-    uint _rangeMax = 0;
-    //ルーレットにおける当選者
-    uint _winner = roulette();
-
-    for (i = 0; i < 10; i++) {
-      users[i].percentage = (users[i].purchasedTokenAmount / _totalIssuance) * 100;
-      _rangeMax += users[i].percentage;
-      if (_rangeMin <= _winner <= _rangeMax)
-      {
-        return users[i];
-      } else {
-        _rangeMin = _rangeMax;
-      }
+    //ルーレットで当選者を5回きめる(数字はてきとー)
+    for (j = 0; j < 5; j++) {
+      rp2[j] = roulette(_winner);
     }
+    return rp2[];
   }
 
-  function roulette(strinng _downloads){
+  //ルーレット
+  function roulette(uint winner){
+    uint _rangeMin = 0;
+    uint _rangeMax = 0;
+    uint k = 0;
+    uint _percentage = 0;
+
+    for (k = 0; k < 10; k++) {
+      _percentage = (users[k].purchasedTokenAmount / _totalIssuance) * 100;
+      _rangeMax += _percentage;
+      if (_rangeMin <= winner <= _rangeMax) break;
+      _rangeMin = _rangeMax;
+    }
+    //当選者番号を返す
+    return k;
+  }
+
+  function random(){
     //TODO:4
     //TODO:5
   }
