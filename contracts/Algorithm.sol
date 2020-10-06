@@ -11,21 +11,41 @@ contract Algorithm {
     uint16 downloads;
   }
 
+  struct User {
+    string userAddress;
+    uint16 purchasedTokenAmount;
+    uint16 percentage;
+  }
+
   Report[] public  reports;
+  User[] public  users;
+
 
   constructor() public {
+    //RP1用のデータ(レポートハッシュ、レポート名、DL数)
     reports.push(Report("0xc9472850C2bbEBC689b581b92A2E1A694235c9e5", "R1", 900));
     reports.push(Report("0x45c79bbE964d68beC3c8BeCAB9d3A7b7f7e9dDcd", "R2", 800));
     reports.push(Report("0xA4682e519519f3D461DEEa60ed8f2A07d7ed7458", "R3", 700));
     reports.push(Report("0x1FC6F20f2296628a7663902144Fc2D4507cCb5BD", "R4", 600));
-    // reports.push(Report("0x703f3570f9E4cE14a9bcD4082E6f099c74033421", "R5", 500));
-    // reports.push(Report("0x82400A6a62150Dc6a29B966b5322b35069a9484d", "R6", 400));
-    // reports.push(Report("0x41f3307e3693FcC9AAECa1d877B992b27B14950f", "R7", 300));
-    // reports.push(Report("0x82C9EE99802C077F2BB13E0Fb391753dF875aC31", "R8", 200));
-    // reports.push(Report("0xDC65E1106A1123fc00851D2e9CD8a5eDcd911afE", "R9", 100));
-    // reports.push(Report("0x1B01Da83f3053D7BE8D06Aaf9a0A0f62EaBB6c53", "R21", 50));
+    reports.push(Report("0x703f3570f9E4cE14a9bcD4082E6f099c74033421", "R5", 500));
+    reports.push(Report("0x82400A6a62150Dc6a29B966b5322b35069a9484d", "R6", 400));
+    reports.push(Report("0x41f3307e3693FcC9AAECa1d877B992b27B14950f", "R7", 300));
+    reports.push(Report("0x82C9EE99802C077F2BB13E0Fb391753dF875aC31", "R8", 200));
+    reports.push(Report("0xDC65E1106A1123fc00851D2e9CD8a5eDcd911afE", "R9", 100));
+    reports.push(Report("0x1B01Da83f3053D7BE8D06Aaf9a0A0f62EaBB6c53", "R21", 50));
 
     //RP2の情報は別途用意する
+    //RP2用のデータ
+    users.push(Report("0xc9472850C2bbEBC689b581b92A2E1A694235c9e5", 100, 0));
+    users.push(Report("0x45c79bbE964d68beC3c8BeCAB9d3A7b7f7e9dDcd", 90, 0));
+    users.push(Report("0xA4682e519519f3D461DEEa60ed8f2A07d7ed7458", 80, 0));
+    users.push(Report("0x1FC6F20f2296628a7663902144Fc2D4507cCb5BD", 70, 0));
+    users.push(Report("0x703f3570f9E4cE14a9bcD4082E6f099c74033421", 60, 0));
+    users.push(Report("0x82400A6a62150Dc6a29B966b5322b35069a9484d", 50, 0));
+    users.push(Report("0x41f3307e3693FcC9AAECa1d877B992b27B14950f", 40, 0));
+    users.push(Report("0x82C9EE99802C077F2BB13E0Fb391753dF875aC31", 30, 0));
+    users.push(Report("0xDC65E1106A1123fc00851D2e9CD8a5eDcd911afE", 20, 0));
+    users.push(Report("0x1B01Da83f3053D7BE8D06Aaf9a0A0f62EaBB6c53", 10, 0));
   }
 
   // HPF():High Pass Filter
@@ -48,10 +68,32 @@ contract Algorithm {
   }
 
   function RP2(){
+    uint256 i = 0;
     //TODO:1
+    //トークンの発行数
+    uint _totalIssuance = 0;
+
+    for (i = 0; i < 10; i++) {
+      _totalIssuance += users[i].purchasedToken;
+    }
+
     //TODO:2
     //TODO:3
-    roulette();
+    uint _rangeMin = 0;
+    uint _rangeMax = 0;
+    //ルーレットにおける当選者
+    uint _winner = roulette();
+
+    for (i = 0; i < 10; i++) {
+      users[i].percentage = (users[i].purchasedTokenAmount / _totalIssuance) * 100;
+      _rangeMax += users[i].percentage;
+      if (_rangeMin <= _winner <= _rangeMax)
+      {
+        return users[i];
+      } else {
+        _rangeMin = _rangeMax;
+      }
+    }
   }
 
   function roulette(strinng _downloads){
