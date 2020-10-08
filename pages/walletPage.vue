@@ -46,10 +46,10 @@
 <script>
 import Header from '~/components/header.vue'
 
-// var Web3 = require('web3');
-// var web3 = new Web3();
-// web3.setProvider(new web3.providers.HttpProvider('http://localhost:7545'));
-// web3.eth.defaultAccount = web3.eth.accounts[0]
+var Web3 = require('web3');
+var web3 = new Web3();
+web3.setProvider(new web3.providers.HttpProvider('http://localhost:7545'));
+web3.eth.defaultAccount = web3.eth.accounts[0]
 // //todo
 // //ABIを記述する
 // const ReportToken = require("../build/contracts/ReportToken.json");

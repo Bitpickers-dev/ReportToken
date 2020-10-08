@@ -1,36 +1,37 @@
 <template>
     <div class="filecard-content">
-        <nuxt-link :to="{name: 'folders-id',params:{id:'情報工学通信実験'}}">
             <el-card class="file-card" shadow="hover">
-                <div class="report-details">
-                    <el-rate
-                    v-model="value"
-                    disabled
-                    show-score
-                    text-color="#ff9900"
-                    score-template="{value}">
-                    </el-rate>
-                    <el-tag class="report-period" size="mini">1Q</el-tag>
-                    <el-tag class="report-grade" size="mini">B1</el-tag>
+                <div class="report-details" v-if="report != null">
+                    <div class="report-semester" v-for="semester in report.semester" :key="semester">
+                        <el-tag class="report-semester" size="mini">{{semester}}</el-tag>
+                    </div>
+                    <div class="report-grade" v-for="grade in report.grade" :key="grade">
+                        <el-tag class="report-grade" size="mini">{{grade}}</el-tag>
+                    </div>
                     <div class="download">
                         <i class="el-icon-download"></i>
-                        <h5>6</h5>
+                        <h5>{{report.downloads}}</h5>
                     </div>
-
+                <h5>{{report.university}}</h5>
+                <h5 class="report-title">{{report.subject}}</h5>
+                <p class="report-exp">{{report.detail}}</p>
                 </div>
-                <h5 class="report-title">情報通信工学実験</h5>
-                <p class="report-exp">第4回Arduinoの実験レポートです。</p>
             </el-card>
-        </nuxt-link>
     </div>
 </template>
 <script>
+import { db,firebase } from '~/plugins/firebase'
   export default {
+    props:['report'],
     data() {
       return {
-        value: 3.7
+        value: 3.7,
+        reportIndex:0,
+        shareUserAddress:"",
+        reports:[],
+        Report:null,
       }
-    }
+    },
   }
 </script>
 
@@ -47,15 +48,15 @@
 .report-details{
     position: relative;
 }
-.report-period{
+.report-semester{
     position: absolute;
-    right: -10px;
-    top: -12px;
+    top: -9px;
+    right: -5px;
 }
 .report-grade{
     position: absolute;
-    top: -12px;
-    right: 30px;
+    top: -9px;
+    right: 50px;
 }
 .report-exp{
     margin: 0;
@@ -66,6 +67,7 @@
 .report-title{
     margin: 0;
     padding: 0;
+    margin-top: 10px;
 }
 .download{
     position: absolute;
