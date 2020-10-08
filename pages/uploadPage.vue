@@ -26,20 +26,20 @@
               </el-form-item>
               <el-form-item label="学年" prop="grade" style="margin-bottom:10px;">
                 <el-checkbox-group v-model="ruleForm.grade">
-                  <el-checkbox label="B1(学士1年)" name="grade"></el-checkbox>
-                  <el-checkbox label="B2(学士2年)" name="grade"></el-checkbox>
-                  <el-checkbox label="B3(学士3年)" name="grade"></el-checkbox>
-                  <el-checkbox label="B4(学士4年)" name="grade"></el-checkbox>
-                  <el-checkbox label="M1 (修士1年)" name="grade"></el-checkbox>
-                  <el-checkbox label="M2(修士2年)" name="grade"></el-checkbox>
+                  <el-checkbox label="B1(1年)" name="grade"></el-checkbox>
+                  <el-checkbox label="B2(2年)" name="grade"></el-checkbox>
+                  <el-checkbox label="B3(3年)" name="grade"></el-checkbox>
+                  <el-checkbox label="B4(4年)" name="grade"></el-checkbox>
+                  <el-checkbox label="M1(1年)" name="grade"></el-checkbox>
+                  <el-checkbox label="M2(2年)" name="grade"></el-checkbox>
                 </el-checkbox-group>
               </el-form-item>
               <el-form-item label="セメスター情報" prop="semester" style="margin-bottom:20px;">
                 <el-checkbox-group v-model="ruleForm.semester">
-                  <el-checkbox label="1Q(1クォーター)" name="semester"></el-checkbox>
-                  <el-checkbox label="2Q(2クォーター)" name="semester"></el-checkbox>
-                  <el-checkbox label="3Q(3クォーター)" name="semester"></el-checkbox>
-                  <el-checkbox label="4Q(4クォーター)" name="semester"></el-checkbox>
+                  <el-checkbox label="1Q" name="semester"></el-checkbox>
+                  <el-checkbox label="2Q" name="semester"></el-checkbox>
+                  <el-checkbox label="3Q" name="semester"></el-checkbox>
+                  <el-checkbox label="4Q" name="semester"></el-checkbox>
                   <el-checkbox label="前期" name="semester"></el-checkbox>
                   <el-checkbox label="後期" name="semester"></el-checkbox>
                 </el-checkbox-group>
@@ -95,13 +95,18 @@
             <h3>お疲れ様でした。レポートが共有されました。</h3>
             <h2>誰かにあなたのレポートが閲覧された時、あなたにレポートークンが送信されます</h2>
             <!-- 非同期処理をしなきゃいけない。ロードを数秒間入れるとか... -->
-            <p>共有されたレポートのハッシュ値は{{ ipfsHash }}です!</p>
-            <a :href="`https://ipfs.io/ipfs/${ipfsHash}`" target="brank">レポートはこちら</a>
-            <img :src="`https://ipfs.io/ipfs/${ipfsHash}`" alt="共有したレポートの画像">
-            <div class="home-btn">
-              <el-button type="primary">
-                <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
-              </el-button>
+            <div class="display-hash" v-if="ipfsHash != ''">
+              <p>共有されたレポートのハッシュ値は{{ ipfsHash }}です!</p>
+              <a :href="`https://ipfs.io/ipfs/${ipfsHash}`" target="brank">レポートはこちら</a>
+              <img :src="`https://ipfs.io/ipfs/${ipfsHash}`" alt="共有したレポートの画像" style="width:20vw;">
+              <div class="home-btn">
+                <el-button type="primary">
+                  <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
+                </el-button>
+              </div>
+            </div>
+            <div class="display-fash" v-else>
+              <h5>ファイルをアップロード中です。しばらくお待ちください.....</h5>
             </div>
           </div>
         </div>
@@ -112,6 +117,7 @@
 <script>
 import Header from '~/components/header.vue'
 import {ipfs} from '~/plugins/ipfs'
+import { db,firebase } from '~/plugins/firebase'
 
 export default {
   components: {
@@ -121,6 +127,7 @@ export default {
     return {
       setBuffer: [],
       ipfsHash: '',
+      user:[],
       active: 0,
       visible: false,
       ruleForm: {
@@ -151,6 +158,15 @@ export default {
 
     };
   },
+  mounted(){
+    //TODO: web3で現在のメタマスクアカウントを取得する
+        const userAddress = '0x5A2B93AB2bAe9D319b49d1AeB54840f1C8D0918c'
+        // const userAddress = '0xcD3Ab788fC0343C63d393000Ae70Ece96336d4a0'
+        const userRef = db.collection('users').doc(userAddress)
+        userRef.get().then((doc)=>{
+          this.user = doc.data()
+        })
+  },
 
   methods: {
     captureFile(event) {
@@ -170,11 +186,29 @@ export default {
     },
     reportUpload() {
       //   IPFSにアップロード
-      // console.log(this.setBuffer)
       ipfs.add(this.setBuffer).then((value) => {
         this.ipfsHash = value.path
         // console.log("ipfsHash is ",this.ipfsHash)
       })
+      //TODO: ReportInfoコントラクトからハッシュ値を格納するsetReportを呼び出す
+      //
+      //   firestoreにレポートの情報を追加する
+        const userAddress = '0x5A2B93AB2bAe9D319b49d1AeB54840f1C8D0918c'
+        db.collection('users').doc(userAddress).update({
+          //シェアしたレポートの数をインクリメントする。これがレポートのインデックスになる
+          shares: firebase.firestore.FieldValue.increment(1),
+        })
+        this.user.shares++
+        db.collection('reports').add({
+          university: this.ruleForm.university,
+          grade: this.ruleForm.grade,
+          semester: this.ruleForm.semester,
+          subject: this.ruleForm.subject,
+          detail: this.ruleForm.detail,
+          index: this.user.shares,
+          shareUser: this.user.address,
+          downloads: 0
+        })
       if (this.active++ > 2) this.active = 0;
       this.$notify({
         title: '成功',
