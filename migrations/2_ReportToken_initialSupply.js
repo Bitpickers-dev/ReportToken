@@ -4,6 +4,6 @@ module.exports = function (deployer) {
   // Use deployer to state migration tasks.
   const initialSupply = "0";
   deployer.deploy(ReportToken, initialSupply,{
-    gas:2000000
+    gas:3000000
   });
 };
