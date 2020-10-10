@@ -119,4 +119,5 @@ contract Algorithm {
     }
     return k;
   }
+
 }
