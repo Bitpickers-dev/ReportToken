@@ -6,7 +6,7 @@ contract Algorithm {
 
   struct Report {string userAddress;string reportHash;uint16 downloads;}
 
-  struct User {address userAddress;uint8 purchasedTokenAmount;}
+  struct User {address userAddress;uint16 purchasedTokenAmount;}
 
   struct RP1Table {address userAddress;uint8 RP1;}
 
@@ -106,19 +106,17 @@ contract Algorithm {
   //ルーレット
   //TODO:実装に不備あり(毎回10を返す)
   function roulette(uint8 hitNumber, uint16 totalIssuance) public view returns (uint16 winner){
-    //    uint16 _rangeMin;
-    //    uint16 _rangeMax;
+    uint16 _rangeMin;
+    uint16 _rangeMax;
     uint16 _percentage;
     uint8 k;
 
     for (k = 0; k < 10; k++) {
       _percentage = 100 * userMapping[k].purchasedTokenAmount / totalIssuance;
       _rangeMax += _percentage;
-      if (_rangeMin <= hitNumber && _rangeMax >= hitNumber) {
-        return k;
-      } else {
-        _rangeMin = _rangeMax;
-      }
+      if (_rangeMin <= hitNumber && _rangeMax >= hitNumber) break;
+      _rangeMin = _rangeMax;
     }
+    return k;
   }
 }
