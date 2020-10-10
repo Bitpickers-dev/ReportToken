@@ -54,47 +54,48 @@ contract Algorithm {
     userMapping[9].userAddress = 0x1B01Da83f3053D7BE8D06Aaf9a0A0f62EaBB6c53;
     userMapping[9].purchasedTokenAmount = 10;
   }
-  //
-  //  // HPF():High Pass Filter
-  //  //  function HPF() public view {
-  //  //    uint16 _median = 0;
-  //  //    uint256 n = 4;
-  //  //
-  //  //    if (n % 2 == 0) {
-  //  //      _median = (reports[n / 2 - 1].downloads + reports[n / 2].downloads) / 2;
-  //  //    }
-  //  //
-  //  //    else {
-  //  //      _median = reports[n / 2].downloads;
-  //  //    }
-  //  //    return _median;
-  //  //  }
-  //
-  //  //RP2の雛形
-  //  function RP2() internal returns (RP2Table[] memory){
-  //    uint8[5] memory rp2Receiver;
-  //    uint16 _totalIssuance;
-  //    //    アドレスごとのトークン発行量を計算
-  //    for (uint8 i = 0; i < 10; i++) {
-  //      _totalIssuance += userMapping[i].purchasedTokenAmount;
-  //    }
-  //
-  //    //ルーレットで当選者を5回きめる(数字はてきとー)
-  //    for (uint8 j = 0; j < 5; j++) {
-  //      uint8 _hitNumber = random();
-  //      rp2Receiver[j] = roulette(_hitNumber, _totalIssuance);
-  //      for (uint8 i = 0; i < 10; i++) {
-  //        if (i == rp2Receiver[j]) break;
-  //        {
-  //          address _receiverAddress = userMapping[i].userAddress;
-  //          uint8 point = 0;
-  //          point += 1;
-  //          RP2Array.push(RP2Table(_receiverAddress, point));
-  //        }
-  //      }
-  //    }
-  //    return RP2Array;
-  //  }
+
+    // HPF():High Pass Filter
+    //  function HPF() public view {
+    //    uint16 _median = 0;
+    //    uint256 n = 4;
+    //
+    //    if (n % 2 == 0) {
+    //      _median = (reports[n / 2 - 1].downloads + reports[n / 2].downloads) / 2;
+    //    }
+    //
+    //    else {
+    //      _median = reports[n / 2].downloads;
+    //    }
+    //    return _median;
+    //  }
+
+    //RP2の雛形
+    function RP2() internal returns (RP2Table[] memory){
+      uint16[5] memory rp2Receiver;
+      uint16 _totalIssuance;
+      //    アドレスごとのトークン発行量を計算
+      for (uint8 i = 0; i < 10; i++) {
+        _totalIssuance += userMapping[i].purchasedTokenAmount;
+      }
+
+      //ルーレットで当選者を5回きめる(数字はてきとー)
+      for (uint8 j = 0; j < 5; j++) {
+//        uint8 _hitNumber = random();
+        uint8 _hitNumber = 20;
+      rp2Receiver[j] = roulette(_hitNumber, _totalIssuance);
+        for (uint8 i = 0; i < 10; i++) {
+          if (i == rp2Receiver[j]) break;
+          {
+            address _receiverAddress = userMapping[i].userAddress;
+            uint8 point = 0;
+            point += 1;
+            RP2Array.push(RP2Table(_receiverAddress, point));
+          }
+        }
+      }
+      return RP2Array;
+    }
   //
   //  //乱数生成
   //  function random() internal pure returns (uint8 randomNumber){
@@ -104,8 +105,7 @@ contract Algorithm {
   //  }
 
   //ルーレット
-  //TODO:実装に不備あり(毎回10を返す)
-  function roulette(uint8 hitNumber, uint16 totalIssuance) public view returns (uint16 winner){
+  function roulette(uint8 hitNumber, uint16 totalIssuance) internal view returns (uint16 winner){
     uint16 _rangeMin;
     uint16 _rangeMax;
     uint16 _percentage;
