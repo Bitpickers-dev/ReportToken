@@ -19,9 +19,8 @@
  */
 var dns = require('dns');
 
-dns.resolve(`ropsten.infura.io`, (error, addresses) => {
+dns.resolve(`ropsten.infura.io`, (error) => {
   console.error(error);
-  console.log(addresses);
 });
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
@@ -50,11 +49,12 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    // development: {
-    //   host: "127.0.0.1",     // Localhost (default: none)
-    //   port: 7545,            // Standard Ethereum port (default: none)
-    //   network_id: "5777",       // Any network (default: none)
-    // },
+    ganache: {
+      host: "127.0.0.1",     // Localhost (default: none)
+      port: 7545,            // Standard Ethereum port (default: none)
+      gas: 6700000,
+      network_id: "5777",       // Any network (default: none)
+    },
 
     // Another network with more advanced options...
     // advanced: {
