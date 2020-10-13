@@ -1,3 +1,5 @@
+![スクリーンショット 2020-10-13 14 33 23](https://user-images.githubusercontent.com/47593288/95819481-12015c80-0d61-11eb-875d-d2363a24caeb.png)
+
 # ReportToken_front
 
 ## ローカルホストへの接続
