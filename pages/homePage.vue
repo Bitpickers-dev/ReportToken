@@ -9,7 +9,7 @@
         <!-- ランキングコンテンツはcomponentにしてもいいかも -->
         <div class="rank-content">
 
-          <Filecards/>
+          <Filecards :reports="reports"/>
           <Upload/>
         </div>
         <div class="tutorial-content">
@@ -27,7 +27,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import lang from 'element-ui/lib/locale/lang/ja'
 import locale from 'element-ui/lib/locale'
 import Header from '~/components/header.vue'
-
+import { db,firebase } from '~/plugins/firebase'
 
 locale.use(lang)
 Vue.use(ElementUI)
@@ -35,6 +35,22 @@ export default {
   components: {
     Header
   },
+  data(){
+    return{
+      reports:[],
+    }
+  },
+  mounted(){
+        db.collection('reports').get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                // console.log(doc.id, "=>" ,doc.data())
+                this.reports.push(doc.data())
+                // console.log(this.reports)
+                this.report = this.reports[0]
+
+            })
+        })
+  }
 };
 </script>
 
