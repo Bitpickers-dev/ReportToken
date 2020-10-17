@@ -6,7 +6,7 @@
         <Folder/>
       </div>
       <div class="main-content">
-        <el-button @click="RP()">hello</el-button>
+        <el-button @click="RP()">RPを実行するボタン</el-button>
         <!-- ランキングコンテンツはcomponentにしてもいいかも -->
         <div class="rank-content">
           <Filecards :reports="reports"/>
@@ -80,11 +80,15 @@ export default {
           userAddress: this.users[i].address,
           RP: this.RP1Table[i].RP1 + this.RP2Table[i].RP2
         })
-        console.log(this.RPTable[i])
+        db.collection('winners').add({
+          RP: this.RPTable[i].RP,
+          winner_address: this.RPTable[i].userAddress
+        })
       }
-      console.log(this.RP1Table)
-      console.log(this.RP2Table)
-      console.log(this.RPTable)
+      // console.log(this.RP1Table)
+      // console.log(this.RP2Table)
+      // console.log(this.RPTable)
+
     },
     RP1(){
       for(let i=0;i < this.users.length;i++){
