@@ -6,9 +6,9 @@
         <Folder/>
       </div>
       <div class="main-content">
+        <el-button @click="RP1()">hello</el-button>
         <!-- ランキングコンテンツはcomponentにしてもいいかも -->
         <div class="rank-content">
-
           <Filecards :reports="reports"/>
           <Upload/>
         </div>
@@ -28,6 +28,7 @@ import lang from 'element-ui/lib/locale/lang/ja'
 import locale from 'element-ui/lib/locale'
 import Header from '~/components/header.vue'
 import { db,firebase } from '~/plugins/firebase'
+// import { median } from 'mathjs/number'
 
 locale.use(lang)
 Vue.use(ElementUI)
@@ -38,10 +39,13 @@ export default {
   data(){
     return{
       reports:[],
+      reportsAbove:[],
+      RPTable:[],
+      downloadsArray:[],
     }
   },
   mounted(){
-        db.collection('reports').get().then((querySnapshot) => {
+        db.collection('reports').orderBy('downloads', 'desc').get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 // console.log(doc.id, "=>" ,doc.data())
                 this.reports.push(doc.data())
@@ -50,6 +54,29 @@ export default {
 
             })
         })
+
+  },
+  methods:{
+    RP1(){
+      this.HPF();
+    },
+    HPF(){
+      const n = this.reports.length
+      for(let i=0;i < n;i++){
+        this.RPTable.push({
+          userAddress: this.reports[i].shareUser,
+          RP:0
+        })
+        // console.log(this.RPTable[i])
+      }
+
+      let median = this.reports[Math.floor(n/2)].downloads;
+      
+
+      
+      
+      
+    },
   }
 };
 </script>
