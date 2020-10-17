@@ -42,6 +42,7 @@ export default {
       reportsAbove:[],
       RPTable:[],
       downloadsArray:[],
+      users:[]
     }
   },
   mounted(){
@@ -57,25 +58,37 @@ export default {
 
   },
   methods:{
-    RP1(){
+    async RP1(){
+        await db.collection('users').get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                this.users.push(doc.data())
+            })
+        })
       this.HPF();
     },
     HPF(){
       const n = this.reports.length
-      for(let i=0;i < n;i++){
+      for(let i=0;i < this.users.length;i++){
         this.RPTable.push({
-          userAddress: this.reports[i].shareUser,
+          userAddress: this.users[i].address,
           RP:0
         })
         // console.log(this.RPTable[i])
       }
-
-      let median = this.reports[Math.floor(n/2)].downloads;
-      
-
-      
-      
-      
+      const numOfAbove = Math.floor(n/2)
+      console.log(numOfAbove)
+      // let median = this.reports[numOfAbove].downloads;
+      for(let i=0;i<numOfAbove;i++){
+        for(let j=0;j < this.users.length;j++){
+          if(this.reports[i].shareUser == this.RPTable[j].userAddress){
+            if(numOfAbove <= 8){
+              this.RPTable[j].RP += 4 - 0.5*i
+            }else{
+              this.RPTable[j].RP += 4 - 4*i
+            }
+          }
+        }
+      }
     },
   }
 };
