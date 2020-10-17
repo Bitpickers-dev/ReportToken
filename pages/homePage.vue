@@ -42,6 +42,7 @@ export default {
       reportsAbove:[],
       RP1Table:[],
       RP2Table:[],
+      RPTable:[],
       downloadsArray:[],
       users:[],
       tokens:[],
@@ -70,9 +71,20 @@ export default {
                 this.users.push(doc.data())
             })
         })
-      // this.RP1()
+      this.RP1()
       
       this.RP2()
+
+      for(let i=0;i < this.users.length;i++){
+        this.RPTable.push({
+          userAddress: this.users[i].address,
+          RP: this.RP1Table[i].RP1 + this.RP2Table[i].RP2
+        })
+        console.log(this.RPTable[i])
+      }
+      console.log(this.RP1Table)
+      console.log(this.RP2Table)
+      console.log(this.RPTable)
     },
     RP1(){
       for(let i=0;i < this.users.length;i++){
@@ -118,14 +130,6 @@ export default {
         this.hitNumber = Math.floor(Math.random()*100)
         console.log('hitNumber is ',this.hitNumber)
         this.rp2Receiver[i] = this.roulette()
-
-
-
-
-
-
-
-        console.log("rp2は",this.rp2Receiver[i])
         //search user
         for(let j=0;j < this.users.length;j++){
           if(j == this.rp2Receiver[i]){
@@ -133,7 +137,6 @@ export default {
           }
         }
       }
-      console.log(this.RP2Table)
     },
     roulette(){
       let rangeMin = 0
