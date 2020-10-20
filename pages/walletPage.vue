@@ -68,13 +68,19 @@ const abi = ReportToken.abi;
 //コントラクトのアドレスを設定
 const address = "0xE6cAC61b41fAB602E5C881eB36d86601433D21d5";
 //コントラクトのインスタンスを設定
-const contract = new web3.eth.Contract(abi,address);
+const contract = new web3.eth.Contract(abi, address);
+
+if (process.browser) {
+  // windowやdocumentを使う処理を記述
+  const toAddress = document.getElementById('to-address').value;
+  var amount = web3.toBN(document.getElementById('amount').value);
+}
 
 //トランザクション
-let _purchaseToken = contract.purchaseToken.sendTransaction("送信先のアドレス", amount);
+let _purchaseToken = contract.methods.purchaseToken.sendTransaction("toAddress", amount);
 console.log(_purchaseToken);
 
-let _purchaseReport = contract(abi).purchaseReport.sendTransaction("to-address", amount);
+let _purchaseReport = contract.methods.purchaseReport.sendTransaction("toAddress", amount);
 console.log(_purchaseReport);
 
 export default {
