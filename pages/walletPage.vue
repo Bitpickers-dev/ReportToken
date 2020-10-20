@@ -55,6 +55,12 @@
 <script>
 import Header from '~/components/header.vue'
 
+export default {
+  components: {
+    Header
+  },
+}
+
 var Web3 = require('web3');
 var web3 = new Web3();
 //Ganacheのデフォルトのポート番号は7545
@@ -71,23 +77,18 @@ const address = "0xE6cAC61b41fAB602E5C881eB36d86601433D21d5";
 const contract = new web3.eth.Contract(abi, address);
 
 if (process.browser) {
-  // windowやdocumentを使う処理を記述
   const toAddress = document.getElementById('to-address').value;
   var amount = web3.toBN(document.getElementById('amount').value);
 }
 
 //トランザクション
-let _purchaseToken = contract.methods.purchaseToken.sendTransaction("toAddress", amount);
+let _purchaseToken = contract.methods.purchaseToken("toAddress", amount);
 console.log(_purchaseToken);
 
-let _purchaseReport = contract.methods.purchaseReport.sendTransaction("toAddress", amount);
+let _purchaseReport = contract.methods.purchaseReport("toAddress", amount);
 console.log(_purchaseReport);
 
-export default {
-  components: {
-    Header
-  },
-}
+
 </script>
 
 <style>
