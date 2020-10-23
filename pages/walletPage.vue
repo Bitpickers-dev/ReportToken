@@ -21,17 +21,17 @@
         <h3>所持中のレポートークン:50RPT</h3>
         <div class="wallet_btn">
 
-          <h2>Token Address</h2>
-          <input type="text" id="token-address" size="80" oninput="onAddressChange()">
-          <h2>Recipients Address</h2>
-          <input type="text" id="to-address" size="80">
-          <h2>Decimals</h2>
-          <input type="number" id="decimals" size="40" readonly="">
-          <h2>Amount</h2>
-          <input type="number" id="amount" size="40">
-          <div>
-            <button id="send" onclick="send()">Send ERC20 Token</button>
-          </div>
+          <!--          <h2>Token Address</h2>-->
+          <!--          <input type="text" id="token-address" size="80" oninput="onAddressChange()">-->
+          <!--          <h2>Recipients Address</h2>-->
+          <!--          <input type="text" id="to-address" size="80">-->
+          <!--          <h2>Decimals</h2>-->
+          <!--          <input type="number" id="decimals" size="40" readonly="">-->
+          <!--          <h2>Amount</h2>-->
+          <!--          <input type="number" id="amount" size="40">-->
+          <!--          <div>-->
+          <!--            <button id="send" onclick="send()">Send ERC20 Token</button>-->
+          <!--          </div>-->
 
           <el-button type="primary" icon="el-icon-s-promotion" class="send_btn">送信する</el-button>
           <el-button type="primary" icon="el-icon-sell" class="receive_btn">取得する</el-button>
@@ -55,40 +55,57 @@
 <script>
 import Header from '~/components/header.vue'
 
+if (process.browser) {
+  var ownAddress = web3.eth.accounts[0];
+  var toAddress = document.getElementById('to-address').value;
+  var decimals = web3.toBigNumber(document.getElementById('decimals').value);
+  var amount = web3.toBN(document.getElementById('amount').value);
+  var sendValue = amount.times(web3.toBigNumber(10).pow(18));
+  var purchaseValue = amount.times(web3.toBigNumber(10).pow(18));
+}
+
 export default {
   components: {
     Header
   },
+  data() {
+    return {
+      number: 0,
+      inputNumber: 0
+    }
+  },
+  methods: {
+    getNumber: async function () {
+      let ret = await this.$contract.methods.get().call()
+      console.log(this.$contract)
+      console.log(ret)
+      this.number = ret
+    },
+
+    purchaseToken: async function () {
+      let ret = await this.$contrat.methods.purchaseToken(ownAddress, sendValue).call()
+      console.log(this.$contract)
+      console.log(ret)
+      this.number = ret
+    },
+
+    setNumber: async function () {
+      let accounts = await this.$web3.eth.getAccounts()
+      let account = accounts[0]
+      console.log(accounts)
+      console.log(this.inputNumber)
+      let ret = await this.$contract.methods.set(this.inputNumber).send({from: account})
+      console.log(ret)
+    },
+  },
+
+  mounted() {
+    console.log('Current Block Number')
+    this.$web3.eth.getBlockNumber().then(console.log)
+  }
+
+
 }
-
-var Web3 = require('web3');
-var web3 = new Web3();
-//Ganacheのデフォルトのポート番号は7545
-web3.setProvider(new web3.providers.HttpProvider('http://localhost:7545'));
-//コントラクトを呼び出すアカウントのアドレス
-web3.eth.defaultAccount = web3.eth.accounts[0]
-
-//コントラクトのABIを設定
-const ReportToken = require("../build/contracts/ReportToken.json");
-const abi = ReportToken.abi;
-//コントラクトのアドレスを設定
-const address = "0xE6cAC61b41fAB602E5C881eB36d86601433D21d5";
-//コントラクトのインスタンスを設定
-const contract = new web3.eth.Contract(abi, address);
-
-if (process.browser) {
-  const toAddress = document.getElementById('to-address').value;
-  var amount = web3.toBN(document.getElementById('amount').value);
-}
-
-//トランザクション
-let _purchaseToken = contract.methods.purchaseToken("toAddress", amount);
-console.log(_purchaseToken);
-
-let _purchaseReport = contract.methods.purchaseReport("toAddress", amount);
-console.log(_purchaseReport);
-
-
 </script>
 
 <style>
