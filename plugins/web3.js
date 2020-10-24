@@ -31,8 +31,6 @@ export default async function (context, inject) {
   )
 
   inject('web3', web3)
-  inject('contract', reportTokenContract)
-
-  inject('web3', web3)
-  inject('contract', reportInfoContract)
+  inject('reportTokenContract', reportTokenContract)
+  inject('reportInfoContract', reportInfoContract)
 }

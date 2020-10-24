@@ -76,15 +76,15 @@ export default {
   },
   methods: {
     getNumber: async function () {
-      let ret = await this.$contract.methods.get().call()
-      console.log(this.$contract)
+      let ret = await this.$reportTokenContract.methods.get().call()
+      console.log(this.$reportTokenContract)
       console.log(ret)
       this.number = ret
     },
 
     purchaseToken: async function () {
-      let ret = await this.$contrat.methods.purchaseToken(ownAddress, sendValue).call()
-      console.log(this.$contract)
+      let ret = await this.$reportTokenContrat.methods.purchaseToken(ownAddress, sendValue).call()
+      console.log(this.$reportTokenContract)
       console.log(ret)
       this.number = ret
     },
@@ -94,7 +94,7 @@ export default {
       let account = accounts[0]
       console.log(accounts)
       console.log(this.inputNumber)
-      let ret = await this.$contract.methods.set(this.inputNumber).send({from: account})
+      let ret = await this.$reportTokenContract.methods.set(this.inputNumber).send({from: account})
       console.log(ret)
     },
   },
