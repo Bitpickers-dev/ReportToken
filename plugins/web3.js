@@ -1,7 +1,9 @@
 import Web3 from "web3"
-import artifacts from "~~/build/contracts/ReportToken.json"
+import reportTokenABI from "~~/build/contracts/ReportToken.json"
+import reportInfoABI from "~~/build/contracts/ReportInfo.json"
 
-export default async function(context, inject) {
+
+export default async function (context, inject) {
   let web3
 
   if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
@@ -18,11 +20,19 @@ export default async function(context, inject) {
   }
   let networkId = await web3.eth.net.getId()
 
-  let contract = new web3.eth.Contract(
-    artifacts.abi,
-    artifacts.networks[networkId].address
+  let reportTokenContract = new web3.eth.Contract(
+    reportTokenABI.abi,
+    reportTokenABI.networks[networkId].address,
   )
 
-  inject('web3',web3)
-  inject('contract',contract)
+  let reportInfoContract = new web3.eth.Contract(
+    reportInfoABI.abi,
+    reportInfoABI.networks[networkId].address
+  )
+
+  inject('web3', web3)
+  inject('contract', reportTokenContract)
+
+  inject('web3', web3)
+  inject('contract', reportInfoContract)
 }
