@@ -20,6 +20,19 @@
         </div>
         <h3>所持中のレポートークン:50RPT</h3>
         <div class="wallet_btn">
+
+          <!--          <h2>Token Address</h2>-->
+          <!--          <input type="text" id="token-address" size="80" oninput="onAddressChange()">-->
+          <!--          <h2>Recipients Address</h2>-->
+          <!--          <input type="text" id="to-address" size="80">-->
+          <!--          <h2>Decimals</h2>-->
+          <!--          <input type="number" id="decimals" size="40" readonly="">-->
+          <!--          <h2>Amount</h2>-->
+          <!--          <input type="number" id="amount" size="40">-->
+          <!--          <div>-->
+          <!--            <button id="send" onclick="send()">Send ERC20 Token</button>-->
+          <!--          </div>-->
+
           <el-button type="primary" icon="el-icon-s-promotion" class="send_btn">送信する</el-button>
           <el-button type="primary" icon="el-icon-sell" class="receive_btn">取得する</el-button>
         </div>
@@ -27,13 +40,9 @@
           <el-tabs type="card">
             <el-tab-pane label="送信履歴">
               <p>2020/08/24 10RPT to 0x5A2B93AB2bAe9D319b49d1Adkrid40f1Cdaferfa</p>
-              <p>2020/08/20 10RPT to 0x5A2B93AB2bAe9D319b49d1Adkrid40f1C8D0918c</p>
-              <p>2020/08/15 10RPT to 0x5A2B93AB2bAe9D319b49daerfaerfaergd3r4f4r</p>
-              <p>2020/08/02 10RPT to 0x5A2B93AB2bAe9D31afrfsergfrtghvd0495jeg94</p>
             </el-tab-pane>
             <el-tab-pane label="取得履歴">
               <p>2020/08/24 +50RPT from 0x5A2Bdkeijadofislerfjleiorfnse0f1C8D0918c</p>
-              <p>2020/08/20 +40RPT from 0x5A2B93AB2bAe9D319b49d1Adkrid40f1C8D0918c</p>
             </el-tab-pane>
           </el-tabs>
         </div>
@@ -46,28 +55,56 @@
 <script>
 import Header from '~/components/header.vue'
 
-var Web3 = require('web3');
-var web3 = new Web3();
-web3.setProvider(new web3.providers.HttpProvider('http://localhost:7545'));
-web3.eth.defaultAccount = web3.eth.accounts[0]
-// //todo
-// //ABIを記述する
-// const ReportToken = require("../build/contracts/ReportToken.json");
-// const abi = ReportToken.abi;
-
-// var _purchaseReport = web3.eth.contract(abi).at("0x9a935ACDB7bBa49D31F63A41093E2d62733E8591").purchaseReport.sendTransaction("送信先のアドレス", 送りたい金額);
-// console.log(_purchaseReport);
-
-// var _purchaseToken = web3.eth.contract(abi).at("0x9a935ACDB7bBa49D31F63A41093E2d62733E8591").purchaseToken.sendTransaction("送信先のアドレス", 購入したい金額);
-// console.log(_purchaseToken);
-
-// var _withdraw = web3.eth.contract(abi).at("0x9a935ACDB7bBa49D31F63A41093E2d62733E8591").withdraw.sendTransaction("送信先のアドレス", 購入したい金額);
-// console.log(_withdraw);
+if (process.browser) {
+  var ownAddress = web3.eth.accounts[0];
+  var toAddress = document.getElementById('to-address').value;
+  var decimals = web3.toBigNumber(document.getElementById('decimals').value);
+  var amount = web3.toBN(document.getElementById('amount').value);
+  var sendValue = amount.times(web3.toBigNumber(10).pow(18));
+  var purchaseValue = amount.times(web3.toBigNumber(10).pow(18));
+}
 
 export default {
   components: {
     Header
   },
+  data() {
+    return {
+      number: 0,
+      inputNumber: 0
+    }
+  },
+  methods: {
+    getNumber: async function () {
+      let ret = await this.$reportTokenContract.methods.get().call()
+      console.log(this.$reportTokenContract)
+      console.log(ret)
+      this.number = ret
+    },
+
+    purchaseToken: async function () {
+      let ret = await this.$reportTokenContrat.methods.purchaseToken(ownAddress, sendValue).call()
+      console.log(this.$reportTokenContract)
+      console.log(ret)
+      this.number = ret
+    },
+
+    setNumber: async function () {
+      let accounts = await this.$web3.eth.getAccounts()
+      let account = accounts[0]
+      console.log(accounts)
+      console.log(this.inputNumber)
+      let ret = await this.$reportTokenContract.methods.set(this.inputNumber).send({from: account})
+      console.log(ret)
+    },
+  },
+
+  mounted() {
+    console.log('Current Block Number')
+    this.$web3.eth.getBlockNumber().then(console.log)
+  }
+
+
 }
 </script>
 
