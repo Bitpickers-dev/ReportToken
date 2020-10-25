@@ -92,11 +92,6 @@ export default {
   },
   methods:{
     async RP(){
-        // await db.collection('users').get().then((querySnapshot) => {
-        //     querySnapshot.forEach((doc) => {
-        //         this.users.push(doc.data())
-        //     })
-        // })
       this.RP1()
       
       this.RP2()

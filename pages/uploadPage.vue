@@ -159,7 +159,6 @@ export default {
     };
   },
   async mounted(){
-    //TODO: web3で現在のメタマスクアカウントを取得する
     let accounts = await this.$web3.eth.getAccounts()
     this.userAddress = accounts[0]
     const userRef = db.collection('users').doc(this.userAddress)
@@ -188,9 +187,7 @@ export default {
       //   IPFSにアップロード
       await ipfs.add(this.setBuffer).then((value) => {
         this.ipfsHash = value.path
-        // console.log("ipfsHash is ",this.ipfsHash)
       })
-      //TODO: ReportInfoコントラクトからハッシュ値を格納するsetReportを呼び出す
       let ret = await this.$reportInfoContract.methods.setReport(this.ipfsHash).send({from: this.userAddress})
       console.log(ret)
       //   firestoreにレポートの情報を追加する
