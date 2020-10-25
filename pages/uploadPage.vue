@@ -158,11 +158,10 @@ export default {
 
     };
   },
-  mounted(){
-    //TODO: web3で現在のメタマスクアカウントを取得する
-        const userAddress = '0x5A2B93AB2bAe9D319b49d1AeB54840f1C8D0918c'
-        // const userAddress = '0xcD3Ab788fC0343C63d393000Ae70Ece96336d4a0'
-        const userRef = db.collection('users').doc(userAddress)
+  async mounted(){
+    let accounts = await this.$web3.eth.getAccounts()
+    this.userAddress = accounts[0]
+    const userRef = db.collection('users').doc(this.userAddress)
         userRef.get().then((doc)=>{
           this.user = doc.data()
         })
@@ -184,22 +183,20 @@ export default {
       }
 
     },
-    reportUpload() {
+    async reportUpload() {
       //   IPFSにアップロード
-      ipfs.add(this.setBuffer).then((value) => {
+      await ipfs.add(this.setBuffer).then((value) => {
         this.ipfsHash = value.path
-        // console.log("ipfsHash is ",this.ipfsHash)
       })
-      //TODO: ReportInfoコントラクトからハッシュ値を格納するsetReportを呼び出す
-      //
+      let ret = await this.$reportInfoContract.methods.setReport(this.ipfsHash).send({from: this.userAddress})
+      console.log(ret)
       //   firestoreにレポートの情報を追加する
-        const userAddress = '0x5A2B93AB2bAe9D319b49d1AeB54840f1C8D0918c'
-        db.collection('users').doc(userAddress).update({
+      await db.collection('users').doc(this.userAddress).update({
           //シェアしたレポートの数をインクリメントする。これがレポートのインデックスになる
           shares: firebase.firestore.FieldValue.increment(1),
-        })
+      })
         this.user.shares++
-        db.collection('reports').add({
+      await db.collection('reports').add({
           university: this.ruleForm.university,
           grade: this.ruleForm.grade,
           semester: this.ruleForm.semester,
@@ -208,7 +205,7 @@ export default {
           index: this.user.shares,
           shareUser: this.user.address,
           downloads: 0
-        })
+      })
       if (this.active++ > 2) this.active = 0;
       this.$notify({
         title: '成功',
