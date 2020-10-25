@@ -6,6 +6,7 @@
         <Folder/>
       </div>
       <div class="main-content">
+        <h5>現在ログインしているアカウントは{{userAddress}}</h5>
         <el-button @click="RP()">RPを実行するボタン</el-button>
         <!-- ランキングコンテンツはcomponentにしてもいいかも -->
         <div class="rank-content">
@@ -39,12 +40,13 @@ export default {
   data(){
     return{
       reports:[],
+      users:[],
+      userAddress:null,
       reportsAbove:[],
       RP1Table:[],
       RP2Table:[],
       RPTable:[],
       downloadsArray:[],
-      users:[],
       tokens:[],
       rp2Receiver:[],
       hitNumber:null,
@@ -52,25 +54,49 @@ export default {
       // receiverIndex:null
     }
   },
-  mounted(){
-        db.collection('reports').orderBy('downloads', 'desc').get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                // console.log(doc.id, "=>" ,doc.data())
-                this.reports.push(doc.data())
-                // console.log(this.reports)
-                this.report = this.reports[0]
-
-            })
+  async mounted(){
+      await db.collection('users').get().then((querySnapshot) =>{
+          querySnapshot.forEach((doc) => {
+              this.users.push(doc.data())
+              console.log(this.users)
+          })
+      })
+        let accounts = await this.$web3.eth.getAccounts()
+        this.userAddress = accounts[0]
+        // console.log(this.userAddress)
+      let count=0;
+      for(let i=0;i < this.users.length;i++){
+        if(this.users[i].address == this.userAddress){
+          count++;
+        }
+      }
+      if(count == 0){
+        await db.collection('users').doc(this.userAddress).set({
+          address:this.userAddress,
+          purchased_token_amount:0,
+          shares:0,
+          tokens:0
+          //TODO: 他にも初期値を設定するところがあるかもしれないので注意
         })
+      }
+
+
+    db.collection('reports').orderBy('downloads', 'desc').get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            this.reports.push(doc.data())
+            this.report = this.reports[0]
+
+        })
+    })
 
   },
   methods:{
     async RP(){
-        await db.collection('users').get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                this.users.push(doc.data())
-            })
-        })
+        // await db.collection('users').get().then((querySnapshot) => {
+        //     querySnapshot.forEach((doc) => {
+        //         this.users.push(doc.data())
+        //     })
+        // })
       this.RP1()
       
       this.RP2()
