@@ -11,7 +11,7 @@
 
 <style scoped>
 .upload_content{
-    position: absolute;
+    position: fixed;
     z-index: 2;
     bottom: 60px;
     right: 60px;

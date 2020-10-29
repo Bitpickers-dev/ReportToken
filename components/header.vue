@@ -1,6 +1,6 @@
 <template>
       <div class="header-content">
-          <nuxt-link to="/homePage">
+          <nuxt-link to="/">
                 <img src="~/assets/images/reportoken-logo_header.png" class="reportoken-logo_header">
           </nuxt-link>
           <div class="page-link">

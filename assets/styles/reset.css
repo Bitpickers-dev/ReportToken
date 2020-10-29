@@ -1,5 +1,9 @@
 *{
     margin: 0;
     z-index: 0;
-    /* outline: 1px solid rgb(238, 216, 245); */
+    outline: 1px solid rgb(238, 216, 245);
+}
+
+body{
+    background-color:#f4f4f4;
 }

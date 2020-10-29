@@ -118,7 +118,7 @@ p {
 }
 
 .wallet-detail_content {
-  max-height: 50vh;
+  /* max-height: 50vh; */
   overflow: scroll;
 }
 </style>

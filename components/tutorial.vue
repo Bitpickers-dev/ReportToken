@@ -7,7 +7,7 @@
                 <p>本アプリの使い方のチュートリアルです。</p>
                 <p>使い方をすでに知っている方はロゴをクリックしてレポートークンを始めてください。</p>
                 <div class="img-center">
-                    <nuxt-link to="/homePage" class="link-detail">
+                    <nuxt-link to="/" class="link-detail">
                       <img src="~/assets/images/reportoken-tutorial.png" style="width:130px;height:auto;">
                     </nuxt-link>
                 </div>
