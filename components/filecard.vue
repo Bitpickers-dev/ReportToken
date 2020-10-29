@@ -2,12 +2,6 @@
     <div class="filecard-content">
             <el-card class="file-card" shadow="hover">
                 <div class="report-details" v-if="report != null">
-                    <div class="report-semester" v-for="semester in report.semester" :key="semester">
-                        <el-tag class="report-semester" size="mini">{{semester}}</el-tag>
-                    </div>
-                    <div class="report-grade" v-for="grade in report.grade" :key="grade">
-                        <el-tag class="report-grade" size="mini">{{grade}}</el-tag>
-                    </div>
                     <div class="download">
                         <i class="el-icon-download"></i>
                         <h5>{{report.downloads}}</h5>
