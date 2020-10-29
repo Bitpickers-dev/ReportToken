@@ -3,16 +3,7 @@
   <div class="app-layout">
     <Header/>
     <div class="main-contents">
-      <div class="side-content">
-        <Folder/>
-      </div>
       <div class="main-content">
-        <h1>共有</h1>
-        <div class="home-btn">
-          <el-button type="primary">
-            <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
-          </el-button>
-        </div>
         <div class="step-content">
           <el-steps :active="active" finish-status="success" align-center>
             <el-step title="ステップ1" description="レポート情報の登録"></el-step>
@@ -263,6 +254,7 @@ export default {
   padding: 0;
   margin-left: 10%;
   width: 80%;
+  padding-top: 50px;
 }
 
 .input-form_contents {
@@ -282,10 +274,5 @@ export default {
   margin-top: 30px;
   margin-bottom: 30px;
   text-align: center;
-}
-
-.home-btn {
-  text-align: center;
-  padding: 10px;
 }
 </style>

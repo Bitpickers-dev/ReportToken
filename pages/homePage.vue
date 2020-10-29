@@ -2,9 +2,6 @@
   <div class="app-layout">
     <Header/>
     <div class="main-contents">
-      <div class="side-content">
-        <Folder/>
-      </div>
       <div class="main-content">
         <h5>現在ログインしているアカウントは{{userAddress}}</h5>
         <el-button @click="RP()">RPを実行するボタン</el-button>
@@ -203,11 +200,6 @@ h3 {
   background-color: #f4f4f4;
 }
 
-.side-content {
-  height: 94vh;
-  width: 300px;
-  width: 350px;
-}
 
 .rank-content {
   height: 59%;
