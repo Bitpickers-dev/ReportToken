@@ -1,5 +1,4 @@
 <template>
-  　
   <div class="app-layout">
     <Header/>
     <div class="main-contents">
@@ -38,5 +37,10 @@ export default {
 
 .serch-content {
   text-align: center;
+}
+.serch-input{
+  padding: 10px;
+  padding-top: 10px;
+  width: 400px;
 }
 </style>

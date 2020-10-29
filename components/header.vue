@@ -6,9 +6,8 @@
           <div class="page-link">
             <!-- <nuxt-link to="/homePage" class="link-detail">ホーム</nuxt-link> -->
 
-            <nuxt-link to="/serchPage" class="link-detail">検索</nuxt-link>
-            <nuxt-link to="/historyPage" class="link-detail">履歴</nuxt-link>
-            <nuxt-link to="/walletPage" class="link-detail">マイページ</nuxt-link>
+            <nuxt-link to="/serchPage" class="link-detail"><i class="el-icon-search"></i></nuxt-link>
+            <nuxt-link to="/walletPage" class="link-detail"><i class="el-icon-user"></i></nuxt-link>
 
           </div>
       </div>
@@ -78,11 +77,7 @@ export default {
   width: 50px;
   height: 50px;
 }
-.serch-input{
-  padding: 10px;
-  padding-top: 10px;
-  width: 300px;
-}
+
 .page-link{
   position: absolute;
   right: 30px;
@@ -91,20 +86,14 @@ export default {
 .el-icon-message-solid{
   color: #fff;
 }
-.timestamp{
-  color: rgb(184, 184, 184);
-  font-size: 12px;
-  position: relative;
-  right: -220px;
-  bottom: 15px;
-}
+
 .link-detail_notification{
   text-decoration: none;
 }
 .link-detail{
   text-decoration: none;
   color: black;
-  font-size: 16px;
+  font-size: 20px;
   padding: 8px;
 }
 
