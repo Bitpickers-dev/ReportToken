@@ -1,58 +1,15 @@
 <template>
       <div class="header-content">
+          <nuxt-link to="/homePage">
                 <img src="~/assets/images/reportoken-logo_header.png" class="reportoken-logo_header">
-            <el-input placeholder="レポート名で検索" v-model="input" class="serch-input">
-              <el-button slot="append" icon="el-icon-search"></el-button>
-            </el-input>
+          </nuxt-link>
           <div class="page-link">
             <!-- <nuxt-link to="/homePage" class="link-detail">ホーム</nuxt-link> -->
-            <nuxt-link to="/rewardPage" class="link-detail">
-                <el-tooltip class="item" effect="dark" content="ご褒美" placement="bottom-end">
-                <i class="el-icon-present"></i>
-              </el-tooltip>
-            </nuxt-link>
+
             <nuxt-link to="/serchPage" class="link-detail">検索</nuxt-link>
             <nuxt-link to="/historyPage" class="link-detail">履歴</nuxt-link>
-            <nuxt-link to="/walletPage" class="link-detail">ウォレット</nuxt-link>
-            <el-badge is-dot class="item">
-            <el-dropdown>
-              <span class="el-dropdown-link">
-                <i class="el-icon-bell"></i>
-              </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>
-                  <nuxt-link to="/historyPage" class="link-detail_notification">                 
-                    <p>Aさんが「情報通信工学実験」を購入しました</p>
-                    <p class="timestamp">2020/09/03</p>
-                  </nuxt-link>
-                </el-dropdown-item>
-                <el-dropdown-item>
-                  <nuxt-link to="/historyPage" class="link-detail_notification">                 
-                    <p>Bさんが「情報通信工学実験」を購入しました</p>
-                    <p class="timestamp">2020/09/04</p>
-                  </nuxt-link>
-                </el-dropdown-item>
-                <el-dropdown-item>
-                  <nuxt-link to="/historyPage" class="link-detail_notification">                 
-                    <p>Aさんが「情報倫理期末レポート」を購入しました</p>
-                    <p class="timestamp">2020/09/12</p>
-                  </nuxt-link>
-                </el-dropdown-item>
-                <el-dropdown-item>
-                  <nuxt-link to="/historyPage" class="link-detail_notification">                 
-                    <p>Bさんが「化学中間レポート」を購入しました</p>
-                    <p class="timestamp">2020/09/13</p>
-                  </nuxt-link>
-                </el-dropdown-item>
-                <el-dropdown-item>
-                  <nuxt-link to="/historyPage" class="link-detail_notification">                 
-                    <p>Eさんが「情報倫理中間レポート」を購入しました</p>
-                    <p class="timestamp">2020/09/15</p>
-                  </nuxt-link>
-                </el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-            </el-badge>
+            <nuxt-link to="/walletPage" class="link-detail">マイページ</nuxt-link>
+
           </div>
       </div>
 </template>
@@ -112,14 +69,14 @@ export default {
 .header-content{
   display: flex;
   width: 100%;
-  height: 8vh;
-  background-color:#8cbef0;
+  height: 6vh;
+  background-color:#f4f4f4;
 }
 
 .reportoken-logo_header{
-  padding: 10px;
-  width: 48px;
-  height: 48px;
+  padding: 7px;
+  width: 50px;
+  height: 50px;
 }
 .serch-input{
   padding: 10px;
@@ -134,15 +91,6 @@ export default {
 .el-icon-message-solid{
   color: #fff;
 }
-.el-dropdown-link {
-    cursor: pointer;
-}
-.el-icon-bell{
-  color: #f4f4f4;
-}
-.notification-btn{
-  background-color: #8cbef0;
-}
 .timestamp{
   color: rgb(184, 184, 184);
   font-size: 12px;
@@ -155,7 +103,7 @@ export default {
 }
 .link-detail{
   text-decoration: none;
-  color: #f4f4f4;
+  color: black;
   font-size: 16px;
   padding: 8px;
 }

@@ -198,13 +198,13 @@ h3 {
 }
 
 .main-content {
-  height: 92vh;
+  height: 94vh;
   width: 100%;
   background-color: #f4f4f4;
 }
 
 .side-content {
-  height: 92vh;
+  height: 94vh;
   width: 300px;
   width: 350px;
 }
