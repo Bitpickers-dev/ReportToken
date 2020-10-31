@@ -4,28 +4,29 @@
     <div class="main-contents">
       <div class="main-content">
         <div class="top-view">
-          <div class="top-view_text">
-            <h1 class="view-text_en">Share your experience.</h1>
-            <p>学生のための世界初分散型レポート共有アプリ</p>
-            <p>あなたの知識には価値がある。</p>
-            <div class="buttons">
-              <el-button type="primary" style="font-weight:bold">
-                アプリを始める
-              </el-button>
-              <el-button type="info" plain>
-                <nuxt-link to="/tutorialPage" class="button-content">レポートークンについて</nuxt-link>
-              </el-button>
+            <div class="top-view_text">
+              <h1 class="view-text_en">Share your experience.</h1>
+              <p>学生のための世界初分散型レポート共有アプリ</p>
+              <p>あなたの知識には価値がある。</p>
+              <div class="buttons">
+                <el-button type="primary" style="font-weight:bold">
+                  アプリを始める
+                </el-button>
+                <el-button type="info" plain>
+                  <nuxt-link to="/tutorialPage" class="button-content">レポートークンについて</nuxt-link>
+                </el-button>
+              </div>
             </div>
+          <div class="top-view_media">
+            <img src="~/assets/images/top-view.png" class="reportoken-logo">
           </div>
-        <img src="~/assets/images/top-view.png" class="reportoken-logo">
         </div>
-        <h5>現在ログインしているアカウントは{{userAddress}}</h5>
         <!-- <el-button @click="RP()">RPを実行するボタン</el-button> -->
         <!-- ランキングコンテンツはcomponentにしてもいいかも -->
         <div class="rank-content">
           <Filecards :reports="reports"/>
-          <Upload/>
         </div>
+          <Upload/>
         <div class="tutorial-content">
           <!-- <Tutorial /> -->
         </div>
@@ -214,16 +215,19 @@ h3 {
 }
 
 .top-view{
+  /* width: 100vw; */
   display: flex;
-  width: 100vw;
+}
+
+.top-view_media{
+  margin: 0 auto;
 }
 
 .top-view_text{
+  margin: 0 auto;
   width: 500px;
   text-align: center;
   padding-top: 100px;
-  padding-left: 0;
-  margin: 30px;
   font-weight:300;
 }
 
@@ -250,7 +254,7 @@ h3 {
 }
 
 .rank-content {
-  height: 59%;
+  height: auto;
   overflow-x: scroll;
   margin-bottom: 10px;
 }
