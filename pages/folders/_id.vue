@@ -2,19 +2,20 @@
     　<div class="app-layout">
             <Header />
         <div class="main-contents">
-    <div class="main-content">
-       <h1>レポート情報</h1>
-       <p>{{shareUserAddress}}</p>
-       <p>レポートの識別子は{{reportIndex}}</p>
-             <div class="report-info">
-                 <Filecard :report="report"/>
-                 <div class="report-table_info">
-                 </div>
-             </div>
-            <Upload />
-      </div>
-            </div>
+          <div class="main-content">
+            <h1>レポート情報</h1>
+            <p>{{shareUserAddress}}</p>
+            <p>レポートの識別子は{{reportIndex}}</p>
+                  <div class="report-info">
+                      <Filecard :report="report"/>
+                      <div class="report-table_info">
+                      </div>
+                  </div>
+          </div>
         </div>
+        <Upload/>
+        <Footer/>
+      </div>
 </template>
 <script>
 import Header from '~/components/header.vue'

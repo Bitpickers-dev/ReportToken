@@ -8,9 +8,10 @@
             <el-button slot="append" icon="el-icon-search"></el-button>
           </el-input>
         </div>
-        <Upload/>
       </div>
     </div>
+    <Upload/>
+    <Footer/>
   </div>
 </template>
 <script>

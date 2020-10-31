@@ -10,6 +10,7 @@
       <img src="~/assets/images/b0302.png" class="report-img">
     </div>
     <Tutorial/>
+    <Footer/>
   </div>
 </template>
 <script>

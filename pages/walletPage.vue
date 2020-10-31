@@ -39,9 +39,10 @@
             </el-tab-pane>
           </el-tabs>
         </div>
-        <Upload/>
       </div>
     </div>
+    <Upload/>
+    <Footer/>
   </div>
 </template>
 
@@ -105,8 +106,14 @@ h1 {
 p {
   margin-left: 10px;
 }
+.main-contents{
+  min-height: 550px;
+}
+
+
 .side-content{
   width: 300px;
+  height: 400px;
 }
 
 .about-account {
