@@ -27,8 +27,8 @@
           <Filecards :reports="reports"/>
         </div>
           <Upload/>
-        <div class="tutorial-content">
-          <!-- <Tutorial /> -->
+        <div class="footer-content">
+          <Footer />
         </div>
       </div>
     </div>
@@ -259,7 +259,7 @@ h3 {
   margin-bottom: 10px;
 }
 
-.tutorial-content {
+.footer-content {
   /* position: absolute;
   z-index: 1;
   bottom: 0px; */
