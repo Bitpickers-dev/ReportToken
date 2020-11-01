@@ -3,16 +3,7 @@
   <div class="app-layout">
     <Header/>
     <div class="main-contents">
-      <div class="side-content">
-        <Folder/>
-      </div>
       <div class="main-content">
-        <h1>共有</h1>
-        <div class="home-btn">
-          <el-button type="primary">
-            <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
-          </el-button>
-        </div>
         <div class="step-content">
           <el-steps :active="active" finish-status="success" align-center>
             <el-step title="ステップ1" description="レポート情報の登録"></el-step>
@@ -24,34 +15,11 @@
               <el-form-item label="大学名" prop="university" style="margin-bottom:5px;">
                 <el-input v-model="ruleForm.university">{{ this.ruleForm.university }}</el-input>
               </el-form-item>
-              <el-form-item label="学年" prop="grade" style="margin-bottom:10px;">
-                <el-checkbox-group v-model="ruleForm.grade">
-                  <el-checkbox label="B1(1年)" name="grade"></el-checkbox>
-                  <el-checkbox label="B2(2年)" name="grade"></el-checkbox>
-                  <el-checkbox label="B3(3年)" name="grade"></el-checkbox>
-                  <el-checkbox label="B4(4年)" name="grade"></el-checkbox>
-                  <el-checkbox label="M1(1年)" name="grade"></el-checkbox>
-                  <el-checkbox label="M2(2年)" name="grade"></el-checkbox>
-                </el-checkbox-group>
-              </el-form-item>
-              <el-form-item label="セメスター情報" prop="semester" style="margin-bottom:20px;">
-                <el-checkbox-group v-model="ruleForm.semester">
-                  <el-checkbox label="1Q" name="semester"></el-checkbox>
-                  <el-checkbox label="2Q" name="semester"></el-checkbox>
-                  <el-checkbox label="3Q" name="semester"></el-checkbox>
-                  <el-checkbox label="4Q" name="semester"></el-checkbox>
-                  <el-checkbox label="前期" name="semester"></el-checkbox>
-                  <el-checkbox label="後期" name="semester"></el-checkbox>
-                </el-checkbox-group>
-              </el-form-item>
               <el-form-item label="科目名" prop="subject">
                 <el-input v-model="ruleForm.subject">{{ this.ruleForm.subject }}</el-input>
               </el-form-item>
               <el-form-item label="レポートの詳細" prop="detail">
                 <el-input type="textarea" v-model="ruleForm.detail"></el-input>
-              </el-form-item>
-              <el-form-item label="ユーザー名表示" prop="isDisplay">
-                <el-switch v-model="ruleForm.isDisplay"></el-switch>
               </el-form-item>
 
               <el-form-item class="next-step_btn">
@@ -67,17 +35,14 @@
               <input type="file" @change="captureFile" ref="file">
 
 
-              <el-button style="margin-top: 12px;" @click="next">最終確認に進む</el-button>
+              <el-button style="margin-top: 12px;" @click="next">確認</el-button>
               <el-button style="margin-top: 12px;" @click="back">戻る</el-button>
             </form>
           </div>
           <div class="confirm-contents" v-if="this.active == 2">
             <p>大学名:{{ this.ruleForm.university }}</p>
             <p>学年:{{ this.ruleForm.grade }}</p>
-            <p>セメスター:{{ this.ruleForm.semester }}</p>
-            <p>科目名:{{ this.ruleForm.subject }}</p>
             <p>レポートの詳細:{{ this.ruleForm.detail }}</p>
-            <p>ユーザー名の表示:{{ this.ruleForm.isDisplay }}</p>
             <el-popconfirm
               @onConfirm="reportUpload"
               confirmButtonText='確認'
@@ -112,6 +77,7 @@
         </div>
       </div>
     </div>
+    <Footer/>
   </div>
 </template>
 <script>
@@ -132,21 +98,12 @@ export default {
       visible: false,
       ruleForm: {
         university: '',
-        grade: [],
-        semester: [],
         subject: '',
         detail: '',
-        isDisplay: false,
       },
       rules: {
         university: [
           {required: true, message: '大学名を記入してください', trigger: 'blur'},
-        ],
-        grade: [
-          {type: 'array', required: true, message: '最低でも一つの学年を選択してください', trigger: 'change'}
-        ],
-        semester: [
-          {type: 'array', required: true, message: '最低でも一つのセメスター情報を選択してください', trigger: 'change'}
         ],
         subject: [
           {required: true, message: '科目名を記入してください', trigger: 'blur'},
@@ -198,8 +155,6 @@ export default {
         this.user.shares++
       await db.collection('reports').add({
           university: this.ruleForm.university,
-          grade: this.ruleForm.grade,
-          semester: this.ruleForm.semester,
           subject: this.ruleForm.subject,
           detail: this.ruleForm.detail,
           index: this.user.shares,
@@ -263,6 +218,7 @@ export default {
   padding: 0;
   margin-left: 10%;
   width: 80%;
+  padding-top: 50px;
 }
 
 .input-form_contents {
@@ -282,10 +238,5 @@ export default {
   margin-top: 30px;
   margin-bottom: 30px;
   text-align: center;
-}
-
-.home-btn {
-  text-align: center;
-  padding: 10px;
 }
 </style>

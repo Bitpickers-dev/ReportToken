@@ -7,12 +7,6 @@
         <Folder/>
       </div>
       <div class="main-content">
-        <h1>ウォレット</h1>
-        <div class="home-btn">
-          <el-button type="primary">
-            <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
-          </el-button>
-        </div>
         <div class="about-account">
           <h4>アカウント</h4>
           <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
@@ -33,7 +27,6 @@
           <!--            <button id="send" onclick="send()">Send ERC20 Token</button>-->
           <!--          </div>-->
 
-          <el-button type="primary" icon="el-icon-s-promotion" class="send_btn">送信する</el-button>
           <el-button type="primary" icon="el-icon-sell" class="receive_btn">取得する</el-button>
         </div>
         <div class="wallet-detail_content">
@@ -46,23 +39,15 @@
             </el-tab-pane>
           </el-tabs>
         </div>
-        <Upload/>
       </div>
     </div>
+    <Upload/>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import Header from '~/components/header.vue'
-
-if (process.browser) {
-  var ownAddress = web3.eth.accounts[0];
-  var toAddress = document.getElementById('to-address').value;
-  var decimals = web3.toBigNumber(document.getElementById('decimals').value);
-  var amount = web3.toBN(document.getElementById('amount').value);
-  var sendValue = amount.times(web3.toBigNumber(10).pow(18));
-  var purchaseValue = amount.times(web3.toBigNumber(10).pow(18));
-}
 
 export default {
   components: {
@@ -121,6 +106,15 @@ h1 {
 p {
   margin-left: 10px;
 }
+.main-contents{
+  min-height: 550px;
+}
+
+
+.side-content{
+  width: 300px;
+  height: 400px;
+}
 
 .about-account {
   text-align: center;
@@ -131,7 +125,7 @@ p {
 }
 
 .wallet-detail_content {
-  max-height: 50vh;
+  /* max-height: 50vh; */
   overflow: scroll;
 }
 </style>

@@ -22,7 +22,9 @@ export default {
 </script>
 
 <style scoped>
-.filecard{
-    display: inline-flex;
+.filecards{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 </style>
