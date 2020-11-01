@@ -40,7 +40,7 @@ import { db,firebase } from '~/plugins/firebase'
     width: 200px;
     height: 282px;
     margin: 15px;
-    border-radius: 0px;
+    border-radius: 5px;
     overflow: hidden;
     box-shadow: 10 10px 10px black;
 }

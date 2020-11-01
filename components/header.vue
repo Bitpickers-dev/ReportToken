@@ -7,7 +7,7 @@
             <!-- <nuxt-link to="/homePage" class="link-detail">ホーム</nuxt-link> -->
 
             <nuxt-link to="/serchPage" class="link-detail"><i class="el-icon-search"></i></nuxt-link>
-            <nuxt-link to="/walletPage" class="link-detail"><i class="el-icon-user"></i></nuxt-link>
+            <nuxt-link to="/myPage" class="link-detail"><i class="el-icon-user"></i></nuxt-link>
 
           </div>
       </div>
