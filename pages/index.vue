@@ -252,6 +252,7 @@ h3 {
 }
 
 .rank-content {
+  margin: 0 40px;
   height: auto;
   overflow-x: scroll;
   margin-bottom: 10px;

@@ -14,34 +14,31 @@
                 <p>レポートークンについて</p>
               </nuxt-link>
               <nuxt-link to="/tutorialPage" class="footer-link">
-                <p>よくある質問</p>
-              </nuxt-link>
-              <nuxt-link to="/tutorialPage" class="footer-link">
                 <p>使い方</p>
               </nuxt-link>
-              <nuxt-link to="/tutorialPage" class="footer-link">
+              <!-- <nuxt-link to="/tutorialPage" class="footer-link">
                 <p>Bitpickersについて</p>
-              </nuxt-link>
+              </nuxt-link> -->
           </div>
           <div class="footer-content_legal">
-            <h5>利用規約</h5>
+            <h5>Legal</h5>
+            <nuxt-link to="/tutorialPage" class="footer-link">
+                <p>利用規約</p>
+            </nuxt-link>  
             <nuxt-link to="/tutorialPage" class="footer-link">
                 <p>プライバシーポリシー</p>
             </nuxt-link>  
           </div>
           <div class="footer-content_links">
-            <h5>お問い合わせ</h5> 
-            <nuxt-link to="/tutorialPage" class="footer-link">
-                <p>開発ロードマップ</p>
-            </nuxt-link>  
-            <a href="https://github.com/Nishino0719/ReportToken" target="_brank" class="footer-link">
-                <p>GitHub</p>
-            </a>  
+            <h5>Contact</h5> 
+              <nuxt-link to="/tutorialPage" class="footer-link">
+                <p>よくある質問</p>
+              </nuxt-link> 
           </div>
       </div>
-        <el-divider></el-divider>
+        <el-divider class="divider"></el-divider>
         <div class="copyright-text">
-            <p>&copy; Bitpickers</p>
+            <p>&copy; 2020 BitPickers.</p>
         </div>
     </div>
 </template>
@@ -58,12 +55,16 @@ export default {
 <style scoped>
 
 .footer-main_content{
-  height: 250px;
+  height: 200px;
 }
 .footer-content{
   display: flex;
   background-color:#f4f4f4;
-  height:180px
+  height:180px;
+}
+
+h5{
+  color: #93a5b1;
 }
 
 p{
@@ -114,9 +115,14 @@ p{
     margin: 0 auto;
 
 }
+
+.divider{
+  padding: 0;
+  margin: 0;
+}
 .copyright-text{
     text-align: center;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     color: #93a5b1;
 }
 
