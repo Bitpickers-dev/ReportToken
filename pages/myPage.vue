@@ -94,7 +94,7 @@ p {
   margin-left: 10px;
 }
 .main-contents{
-  min-height: 550px;
+  min-height: 700px;
 }
 
 
