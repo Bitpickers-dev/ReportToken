@@ -10,6 +10,11 @@
                       <Filecard :report="report"/>
                       <div class="report-table_info">
                       </div>
+                      <el-button @click="getReport">レポートを見る</el-button>
+                      <div class="" v-if="reportHash != null">
+                        <h1>{{reportHash}}</h1>
+                        <a :href="`https://ipfs.io/ipfs/${reportHash}`" target="brank">レポートはこちら</a>
+                      </div>
                   </div>
           </div>
         </div>
@@ -27,13 +32,15 @@ export default {
         Header,
         Filecard
     },
-    mounted(){
+    async mounted(){
       const reportId = this.$route.params.id
       this.reportIndex = reportId.slice(-1)
       this.shareUserAddress = reportId.slice(0,42)
+      let accounts = await this.$web3.eth.getAccounts()
+      this.userAddress = accounts[0]
       // console.log("repotIndex is ",this.reportIndex)
       // console.log("shareUserAddress is ",this.shareUserAddress)
-      db.collection('reports').where("shareUser", "==", this.shareUserAddress).get().then((querySnapshot) => {
+      await db.collection('reports').where("shareUser", "==", this.shareUserAddress).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
               // console.log(doc.data().index)
               if(this.reportIndex == doc.data().index){
@@ -47,13 +54,27 @@ export default {
       return {
         reportIndex:null,
         shareUserAddress:null,
+        userAddress:null,
         report:null,
-        reports:[]
+        reports:[],
+        reportHash:null,
       }
     },
     methods: {
       formatter(row, column) {
         return row.address;
+      },
+
+      async getReport(){
+        if(this.shareUserAddress == this.userAddress){
+          let ret = await this.$reportInfoContract.methods.getOwnerReport(this.reportIndex).call()
+          console.log(ret)
+          this.reportHash = ret
+        }else{
+          let ret = await this.$reportInfoContract.methods.getReport(this.reportIndex,this.shareUserAddress).call()
+          console.log(ret)
+          this.reportHash = ret
+        }
       }
     }
 }
