@@ -11,7 +11,7 @@
             <el-step title="ステップ3" description="最終確認"></el-step>
           </el-steps>
           <div class="input-form_contents" v-if="this.active == 0">
-            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
+            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="150px" class="demo-ruleForm">
               <el-form-item label="大学名" prop="university" style="margin-bottom:5px;">
                 <el-input v-model="ruleForm.university">{{ this.ruleForm.university }}</el-input>
               </el-form-item>
@@ -20,6 +20,12 @@
               </el-form-item>
               <el-form-item label="レポートの詳細" prop="detail">
                 <el-input type="textarea" v-model="ruleForm.detail"></el-input>
+              </el-form-item>
+              <el-form-item label="レポートの価格(RPT)">
+                <el-slider
+                  v-model="amount"
+                  :step="10">
+                </el-slider>
               </el-form-item>
 
               <el-form-item class="next-step_btn">
@@ -91,6 +97,7 @@ export default {
   },
   data() {
     return {
+      amount:0,
       setBuffer: [],
       ipfsHash: '',
       user:[],
