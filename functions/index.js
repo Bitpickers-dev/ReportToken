@@ -26,9 +26,8 @@ exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').o
     })
 
     RP1()
-    // console.log('RP1',RP1Table)
+    
     RP2()
-    // console.log('RP2',RP2Table)
 
     for (let i = 0; i < users.length; i++) {
       RPTable.push({
@@ -38,8 +37,7 @@ exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').o
       await db.collection('winners').add({
         RP: RPTable[i].RP,
         winner_address: RPTable[i].userAddress
-      }).then(ref => {
-        console.log('Added document with ID: ', ref.id);
+      }).then(() => {
       });
     }
   }
@@ -86,7 +84,6 @@ exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').o
 
     for (let i = 0; i < 5; i++) {
       hitNumber = Math.floor(Math.random() * 100)
-      // console.log('hitNumber is ', hitNumber)
       let receiver = roulette(hitNumber, totalInssuance)
       //search user
       for (let j = 0; j < users.length; j++) {
