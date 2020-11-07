@@ -10,10 +10,16 @@
                       <Filecard :report="report"/>
                       <div class="report-table_info">
                       </div>
+                      <div class="report-info_detail" v-if="report != null">
+                        <h3>レポートの詳細</h3>
+                        <h5>{{report.university}}</h5>
+                        <p class="report-exp">{{report.detail}}</p>
+                      </div>
                       <el-button @click="getReport">レポートを見る</el-button>
                       <div class="" v-if="reportHash != null">
                         <h1>{{reportHash}}</h1>
                         <a :href="`https://ipfs.io/ipfs/${reportHash}`" target="brank">レポートはこちら</a>
+                         <img :src="`https://ipfs.io/ipfs/${reportHash}`" alt="共有したレポートの画像" style="width:20vw;">
                       </div>
                   </div>
           </div>

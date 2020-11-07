@@ -89,9 +89,9 @@ import { db,firebase } from '~/plugins/firebase'
     overflow: scroll;
 }
 .report-title{
-    margin: 0;
-    padding: 0;
-    margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .download{
     position: absolute;

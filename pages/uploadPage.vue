@@ -21,6 +21,12 @@
               <el-form-item label="レポートの詳細" prop="detail">
                 <el-input type="textarea" v-model="ruleForm.detail"></el-input>
               </el-form-item>
+              <el-form-item label="レポートの価格">
+                <el-slider
+                  v-model="amount"
+                  :step="10">
+                </el-slider>
+              </el-form-item>
 
               <el-form-item class="next-step_btn">
                 <el-button type="primary" @click="submitForm('ruleForm')">レポートの選択へ進む</el-button>
@@ -91,6 +97,7 @@ export default {
   },
   data() {
     return {
+      amount:0,
       setBuffer: [],
       ipfsHash: '',
       user:[],
