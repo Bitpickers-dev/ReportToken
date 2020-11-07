@@ -26,8 +26,9 @@ exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').o
     })
 
     RP1()
-
+    // console.log('RP1',RP1Table)
     RP2()
+    // console.log('RP2',RP2Table)
 
     for (let i = 0; i < users.length; i++) {
       RPTable.push({
@@ -41,10 +42,6 @@ exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').o
         console.log('Added document with ID: ', ref.id);
       });
     }
-    console.log(RP1Table)
-    console.log(RP2Table)
-    console.log(RPTable)
-
   }
 
 
@@ -61,8 +58,6 @@ exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').o
   function HPF() {
     const n = reports.length
     const numOfAbove = Math.floor(n / 2)
-    console.log(numOfAbove)
-    // let median = reports[numOfAbove].downloads;
     for (let i = 0; i < numOfAbove; i++) {
       for (let j = 0; j < users.length; j++) {
         let shareUser = reports[i].shareUser;
@@ -92,7 +87,7 @@ exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').o
     for (let i = 0; i < 5; i++) {
       hitNumber = Math.floor(Math.random() * 100)
       // console.log('hitNumber is ', hitNumber)
-      let receiver = roulette()
+      let receiver = roulette(hitNumber, totalInssuance)
       //search user
       for (let j = 0; j < users.length; j++) {
         if (j === receiver) {
@@ -102,16 +97,16 @@ exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').o
     }
   }
 
-  function roulette() {
+  function roulette(h, t) {
     let rangeMin = 0
     let rangeMax = 0
     let percentage = 0
     let i = 0
 
     for (i; i < users.length; i++) {
-      percentage = 100 * users[i].purchased_token_amount / totalInssuance
+      percentage = 100 * users[i].purchased_token_amount / t
       rangeMax += percentage
-      if (rangeMin <= hitNumber && hitNumber <= rangeMax) {
+      if (rangeMin <= h && h <= rangeMax) {
         break
       } else {
         rangeMin = rangeMax
