@@ -7,24 +7,34 @@
         <div class="about-account">
           <h4>アカウント</h4>
           <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-          <p>{{userAddress}}</p>
+          <p>{{ ownAddress }}</p>
         </div>
         <h3>所持中のレポートークン:50RPT</h3>
         <div class="wallet_btn">
 
-          <!--          <h2>Token Address</h2>-->
-          <!--          <input type="text" id="token-address" size="80" oninput="onAddressChange()">-->
-          <!--          <h2>Recipients Address</h2>-->
-          <!--          <input type="text" id="to-address" size="80">-->
-          <!--          <h2>Decimals</h2>-->
-          <!--          <input type="number" id="decimals" size="40" readonly="">-->
-          <!--          <h2>Amount</h2>-->
-          <!--          <input type="number" id="amount" size="40">-->
-          <!--          <div>-->
-          <!--            <button id="send" onclick="send()">Send ERC20 Token</button>-->
-          <!--          </div>-->
-
-          <el-button type="primary" icon="el-icon-sell" class="receive_btn">取得する</el-button>
+          <el-button type="primary" @click="dialog = true">購入する</el-button>
+          <el-drawer
+            title="トークンの購入量を指定してください"
+            :before-close="handleClose"
+            :visible.sync="dialog"
+            direction="ltr"
+            custom-class="demo-drawer"
+            ref="drawer"
+          >
+            <div class="demo-drawer__content">
+              <el-form :model="form">
+                <el-form-item label="購入量" :label-width="formLabelWidth">
+                  <el-input v-model="form.amount" autocomplete="off"></el-input>
+                </el-form-item>
+              </el-form>
+              <div class="demo-drawer__footer">
+                <el-button @click="cancelForm">キャンセル</el-button>
+                <el-button type="primary" @click="$refs.drawer.closeDrawer()" :loading="loading">
+                  {{ loading ? '購入しています ...' : '購入' }}
+                </el-button>
+              </div>
+            </div>
+          </el-drawer>
         </div>
         <div class="wallet-detail_content">
         </div>
@@ -40,7 +50,7 @@
 
 <script>
 import Header from '~/components/header.vue'
-import { db,firebase } from '~/plugins/firebase'
+import {db, firebase} from '~/plugins/firebase'
 
 export default {
   components: {
@@ -49,31 +59,74 @@ export default {
   data() {
     return {
       number: 0,
-      shareReports:[],
-      userAddress:null
+      shareReports: [],
+      ownAddress: null,
+      dialog: false,
+      loading: false,
+      formLabelWidth: '80px',
+      timer: null,
+      inputNumber: 0,
+      toAddress: null,
+      amount: 0,
+      purchaseValue: 0,
+      sendValue: 0,
+      ownAmount: 0,
+      form: {
+        amount: null,
+      },
     }
   },
   methods: {
-    purchaseToken: async function () {
-      let ret = await this.$reportTokenContrat.methods.purchaseToken(ownAddress, sendValue).call()
+    async handleClose(done) {
+      if (this.loading) {
+        return;
+      }
+      await this.$confirm(this.form.amount+'RPTを本当に購入しますか？')
+        .then(_ => {
+          this.loading = true;
+          this.timer = setTimeout(() => {
+            done();
+            // animation takes time
+            setTimeout(() => {
+              this.loading = false;
+            }, 400);
+          }, 2000);
+        })
+        .catch(_ => {
+        });
+      await this.purchaseToken()
+    },
+    async cancelForm() {
+      this.loading = false;
+      this.dialog = false;
+      clearTimeout(this.timer);
+    },
+    async purchaseToken() {
+      let decimals = await this.$web3.utils.toBN(18);
+      this.amount = await this.$web3.utils.toBN(this.form.amount);
+      this.sendValue = await this.amount.valueOf(this.$web3.utils.toBN(10).pow(decimals));
+      let ret = await this.$reportTokenContract.methods.purchaseToken(this.ownAddress, this.sendValue).send({
+        from: this.ownAddress,
+        value: this.sendValue
+      })
       console.log(this.$reportTokenContract)
       console.log(ret)
       this.number = ret
     },
   },
-  async mounted () {
+  async mounted() {
     let accounts = await this.$web3.eth.getAccounts()
-    this.userAddress = accounts[0]
-        if(this.userAddress != null){
-            db.collection('reports').onSnapshot((snapshot)=>{
-                snapshot.docChanges().forEach((change)=>{
-                const doc = change.doc
-              if(change.type === 'added' && doc.data().shareUser == this.userAddress){
-                this.shareReports.push({id: doc.id, ...doc.data()})
-              }
-            })
-          })    
-        }
+    this.ownAddress = accounts[0]
+    if (this.ownAddress != null) {
+      db.collection('reports').onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          const doc = change.doc
+          if (change.type === 'added' && doc.data().shareUser == this.ownAddress) {
+            this.shareReports.push({id: doc.id, ...doc.data()})
+          }
+        })
+      })
+    }
   }
 
 
@@ -93,12 +146,13 @@ h1 {
 p {
   margin-left: 10px;
 }
-.main-contents{
+
+.main-contents {
   min-height: 700px;
 }
 
 
-.side-content{
+.side-content {
   width: 300px;
   height: 400px;
   z-index: 1;
