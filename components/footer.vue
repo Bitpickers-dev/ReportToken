@@ -88,7 +88,6 @@ p {
 
 .footer-content_title {
   position: relative;
-  /* margin: 0 auto; */
   margin-right: auto;
 }
 .footer-content_title p {

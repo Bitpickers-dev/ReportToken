@@ -193,7 +193,6 @@ export default {
       let ret = await this.$reportInfoContract.methods
         .setReport(this.ipfsHash)
         .send({ from: this.userAddress });
-      console.log(ret);
       //   firestoreにレポートの情報を追加する
       await db
         .collection("users")
@@ -230,7 +229,6 @@ export default {
         if (valid) {
           if (this.active++ > 2) this.active = 0;
         } else {
-          console.log("error submit!!");
           return false;
         }
       });
@@ -242,7 +240,6 @@ export default {
         if (valid) {
           if (this.active++ > 2) this.active = 0;
         } else {
-          console.log("error submit!!");
           return false;
         }
       });

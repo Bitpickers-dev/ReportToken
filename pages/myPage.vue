@@ -23,17 +23,6 @@
         </div>
         <h3>所持中のレポートークン:50RPT</h3>
         <div class="wallet_btn">
-          <!--          <h2>Token Address</h2>-->
-          <!--          <input type="text" id="token-address" size="80" oninput="onAddressChange()">-->
-          <!--          <h2>Recipients Address</h2>-->
-          <!--          <input type="text" id="to-address" size="80">-->
-          <!--          <h2>Decimals</h2>-->
-          <!--          <input type="number" id="decimals" size="40" readonly="">-->
-          <!--          <h2>Amount</h2>-->
-          <!--          <input type="number" id="amount" size="40">-->
-          <!--          <div>-->
-          <!--            <button id="send" onclick="send()">Send ERC20 Token</button>-->
-          <!--          </div>-->
 
           <el-button type="primary" icon="el-icon-sell" class="receive_btn"
             >取得する</el-button
@@ -70,8 +59,6 @@ export default {
       let ret = await this.$reportTokenContrat.methods
         .purchaseToken(ownAddress, sendValue)
         .call();
-      console.log(this.$reportTokenContract);
-      console.log(ret);
       this.number = ret;
     },
   },
@@ -127,7 +114,6 @@ p {
 }
 
 .wallet-detail_content {
-  /* max-height: 50vh; */
   overflow: scroll;
 }
 </style>

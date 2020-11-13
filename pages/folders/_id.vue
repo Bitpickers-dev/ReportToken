@@ -50,15 +50,12 @@ export default {
     this.shareUserAddress = reportId.slice(0, 42);
     let accounts = await this.$web3.eth.getAccounts();
     this.userAddress = accounts[0];
-    // console.log("repotIndex is ",this.reportIndex)
-    // console.log("shareUserAddress is ",this.shareUserAddress)
     await db
       .collection("reports")
       .where("shareUser", "==", this.shareUserAddress)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          // console.log(doc.data().index)
           if (this.reportIndex == doc.data().index) {
             this.reports.push(doc.data());
             this.report = this.reports[0];
@@ -89,7 +86,6 @@ export default {
         let ret = await this.$reportInfoContract.methods
           .getOwnerReport(this.reportIndex)
           .call();
-        console.log(ret);
         this.reportHash = ret;
       } else {
         let decimals = await this.$web3.utils.toBN(18);
@@ -100,13 +96,10 @@ export default {
         let Ret = await this.$reportTokenContract.methods
           .transfer(this.shareUserAddress, this.sendValue)
           .send({ from: this.userAddress });
-        console.log(this.$reportTokenContract);
-        console.log(Ret);
         this.number = Ret;
         let ret = await this.$reportInfoContract.methods
           .getReport(this.reportIndex, this.shareUserAddress)
           .call();
-        console.log(ret);
         this.reportHash = ret;
       }
     },

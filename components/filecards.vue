@@ -14,9 +14,7 @@
       >
         <Filecard :report="report" />
       </nuxt-link>
-      <!-- <h3></h3> -->
     </div>
-    <!-- <Filecard /> -->
   </div>
 </template>
 <script>

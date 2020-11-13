@@ -30,8 +30,6 @@ export default {
   props: ["shareReports"],
   data() {
     return {
-      // shareReports:[],
-      // userAddress:null
     };
   },
 };
@@ -51,14 +49,12 @@ h4 {
   margin: 10px;
 }
 .side-contents {
-  /* background:#fff; */
   position: fixed;
   max-height: 450px;
   min-width: 200px;
   overflow: hidden;
   margin: 10px;
   margin-top: 30px;
-  /* margin-right: 50px; */
   right: 20px;
   padding-bottom: 50px;
   border-radius: 10px;

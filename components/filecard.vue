@@ -2,13 +2,7 @@
   <div class="filecard-content">
     <div class="file-card">
       <div class="report-details" v-if="report != null">
-        <!-- <div class="download">
-                        <i class="el-icon-download"></i>
-                        <h5>{{report.downloads}}</h5>
-                    </div> -->
-        <!-- <h5>{{report.university}}</h5> -->
         <h5 class="report-title">{{ report.subject }}</h5>
-        <!-- <p class="report-exp">{{report.detail}}</p> -->
       </div>
     </div>
   </div>
@@ -46,13 +40,11 @@ export default {
 }
 .file-card:before {
   height: 0;
-  /* display: block; */
   position: absolute;
   right: 0;
   content: "";
   border-top: solid 30px #f4f4f4;
   border-left: solid 30px transparent;
-  /* border-radius: 0 0 0 10px; */
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3),
     -1px 1px 1px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);

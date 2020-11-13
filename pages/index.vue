@@ -79,7 +79,6 @@ export default {
       rp2Receiver: [],
       hitNumber: null,
       totalInssuance: 0,
-      // receiverIndex:null
     };
   },
   async mounted() {
@@ -93,7 +92,6 @@ export default {
       });
     let accounts = await this.$web3.eth.getAccounts();
     this.userAddress = accounts[0];
-    console.log("hello");
     let count = 0;
     for (let i = 0; i < this.users.length; i++) {
       if (this.users[i].address == this.userAddress) {
@@ -122,9 +120,7 @@ export default {
   },
   methods: {
     connectMetamask() {
-      console.log(this.userAddress);
       this.userAddress = "仮アカウント";
-      console.log(this.userAddress);
     },
   },
 };

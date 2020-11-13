@@ -44,7 +44,6 @@ export default {
   },
   methods: {
     async getReport(){
-      console.log(this.input)
       this.count = 0
       this.searchWord = this.input
       //TODO: get report
