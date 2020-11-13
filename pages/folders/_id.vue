@@ -64,6 +64,9 @@ export default {
         report:null,
         reports:[],
         reportHash:null,
+        amount: null,
+        sendValue:null,
+        number:null
       }
     },
     methods: {
@@ -77,9 +80,17 @@ export default {
           console.log(ret)
           this.reportHash = ret
         }else{
+          let decimals = await this.$web3.utils.toBN(18);
+          this.amount = 1000000000000;
+          this.sendValue = await this.amount.valueOf(this.$web3.utils.toBN(10).pow(decimals));
+          let Ret = await this.$reportTokenContract.methods.transfer(this.shareUserAddress, this.sendValue).send({from: this.userAddress})
+          console.log(this.$reportTokenContract)
+          console.log(Ret)
+          this.number = Ret
           let ret = await this.$reportInfoContract.methods.getReport(this.reportIndex,this.shareUserAddress).call()
           console.log(ret)
           this.reportHash = ret
+
         }
       }
     }
