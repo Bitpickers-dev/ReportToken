@@ -2,22 +2,9 @@
   <div class="side-contents">
     <h4>共有したレポート</h4>
     <div class="folder-content">
-      <div
-        class=""
-        v-for="shareReport in shareReports"
-        :key="shareReport.index"
-      >
-        <nuxt-link
-          :to="{
-            name: 'folders-id',
-            params: { id: shareReport.shareUser + shareReport.index },
-          }"
-        >
-          <el-badge
-            :value="shareReport.downloads"
-            class="item folder-repository"
-            type="primary"
-          >
+      <div class=""  v-for="shareReport in shareReports"  :key="shareReport.index">
+        <nuxt-link :to="{  name: 'folders-id',  params: { id: shareReport.shareUser + shareReport.index },}">
+          <el-badge  :value="shareReport.downloads"  class="item folder-repository"  type="primary">
             <el-button size="small">{{ shareReport.subject }}</el-button>
           </el-badge>
         </nuxt-link>
