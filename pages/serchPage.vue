@@ -1,47 +1,49 @@
 <template>
   <div class="app-layout">
-    <Header/>
+    <Header />
     <div class="main-contents">
       <div class="main-content">
         <div class="serch-content">
-          <el-input placeholder="レポート名で検索" v-model="input" class="serch-input">
+          <el-input
+            placeholder="レポート名で検索"
+            v-model="input"
+            class="serch-input"
+          >
             <el-button slot="append" icon="el-icon-search"></el-button>
           </el-input>
         </div>
       </div>
     </div>
-    <Upload/>
-    <Footer/>
+    <Upload />
+    <Footer />
   </div>
 </template>
 <script>
-import Header from '~/components/header.vue'
+import Header from "~/components/header.vue";
 
 export default {
   components: {
-    Header
+    Header,
   },
   data() {
     return {
       value1: [],
       value2: [],
       value3: [],
-      input:""
-    }
+      input: "",
+    };
   },
-  methods: {
-  }
-
-}
+  methods: {},
+};
 </script>
 <style scoped>
-.main-contents{
+.main-contents {
   min-height: 600px;
 }
 .serch-content {
   text-align: center;
 }
-.serch-input{
+.serch-input {
   padding: 10px;
   padding-top: 10px;
   width: 400px;
