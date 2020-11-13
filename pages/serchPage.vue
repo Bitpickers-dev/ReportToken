@@ -35,7 +35,9 @@ export default {
 }
 </script>
 <style scoped>
-
+.main-contents{
+  min-height: 600px;
+}
 .serch-content {
   text-align: center;
 }
