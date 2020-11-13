@@ -3,13 +3,24 @@
   <div class="app-layout">
     <Header/>
     <div class="main-contents">
-      <div class="main-content">
+      <div class="main-content__notuser" v-if="userAddress == null">
+        <el-alert
+          title="エラー"
+          type="error"
+          description="Metamaskと連携ができないためマイページが開けません。"
+          show-icon
+          :closable="false"
+          >
+        </el-alert>
+
+      </div>
+      <div class="main-content" v-if="userAddress != null">
         <div class="about-account">
           <h4>アカウント</h4>
           <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
           <p>{{userAddress}}</p>
         </div>
-        <h3>所持中のレポートークン:50RPT</h3>
+        <h3 >所持中のレポートークン:50RPT</h3>
         <div class="wallet_btn">
 
           <!--          <h2>Token Address</h2>-->
@@ -29,7 +40,7 @@
         <div class="wallet-detail_content">
         </div>
       </div>
-      <div class="side-content">
+      <div class="side-content" v-if="userAddress != null">
         <Folder :shareReports="shareReports"/>
       </div>
     </div>
@@ -72,7 +83,7 @@ export default {
                 this.shareReports.push({id: doc.id, ...doc.data()})
               }
             })
-          })    
+          })
         }
   }
 
@@ -94,7 +105,7 @@ p {
   margin-left: 10px;
 }
 .main-contents{
-  min-height: 700px;
+  min-height: 600px;
 }
 
 
