@@ -4,7 +4,7 @@
       <div class="footer-content">
           <div class="footer-content_title">
             <nuxt-link to="/">
-                    <img src="~/assets/images/reportoken-logo_header.png" class="reportoken-logo_footer">
+                <img src="~/assets/images/reportoken-logo_header.png" class="reportoken-logo_footer">
             </nuxt-link>
             <p>全ての学生のための<br>レポート共有アプリ</p>
           </div>
@@ -16,24 +16,21 @@
               <nuxt-link to="/tutorialPage" class="footer-link">
                 <p>使い方</p>
               </nuxt-link>
-              <!-- <nuxt-link to="/tutorialPage" class="footer-link">
-                <p>Bitpickersについて</p>
-              </nuxt-link> -->
           </div>
           <div class="footer-content_legal">
             <h5>Legal</h5>
             <nuxt-link to="/tutorialPage" class="footer-link">
                 <p>利用規約</p>
-            </nuxt-link>  
+            </nuxt-link>
             <nuxt-link to="/tutorialPage" class="footer-link">
                 <p>プライバシーポリシー</p>
-            </nuxt-link>  
+            </nuxt-link>
           </div>
           <div class="footer-content_links">
-            <h5>Contact</h5> 
+            <h5>Contact</h5>
               <nuxt-link to="/tutorialPage" class="footer-link">
                 <p>よくある質問</p>
-              </nuxt-link> 
+              </nuxt-link>
           </div>
       </div>
         <el-divider class="divider"></el-divider>
@@ -87,7 +84,7 @@ p{
 
 .footer-link:hover{
     text-decoration: underline;
-    
+
 }
 
 .footer-content_title{
@@ -109,12 +106,18 @@ p{
 }
 .footer-content_legal{
     margin: 0 auto;
-
 }
 .footer-content_links{
     margin: 0 auto;
-
 }
+@media screen and (max-width: 750px) {
+  .footer-content_title{
+    opacity: 0;
+    z-index: -10;
+    position: absolute;
+  }
+}
+
 
 .divider{
   padding: 0;

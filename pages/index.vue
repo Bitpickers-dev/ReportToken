@@ -13,13 +13,6 @@
             :closable="false"
             >
           </el-alert>
-            <el-alert
-              v-if="userAddress != null"
-              title="アカウント接続成功!"
-              type="success"
-              description="Metamaskとアカウントの接続が成功しました！"
-              show-icon>
-            </el-alert>
         </div>
         <div class="top-view">
             <div class="top-view_text">
@@ -27,8 +20,8 @@
               <p>学生のための世界初分散型レポート共有アプリ</p>
               <p>あなたの知識には価値がある。</p>
               <div class="buttons">
-                <el-button type="primary" style="font-weight:bold" @click="connectMetamask()">
-                  アプリを始める
+                <el-button type="primary" style="font-weight:bold">
+                  <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=ja" target="_brank" style="color:white;text-decoration:none">アプリを始める</a>
                 </el-button>
                 <el-button type="info" plain>
                   <nuxt-link to="/tutorialPage" class="button-content">レポートークンについて</nuxt-link>
