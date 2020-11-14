@@ -1,8 +1,17 @@
 <template>
   <div class="filecards">
     <!-- TODO -->
-    <div  class="filecard"  v-for="report in reports"  :key="report.shareUser + report.index">
-      <nuxt-link  :to="{  name: 'folders-id',    params: { id: report.shareUser + report.index },}">
+    <div
+      class="filecard"
+      v-for="report in reports"
+      :key="report.shareUser + report.index"
+    >
+      <nuxt-link
+        :to="{
+          name: 'folders-id',
+          params: { id: report.shareUser + report.index },
+        }"
+      >
         <Filecard :report="report" />
       </nuxt-link>
     </div>
