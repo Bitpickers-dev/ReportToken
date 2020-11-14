@@ -108,6 +108,13 @@ p {
 .footer-content_links {
   margin: 0 auto;
 }
+@media screen and (max-width: 750px) {
+  .footer-content_title {
+    opacity: 0;
+    z-index: -10;
+    position: absolute;
+  }
+}
 
 .divider {
   padding: 0;

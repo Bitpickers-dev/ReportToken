@@ -3,7 +3,17 @@
   <div class="app-layout">
     <Header />
     <div class="main-contents">
-      <div class="main-content">
+      <div class="main-content__notuser" v-if="userAddress == null">
+        <el-alert
+          title="エラー"
+          type="error"
+          description="Metamaskと連携ができないためマイページが開けません。"
+          show-icon
+          :closable="false"
+        >
+        </el-alert>
+      </div>
+      <div class="main-content" v-if="userAddress != null">
         <div class="about-account">
           <h4>アカウント</h4>
           <el-avatar
@@ -154,6 +164,7 @@ h1 {
 p {
   margin-left: 10px;
 }
+
 
 .main-contents {
   min-height: 700px;

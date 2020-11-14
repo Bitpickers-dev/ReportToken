@@ -7,6 +7,14 @@
 body{
     background-color:#f4f4f4;
 }
+.el-alert{
+  width: 60%;
+  border: solid 1px;
+  margin-left: 50px;
+  margin-top: 50px;
+  margin: 0 auto;
+}
+
 
 .v-modal{
   position: static;
