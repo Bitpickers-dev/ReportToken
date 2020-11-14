@@ -81,7 +81,7 @@ export default {
       if (this.loading) {
         return;
       }
-      await this.$confirm(this.form.amount+'RPTを本当に購入しますか？')
+      await this.$confirm(this.form.amount + 'RPTを本当に購入しますか？')
         .then(_ => {
           this.loading = true;
           this.timer = setTimeout(() => {
@@ -92,9 +92,10 @@ export default {
             }, 400);
           }, 2000);
         })
+      await this.purchaseToken()
         .catch(_ => {
         });
-      await this.purchaseToken()
+
     },
     async cancelForm() {
       this.loading = false;
@@ -169,5 +170,21 @@ p {
 .wallet-detail_content {
   /* max-height: 50vh; */
   overflow: scroll;
+}
+
+element.style {
+  width: 26%;
+}
+
+.el-drawer.ltr, .el-drawer__container {
+  top: 50px;
+  bottom: 1;
+  width: 50%;
+  height: 57%;
+}
+
+.el-input__inner {
+  width: 93%;
+  margin-left: -30px;
 }
 </style>
