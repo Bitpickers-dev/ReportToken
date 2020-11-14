@@ -44,11 +44,8 @@ export default {
       this.shareUserAddress = reportId.slice(0,42)
       let accounts = await this.$web3.eth.getAccounts()
       this.userAddress = accounts[0]
-      // console.log("repotIndex is ",this.reportIndex)
-      // console.log("shareUserAddress is ",this.shareUserAddress)
       await db.collection('reports').where("shareUser", "==", this.shareUserAddress).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-              // console.log(doc.data().index)
               if(this.reportIndex == doc.data().index){
                 this.reports.push(doc.data())
                 this.report = this.reports[0]

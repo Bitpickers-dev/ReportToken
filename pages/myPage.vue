@@ -1,17 +1,18 @@
 <template>
   　
   <div class="app-layout">
-    <Header/>
+    <Header />
     <div class="main-contents">
       <div class="main-content">
         <div class="about-account">
           <h4>アカウント</h4>
-          <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+          <el-avatar
+            src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+          ></el-avatar>
           <p>{{ ownAddress }}</p>
         </div>
         <h3>所持中のレポートークン:50RPT</h3>
         <div class="wallet_btn">
-
           <el-button type="primary" @click="dialog = true">購入する</el-button>
           <el-drawer
             title="トークンの購入量を指定してください"
@@ -29,32 +30,35 @@
               </el-form>
               <div class="demo-drawer__footer">
                 <el-button @click="cancelForm">キャンセル</el-button>
-                <el-button type="primary" @click="$refs.drawer.closeDrawer()" :loading="loading">
-                  {{ loading ? '購入しています ...' : '購入' }}
+                <el-button
+                  type="primary"
+                  @click="$refs.drawer.closeDrawer()"
+                  :loading="loading"
+                >
+                  {{ loading ? "購入しています ..." : "購入" }}
                 </el-button>
               </div>
             </div>
           </el-drawer>
         </div>
-        <div class="wallet-detail_content">
-        </div>
+        <div class="wallet-detail_content"></div>
       </div>
       <div class="side-content">
-        <Folder :shareReports="shareReports"/>
+        <Folder :shareReports="shareReports" />
       </div>
     </div>
-    <Upload/>
-    <Footer/>
+    <Upload />
+    <Footer />
   </div>
 </template>
 
 <script>
-import Header from '~/components/header.vue'
-import {db, firebase} from '~/plugins/firebase'
+import Header from "~/components/header.vue";
+import { db, firebase } from "~/plugins/firebase";
 
 export default {
   components: {
-    Header
+    Header,
   },
   data() {
     return {
@@ -63,7 +67,7 @@ export default {
       ownAddress: null,
       dialog: false,
       loading: false,
-      formLabelWidth: '80px',
+      formLabelWidth: "80px",
       timer: null,
       inputNumber: 0,
       toAddress: null,
@@ -74,15 +78,15 @@ export default {
       form: {
         amount: null,
       },
-    }
+    };
   },
   methods: {
     async handleClose(done) {
       if (this.loading) {
         return;
       }
-      await this.$confirm(this.form.amount + 'RPTを本当に購入しますか？')
-        .then(_ => {
+      await this.$confirm(this.form.amount + "RPTを本当に購入しますか？").then(
+        (_) => {
           this.loading = true;
           this.timer = setTimeout(() => {
             done();
@@ -91,11 +95,9 @@ export default {
               this.loading = false;
             }, 400);
           }, 2000);
-        })
-      await this.purchaseToken()
-        .catch(_ => {
-        });
-
+        }
+      );
+      await this.purchaseToken().catch((_) => {});
     },
     async cancelForm() {
       this.loading = false;
@@ -105,33 +107,38 @@ export default {
     async purchaseToken() {
       let decimals = await this.$web3.utils.toBN(18);
       this.amount = await this.$web3.utils.toBN(this.form.amount);
-      this.sendValue = await this.amount.valueOf(this.$web3.utils.toBN(10).pow(decimals));
-      let ret = await this.$reportTokenContract.methods.purchaseToken(this.ownAddress, this.sendValue).send({
-        from: this.ownAddress,
-        value: this.sendValue
-      })
-      console.log(this.$reportTokenContract)
-      console.log(ret)
-      this.number = ret
+      this.sendValue = await this.amount.valueOf(
+        this.$web3.utils.toBN(10).pow(decimals)
+      );
+      let ret = await this.$reportTokenContract.methods
+        .purchaseToken(this.ownAddress, this.sendValue)
+        .send({
+          from: this.ownAddress,
+          value: this.sendValue,
+        });
+      console.log(this.$reportTokenContract);
+      console.log(ret);
+      this.number = ret;
     },
   },
   async mounted() {
-    let accounts = await this.$web3.eth.getAccounts()
-    this.ownAddress = accounts[0]
+    let accounts = await this.$web3.eth.getAccounts();
+    this.ownAddress = accounts[0];
     if (this.ownAddress != null) {
-      db.collection('reports').onSnapshot((snapshot) => {
+      db.collection("reports").onSnapshot((snapshot) => {
         snapshot.docChanges().forEach((change) => {
-          const doc = change.doc
-          if (change.type === 'added' && doc.data().shareUser == this.ownAddress) {
-            this.shareReports.push({id: doc.id, ...doc.data()})
+          const doc = change.doc;
+          if (
+            change.type === "added" &&
+            doc.data().shareUser == this.ownAddress
+          ) {
+            this.shareReports.push({ id: doc.id, ...doc.data() });
           }
-        })
-      })
+        });
+      });
     }
-  }
-
-
-}
+  },
+};
 </script>
 
 <style>
@@ -152,7 +159,6 @@ p {
   min-height: 700px;
 }
 
-
 .side-content {
   width: 300px;
   height: 400px;
@@ -168,7 +174,6 @@ p {
 }
 
 .wallet-detail_content {
-  /* max-height: 50vh; */
   overflow: scroll;
 }
 
@@ -176,7 +181,8 @@ element.style {
   width: 26%;
 }
 
-.el-drawer.ltr, .el-drawer__container {
+.el-drawer.ltr,
+.el-drawer__container {
   top: 50px;
   bottom: 1;
   width: 50%;
