@@ -15,7 +15,9 @@
             <h5>{{ report.university }}</h5>
             <p class="report-exp">{{ report.detail }}</p>
           </div>
-          <el-button @click="getReport">レポートを見る</el-button>
+          <el-button v-if="!canWatch" @click="getReport"
+            >レポートを見る</el-button
+          >
           <div class="" v-if="reportHash != null">
             <h1>{{ reportHash }}</h1>
             <a :href="`https://ipfs.io/ipfs/${reportHash}`" target="brank"
@@ -58,13 +60,43 @@ export default {
         querySnapshot.forEach((doc) => {
           if (this.reportIndex == doc.data().index) {
             this.reports.push(doc.data());
+            this.report_doc = doc.id;
             this.report = this.reports[0];
           }
         });
       });
+    await db
+      .collection("users")
+      .doc(this.userAddress)
+      .collection("buying_list")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          this.buying.push(doc.data());
+        });
+      });
+    for (let i = 0; i < this.buying.length; i++) {
+      if (this.report_doc == this.buying[i].report_doc) {
+        this.canWatch = true;
+        let ret = await this.$reportInfoContract.methods
+          .getReport(this.reportIndex, this.shareUserAddress)
+          .call();
+        this.reportHash = ret;
+        // break;
+      }
+      if (this.shareUserAddress == this.userAddress) {
+        this.canWatch = true;
+        let ret = await this.$reportInfoContract.methods
+          .getOwnerReport(this.reportIndex)
+          .call();
+        this.reportHash = ret;
+        // break;
+      }
+    }
   },
   data() {
     return {
+      canWatch: false,
       reportIndex: null,
       shareUserAddress: null,
       userAddress: null,
@@ -74,6 +106,8 @@ export default {
       amount: null,
       sendValue: null,
       number: null,
+      report_doc: null,
+      buying: [],
     };
   },
   methods: {
@@ -82,12 +116,7 @@ export default {
     },
 
     async getReport() {
-      if (this.shareUserAddress == this.userAddress) {
-        let ret = await this.$reportInfoContract.methods
-          .getOwnerReport(this.reportIndex)
-          .call();
-        this.reportHash = ret;
-      } else {
+      if (this.shareUserAddress != this.userAddress) {
         let decimals = await this.$web3.utils.toBN(18);
         this.amount = 1000000000000;
         this.sendValue = await this.amount.valueOf(
@@ -97,10 +126,21 @@ export default {
           .transfer(this.shareUserAddress, this.sendValue)
           .send({ from: this.userAddress });
         this.number = Ret;
+        //TODO: 自分のユーザーの購入リストにreportdocを追加する.
+        await db
+          .collection("users")
+          .doc(this.userAddress)
+          .collection("buying_list")
+          .add({
+            report_doc: this.report_doc,
+            buyAt: new Date(),
+          });
         let ret = await this.$reportInfoContract.methods
           .getReport(this.reportIndex, this.shareUserAddress)
           .call();
         this.reportHash = ret;
+      } else {
+        console.log("error!");
       }
     },
   },
