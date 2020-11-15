@@ -126,7 +126,6 @@ export default {
           .transfer(this.shareUserAddress, this.sendValue)
           .send({ from: this.userAddress });
         this.number = Ret;
-        //TODO: 自分のユーザーの購入リストにreportdocを追加する.
         await db
           .collection("users")
           .doc(this.userAddress)

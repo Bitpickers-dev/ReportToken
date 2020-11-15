@@ -133,8 +133,6 @@ export default {
           from: this.ownAddress,
           value: this.sendValue,
         });
-      console.log(this.$reportTokenContract);
-      console.log(ret);
       this.number = ret;
     },
   },
@@ -162,8 +160,6 @@ export default {
             if (this.buying.length != 0 && this.buying != null) {
               let count = 0;
               for (let i = 0; i < this.buying.length; i++) {
-                console.log(this.buying[this.count].report_doc);
-                console.log("doc id is", doc.id);
                 if (this.buying[count].report_doc == doc.id) {
                   this.purchasedReport.push(doc.data());
                 }
@@ -172,7 +168,6 @@ export default {
             }
           });
         });
-      console.log("purchasedReport is", this.purchasedReport);
     }
   },
 };
