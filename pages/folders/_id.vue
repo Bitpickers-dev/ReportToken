@@ -82,7 +82,7 @@ export default {
           .getReport(this.reportIndex, this.shareUserAddress)
           .call();
         this.reportHash = ret;
-        // break;
+        break;
       }
       if (this.shareUserAddress == this.userAddress) {
         this.canWatch = true;
@@ -90,7 +90,7 @@ export default {
           .getOwnerReport(this.reportIndex)
           .call();
         this.reportHash = ret;
-        // break;
+        break;
       }
     }
   },
