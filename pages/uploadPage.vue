@@ -29,12 +29,12 @@
                 prop="university"
                 style="margin-bottom: 5px"
               >
-                <el-input v-model="ruleForm.university">{{
+                <el-input v-model="ruleForm.university" class="input-form">{{
                   this.ruleForm.university
                 }}</el-input>
               </el-form-item>
               <el-form-item label="科目名" prop="subject">
-                <el-input v-model="ruleForm.subject">{{
+                <el-input v-model="ruleForm.subject" class="input-form">{{
                   this.ruleForm.subject
                 }}</el-input>
               </el-form-item>
@@ -269,6 +269,9 @@ export default {
 
 .input-form_contents {
   margin-top: 5px;
+}
+.input-form{
+  margin-left: 30px;
 }
 
 .next-step_btn {
