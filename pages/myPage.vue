@@ -52,6 +52,7 @@
           </el-drawer>
         </div>
         <div class="purchased-report">
+          <h3>購入したレポート</h3>
           <Filecards :reports="purchasedReport" />
         </div>
         <div class="wallet-detail_content"></div>
@@ -150,7 +151,8 @@ export default {
             this.buying.push(doc.data());
           });
         });
-      await db.collection("reports")
+      await db
+        .collection("reports")
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
@@ -170,7 +172,7 @@ export default {
             }
           });
         });
-      console.log("purchasedReport is",this.purchasedReport)
+      console.log("purchasedReport is", this.purchasedReport);
     }
   },
 };
