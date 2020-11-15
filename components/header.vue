@@ -37,8 +37,9 @@ export default {
 .header-content {
   display: flex;
   width: 100%;
-  height: 6vh;
+  height: 60px;
   background-color: #f4f4f4;
+
 }
 
 .reportoken-logo_header {

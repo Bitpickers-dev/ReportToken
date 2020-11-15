@@ -51,6 +51,9 @@
             </div>
           </el-drawer>
         </div>
+        <div class="purchased-report">
+          <Filecards :reports="purchasedReport" />
+        </div>
         <div class="wallet-detail_content"></div>
       </div>
       <div class="side-content">
@@ -88,6 +91,9 @@ export default {
       form: {
         amount: null,
       },
+      purchasedReport: [],
+      buying: [],
+      count: 0,
     };
   },
   methods: {
@@ -135,17 +141,36 @@ export default {
     let accounts = await this.$web3.eth.getAccounts();
     this.ownAddress = accounts[0];
     if (this.ownAddress != null) {
-      db.collection("reports").onSnapshot((snapshot) => {
-        snapshot.docChanges().forEach((change) => {
-          const doc = change.doc;
-          if (
-            change.type === "added" &&
-            doc.data().shareUser == this.ownAddress
-          ) {
-            this.shareReports.push({ id: doc.id, ...doc.data() });
-          }
+      db.collection("users")
+        .doc(this.ownAddress)
+        .collection("buying_list")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            this.buying.push(doc.data());
+          });
         });
-      });
+      await db.collection("reports")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            if (doc.data().shareUser == this.ownAddress) {
+              this.shareReports.push({ id: doc.id, ...doc.data() });
+            }
+            if (this.buying.length != 0 && this.buying != null) {
+              let count = 0;
+              for (let i = 0; i < this.buying.length; i++) {
+                console.log(this.buying[this.count].report_doc);
+                console.log("doc id is", doc.id);
+                if (this.buying[count].report_doc == doc.id) {
+                  this.purchasedReport.push(doc.data());
+                }
+                count++;
+              }
+            }
+          });
+        });
+      console.log("purchasedReport is",this.purchasedReport)
     }
   },
 };
@@ -164,7 +189,6 @@ h1 {
 p {
   margin-left: 10px;
 }
-
 
 .main-contents {
   min-height: 700px;
