@@ -3,7 +3,7 @@
   <div class="app-layout">
     <Header />
     <div class="main-contents">
-      <div class="main-content__notuser" v-if="userAddress == null">
+      <div class="main-content__notuser" v-if="ownAddress == null">
         <el-alert
           title="エラー"
           type="error"
@@ -13,7 +13,7 @@
         >
         </el-alert>
       </div>
-      <div class="main-content" v-if="userAddress != null">
+      <div class="main-content" v-if="ownAddress != null">
         <div class="about-account">
           <h4>アカウント</h4>
           <el-avatar
