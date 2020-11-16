@@ -17,50 +17,25 @@ contract ReportToken is ERC20 {
     _mint(msg.sender, initialSupply);
   }
 
-  //トークン購入時に呼び出される関数
-  //コントラクトのアドレスがETHを受け付けるようにする
-  //purchase Token
   function purchaseToken(address _to, uint256 _value) public payable returns (bool){
     _mint(_to, _value);
     balances[_to] += _value;
     return true;
   }
-
-  //リワード送金時に呼び出される関数
-  //第一引数をmsg.senderにすればfaucetみたいになるReportToken.deployed().then.(instance => {instance.getBalance(accounts[0])})
-  // withdraw
-  function withdraw(address payable _to, uint256 withdraw_amount) public {
-    //引き出し額を制限する
-    require(withdraw_amount <= 0.1 ether);
+  //宛先のみ、balanceはべたがき
+  function withdraw(string userAddress) public {
+    address payable _to = userAddress;
     require(address(this).balance >= withdraw_amount,
       "Insufficient balance in reward for withdrawal request");
-
-    //リクエストしたアドレスにその金額を送る
-    //    _to.send(withdraw_amount);
-    Transfer(msg.sender, _to, withdraw_amount);
-    //    emit withdraw(_user, withdraw_amount);
+    _to.transfer(1000000000000);
   }
 
-  //レポート購入時に呼び出される関数
-  //購入者のアドレスから供給者へトークンを送信する
-  //Transfer function
-  function purchaseReport(address _to, uint256 _value) public returns (bool) {
-    require(balances[msg.sender] >= _value);
-    balances[msg.sender] -= _value;
-    balances[_to] += _value;
-    emit Transfer(msg.sender, _to, _value);
-    return true;
-  }
-  //Approve function
   function approve(address _spender, uint256 _value) public override returns (bool) {
-    //allowance
     allowed[msg.sender][_spender] = _value;
-    //Approval event
     emit Approval(msg.sender, _spender, _value);
-
     return true;
   }
-  //tranferFrom function
+
   function transferFrom(address _from, address _to, uint256 _value) public override returns (bool) {
 
     require(_value <= balances[_from]);
