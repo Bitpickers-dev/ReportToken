@@ -26,7 +26,7 @@ exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').o
     })
 
     RP1()
-    
+
     RP2()
 
     for (let i = 0; i < users.length; i++) {
@@ -39,9 +39,11 @@ exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').o
         winner_address: RPTable[i].userAddress
       }).then(() => {
       });
-    }
-  }
 
+    }
+    await this.$reportTokenContract.methods
+      .withdraw(RPTable[i].userAddress)
+  }
 
   function RP1() {
     for (let i = 0; i < users.length; i++) {
