@@ -1,9 +1,11 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+let Web3 = require('web3');
 
 admin.initializeApp();
 
 exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').onRun((context) => {
+
   let db = admin.firestore()
   let users = []
   let reports = []
@@ -12,6 +14,34 @@ exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').o
   let RPTable = []
   let hitNumber = null
   let totalInssuance = 0
+
+  var abi = [
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "userAddress",
+          "type": "string"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+  ]
+
+  const httpEndpoint = 'http://127.0.0.1:7545'
+  Web3 = new Web3(new Web3.providers.HttpProvider(httpEndpoint))
+
+  let networkId = Web3.eth.net.getId()
+
+  let contract;
+  contract = new Web3.eth.Contract(
+    abi,
+    "0x3171c90B3c0AE2001db03b911785dd5EE6A61eac",
+  );
+
 
   async function RP() {
     await db.collection('users').get().then(snapshot => {
@@ -29,19 +59,27 @@ exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').o
 
     RP2()
 
-    for (let i = 0; i < users.length; i++) {
+    for (let i = 0; i < 1; i++) {
       RPTable.push({
         userAddress: users[i].address,
         RP: RP1Table[i].RP1 + RP2Table[i].RP2
       })
+
       await db.collection('winners').add({
         RP: RPTable[i].RP,
         winner_address: RPTable[i].userAddress
       }).then(() => {
       });
-    }
-  }
 
+      await contract.methods
+        .withdraw("0xfBEcCDe3f66eF4e16Df953367F9D17B6F21ebd0a")
+        .send({
+          from: "0x3171c90B3c0AE2001db03b911785dd5EE6A61eac",
+          to: "0xfBEcCDe3f66eF4e16Df953367F9D17B6F21ebd0a",
+        });
+    }
+    ;
+  }
 
   function RP1() {
     for (let i = 0; i < users.length; i++) {
