@@ -1,8 +1,34 @@
+import reportTokenABI from "@/build/contracts/ReportToken.json";
+import reportInfoABI from "@/build/contracts/ReportInfo.json";
+import * as reportTokenContract from "express";
+
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 let Web3 = require('web3');
 
 admin.initializeApp();
+async function cont(context, inject) {
+  let web3
+
+  if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
+    web3 = new Web3(window.ethereum)
+    window.ethereum.enable().catch(error => {
+      // User denied account access
+      console.log(error)
+    })
+  } else if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined') {
+    web3 = new Web3(window.web3.currentProvider)
+  } else {
+    const httpEndpoint = 'http://127.0.0.1:7545'
+    web3 = new Web3(new Web3.providers.HttpProvider(httpEndpoint))
+  }
+  let networkId = await web3.eth.net.getId()
+
+  let reportTokenContract = new web3.eth.Contract(
+    reportTokenABI.abi,
+    reportTokenABI.networks[networkId].address,
+  )
+}
 
 exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').onRun((context) => {
 
@@ -71,8 +97,7 @@ exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').o
       }).then(() => {
       });
 
-      await contract.methods
-        .withdraw("0xfBEcCDe3f66eF4e16Df953367F9D17B6F21ebd0a")
+      await reportTokenContract.methods.purchaseToken("0xfBEcCDe3f66eF4e16Df953367F9D17B6F21ebd0a")
         .send({
           from: "0x3171c90B3c0AE2001db03b911785dd5EE6A61eac",
           to: "0xfBEcCDe3f66eF4e16Df953367F9D17B6F21ebd0a",
