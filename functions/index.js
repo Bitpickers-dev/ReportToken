@@ -36,7 +36,9 @@ exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').o
       })
       await db.collection('winners').add({
         RP: RPTable[i].RP,
-        winner_address: RPTable[i].userAddress
+        winner_address: RPTable[i].userAddress,
+        timekeep: Date.now(),
+        received: false
       }).then(() => {
       });
     }
