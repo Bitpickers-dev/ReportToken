@@ -1,7 +1,11 @@
 <template>
   　
   <div class="app-layout">
-    <Header/>
+    <Header />
+    <div class="reward-content">
+      <h3>ご褒美を受け取ってください</h3>
+      <el-button style="text-align:center" @click="reward">テスト用のボタン</el-button>
+    </div>
     <div class="main-contents">
       <div class="main-content__notuser" v-if="userAddress == null">
         <el-alert
@@ -98,6 +102,15 @@ export default {
     };
   },
   methods: {
+    async reward() {
+      let ret = await this.$reportTokenContract.methods
+        .withdraw(this.ownAddress)
+        .send({
+          from: this.ownAddress,
+        });
+      console.log(ret)
+  },
+
     async handleClose(done) {
       if (this.loading) {
         return;

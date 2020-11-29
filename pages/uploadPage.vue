@@ -209,6 +209,8 @@ export default {
         index: this.user.shares,
         shareUser: this.user.address,
         downloads: 0,
+        currentDownloads:0,
+        amount: this.amount
       });
       if (this.active++ > 2) this.active = 0;
       this.$notify({
