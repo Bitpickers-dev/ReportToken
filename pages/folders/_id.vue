@@ -66,6 +66,14 @@ export default {
         });
       });
     await db
+      .collection("reports")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            this.allReports.push(doc.data());
+        });
+      });
+    await db
       .collection("users")
       .doc(this.userAddress)
       .collection("buying_list")
@@ -75,21 +83,28 @@ export default {
           this.buying.push(doc.data());
         });
       });
-    for (let i = 0; i < this.buying.length; i++) {
-      if (this.report_doc == this.buying[i].report_doc) {
-        this.canWatch = true;
-        let ret = await this.$reportInfoContract.methods
-          .getReport(this.reportIndex, this.shareUserAddress)
-          .call();
-        this.reportHash = ret;
-        break;
+    for (let i = 0; i < this.allReports.length; i++) {
+      if(this.buying.length > i){
+        console.log(this.report_doc)
+        console.log( this.buying[i].report_doc)
+        if (this.report_doc == this.buying[i].report_doc) {
+          this.canWatch = true;
+          let ret = await this.$reportInfoContract.methods
+            .getReport(this.reportIndex, this.shareUserAddress)
+            .call();
+          this.reportHash = ret;
+          break;
+        }
       }
       if (this.shareUserAddress == this.userAddress) {
         this.canWatch = true;
+        console.log(this.reportIndex)
         let ret = await this.$reportInfoContract.methods
           .getOwnerReport(this.reportIndex)
           .call();
+          console.log(ret)
         this.reportHash = ret;
+        console.log("fefefe",ret)
         break;
       }
     }
@@ -108,6 +123,7 @@ export default {
       number: null,
       report_doc: null,
       buying: [],
+      allReports:[]
     };
   },
   methods: {
@@ -135,6 +151,12 @@ export default {
             report_doc: this.report_doc,
             buyAt: new Date(),
           });
+
+          // ダウンロード数が+1される
+        await db.collection('reports').doc(this.report_doc).update({
+          downloads: firebase.firestore.FieldValue.increment(1),
+          currentDownloads: firebase.firestore.FieldValue.increment(1),
+        })
         let ret = await this.$reportInfoContract.methods
           .getReport(this.reportIndex, this.shareUserAddress)
           .call();
