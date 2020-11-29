@@ -122,6 +122,7 @@ export default {
         this.sendValue = await this.amount.valueOf(
           this.$web3.utils.toBN(10).pow(decimals)
         );
+        //TODO: トークンがなかったらmyPageに誘導
         let Ret = await this.$reportTokenContract.methods
           .transfer(this.shareUserAddress, this.sendValue)
           .send({ from: this.userAddress });

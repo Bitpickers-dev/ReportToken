@@ -106,11 +106,8 @@ export default {
       let ret = await this.$reportTokenContract.methods
         .withdraw(this.ownAddress)
         .send({
-          from: this.$reporTokenAddress,
+          from: this.ownAddress,
         });
-      // let ret = await this.$reportTokenContract.methods
-      // .transfer(this.ownAddress,100000000000000)
-      // .send({from: '0xeEe90Fe97Dc0623Ed525212F2c63855D3EE25015'});
       console.log(ret)
   },
 
