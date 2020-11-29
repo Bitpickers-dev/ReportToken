@@ -3,7 +3,7 @@ const admin = require('firebase-admin');
 
 admin.initializeApp();
 
-exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').onRun((context) => {
+exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').onRun((_context) => {
   let db = admin.firestore()
   let users = []
   let reports = []
@@ -19,7 +19,7 @@ exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').o
         users.push(doc.data())
       })
     })
-    await db.collection('reports').orderBy('downloads', 'desc').get().then(snapshot => {
+    await db.collection('reports').orderBy('currentDownloads', 'desc').get().then(snapshot => {
       snapshot.forEach(doc => {
         reports.push(doc.data())
       })
@@ -37,13 +37,15 @@ exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').o
       await db.collection('winners').add({
         RP: RPTable[i].RP,
         winner_address: RPTable[i].userAddress,
-        timekeep: Date.now(),
+        timestamp: admin.firestore.FieldValue.serverTimestamp(),
         received: false
       }).then(() => {
       });
     }
+    // 最後にcurrentDownloadsとpurchased_token_amountを0にリセットする
+    updateField("reports", {currentDownloads: 0})
+    updateField("users", {purchased_token_amount: 0})
   }
-
 
   function RP1() {
     for (let i = 0; i < users.length; i++) {
@@ -112,6 +114,22 @@ exports.rp = functions.pubsub.schedule('0 10 1 10,3 *').timeZone('Asia/Tokyo').o
       }
     }
     return i
+  }
+
+  async function updateField(collection, value) {
+    let batch = db.batch()
+    let snapshots = await db.collection(collection).get()
+    let docs = snapshots.docs.map((doc, index) => {
+      //500件毎にcommitしてbatchインスタンスを初期化
+      if ((index + 1) % 500 === 0) {
+        batch.commit()
+        batch = db.batch()
+      }
+      //update
+      batch.update(doc.ref, value)
+    });
+    //最終commit
+    batch.commit();
   }
 
   RP().then(() => {
