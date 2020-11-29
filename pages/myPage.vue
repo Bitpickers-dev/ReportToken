@@ -1,9 +1,9 @@
 <template>
   　
   <div class="app-layout">
-    <Header />
+    <Header/>
     <div class="main-contents">
-      <div class="main-content__notuser" v-if="ownAddress == null">
+      <div class="main-content__notuser" v-if="userAddress == null">
         <el-alert
           title="エラー"
           type="error"
@@ -13,13 +13,13 @@
         >
         </el-alert>
       </div>
-      <div class="main-content" v-if="ownAddress != null">
+      <div class="main-content" v-if="userAddress != null">
         <div class="about-account">
           <h4>アカウント</h4>
           <el-avatar
             src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
           ></el-avatar>
-          <p>{{ ownAddress }}</p>
+          <p>{{ userAddress }}</p>
         </div>
         <h3>所持中のレポートークン:50RPT</h3>
         <div class="wallet_btn">
@@ -53,22 +53,22 @@
         </div>
         <div class="purchased-report">
           <h3>購入したレポート</h3>
-          <Filecards :reports="purchasedReport" />
+          <Filecards :reports="purchasedReport"/>
         </div>
         <div class="wallet-detail_content"></div>
       </div>
       <div class="side-content">
-        <Folder :shareReports="shareReports" />
+        <Folder :shareReports="shareReports"/>
       </div>
     </div>
-    <Upload />
-    <Footer />
+    <Upload/>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import Header from "~/components/header.vue";
-import { db, firebase } from "~/plugins/firebase";
+import {db, firebase} from "~/plugins/firebase";
 
 export default {
   components: {
@@ -78,7 +78,7 @@ export default {
     return {
       number: 0,
       shareReports: [],
-      ownAddress: null,
+      userAddress: null,
       dialog: false,
       loading: false,
       formLabelWidth: "80px",
@@ -88,7 +88,7 @@ export default {
       amount: 0,
       purchaseValue: 0,
       sendValue: 0,
-      ownAmount: 0,
+      userAmount: 0,
       form: {
         amount: null,
       },
@@ -114,7 +114,8 @@ export default {
           }, 2000);
         }
       );
-      await this.purchaseToken().catch((_) => {});
+      await this.purchaseToken().catch((_) => {
+      });
     },
     async cancelForm() {
       this.loading = false;
@@ -128,9 +129,9 @@ export default {
         this.$web3.utils.toBN(10).pow(decimals)
       );
       let ret = await this.$reportTokenContract.methods
-        .purchaseToken(this.ownAddress, this.sendValue)
+        .purchaseToken(this.userAddress, this.sendValue)
         .send({
-          from: this.ownAddress,
+          from: this.userAddress,
           value: this.sendValue,
         });
       this.number = ret;
@@ -138,10 +139,10 @@ export default {
   },
   async mounted() {
     let accounts = await this.$web3.eth.getAccounts();
-    this.ownAddress = accounts[0];
-    if (this.ownAddress != null) {
+    this.userAddress = accounts[0];
+    if (this.userAddress != null) {
       db.collection("users")
-        .doc(this.ownAddress)
+        .doc(this.userAddress)
         .collection("buying_list")
         .get()
         .then((querySnapshot) => {
@@ -154,8 +155,8 @@ export default {
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-            if (doc.data().shareUser == this.ownAddress) {
-              this.shareReports.push({ id: doc.id, ...doc.data() });
+            if (doc.data().shareUser == this.userAddress) {
+              this.shareReports.push({id: doc.id, ...doc.data()});
             }
             if (this.buying.length != 0 && this.buying != null) {
               let count = 0;
