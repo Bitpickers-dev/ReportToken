@@ -25,7 +25,7 @@
           ></el-avatar>
           <p>{{ userAddress }}</p>
         </div>
-        <h3>所持中のレポートークン:50RPT</h3>
+        <h3><p>ownAmount: {{ ownAmount }} RPT</p></h3>
         <div class="wallet_btn">
           <el-button type="primary" @click="dialog = true">購入する</el-button>
           <el-drawer
@@ -99,8 +99,11 @@ export default {
       purchasedReport: [],
       buying: [],
       count: 0,
+      ownAmount: 0,
     };
   },
+  computed: {},
+
   methods: {
     async reward() {
       let ret = await this.$reportTokenContract.methods
@@ -148,11 +151,17 @@ export default {
           value: this.sendValue,
         });
       this.number = ret;
+      this.ownAmount = await this.$reportTokenContract.methods.balanceOf(this.userAddress).call();
     },
+
+
   },
   async mounted() {
+
     let accounts = await this.$web3.eth.getAccounts();
     this.userAddress = accounts[0];
+    this.ownAmount = await this.$reportTokenContract.methods.balanceOf(this.userAddress).call();
+
     if (this.userAddress != null) {
       db.collection("users")
         .doc(this.userAddress)
@@ -230,7 +239,7 @@ element.style {
 .el-drawer.ltr,
 .el-drawer__container {
   top: 50px;
-  bottom: 1;
+  bottom: 0;
   width: 50%;
   height: 57%;
 }
