@@ -1,6 +1,11 @@
+# ReportToken
+### ReportTokenはブロックチェーン技術を用いた、世界初の分散型レポート共有アプリケーションです。
+![image](https://user-images.githubusercontent.com/55534054/101998984-8fbef580-3d1b-11eb-8715-86da91a36e79.png)
+
+## アーキテクチャ
+
 ![スクリーンショット 2020-10-13 14 33 23](https://user-images.githubusercontent.com/47593288/95819481-12015c80-0d61-11eb-875d-d2363a24caeb.png)
 
-# ReportToken_front
 
 ## ローカルホストへの接続
 
@@ -23,12 +28,16 @@ npm install firebase
 <br>
 .envファイルにReportTokenのfirebaseの情報を<>の中身を書き換える形で記述する。
 ``` :.env
-FB_API_KEY=<FIREBASE_API_KEY>
-FB_AUTH_DOMAIN=<FIREBASE_ AUTH_DOMAIN>
-FB_DATABASE_URL=<FIREBASE_DATABASE_URL>
-FB_PROJECTID=<FIREBASE_PROJECT_ID>
-FB_STORAGE_BUCKET=<FIREBASE_ STORAGE_BUCKET>
-FB_MESSAGING_SENDER_ID=<MESSAGING_SENDER_ID>
+FB_API_KEY = ****
+FB_AUTH_DOMAIN = ****
+FB_DATABASE_URL = ***
+FB_PROJECTID = ***
+FB_STORAGE_BUCKET = ****
+FB_MESSAGING_SENDER_ID = ****
+
+ROPSTEN_URL = ****
+
+MNEMONIC = ****
 ```
 
 
