@@ -15,7 +15,7 @@ export default async function (context, inject) {
   } else if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined') {
     web3 = new Web3(window.web3.currentProvider)
   } else {
-    const httpEndpoint = 'http://127.0.0.1:7545'
+    const httpEndpoint = process.env.ROPSTEN_URL
     web3 = new Web3(new Web3.providers.HttpProvider(httpEndpoint))
   }
   let networkId = await web3.eth.net.getId()
@@ -24,7 +24,7 @@ export default async function (context, inject) {
     reportTokenABI.abi,
     reportTokenABI.networks[networkId].address,
   )
-  let reporTokenAddress =  reportTokenABI.networks[networkId].address;
+  let reportTokenAddress =  reportTokenABI.networks[networkId].address;
 
 
   let reportInfoContract = new web3.eth.Contract(
@@ -33,7 +33,7 @@ export default async function (context, inject) {
   )
 
   inject('web3', web3)
-  inject('reporTokenAddress', reporTokenAddress)
+  inject('reportTokenAddress', reportTokenAddress)
   inject('reportTokenContract', reportTokenContract)
   inject('reportInfoContract', reportInfoContract)
 }
