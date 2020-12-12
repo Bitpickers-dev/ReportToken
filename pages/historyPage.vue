@@ -10,7 +10,7 @@
         <h1>履歴</h1>
         <div class="home-btn">
           <el-button type="primary">
-            <nuxt-link to="/homePage" class="link-detail">HOMEへ</nuxt-link>
+            <nuxt-link to="/" class="link-detail">HOMEへ</nuxt-link>
           </el-button>
         </div>
         <div class="report-table_info">
