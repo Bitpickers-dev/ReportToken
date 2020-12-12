@@ -2,9 +2,11 @@
   　
   <div class="app-layout">
     <Header />
-    <div class="reward-content">
+    <div class="reward-content" v-if="isWinner == true">
       <h3>ご褒美を受け取ってください</h3>
-      <el-button style="text-align:center" @click="reward">テスト用のボタン</el-button>
+      <el-button style="text-align: center" @click="reward"
+        >受け取りボタン</el-button
+      >
     </div>
     <div class="main-contents">
       <div class="main-content__notuser" v-if="userAddress == null">
@@ -23,11 +25,12 @@
           <el-avatar
             src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
           ></el-avatar>
-          <p>{{ userAddress }}</p>
         </div>
-        <h3><p>ownAmount: {{ ownAmount }} RPT</p></h3>
+        <h3>
+          <p>あなたのレポートークン: {{ ownAmount /100000000000}} RPT</p>
+        </h3>
         <div class="wallet_btn">
-          <el-button type="primary" @click="dialog = true">購入する</el-button>
+          <el-button type="primary" @click="dialog = true">トークンを購入する</el-button>
           <el-drawer
             title="トークンの購入量を指定してください"
             :before-close="handleClose"
@@ -57,22 +60,22 @@
         </div>
         <div class="purchased-report">
           <h3>購入したレポート</h3>
-          <Filecards :reports="purchasedReport"/>
+          <Filecards :reports="purchasedReport" />
         </div>
         <div class="wallet-detail_content"></div>
       </div>
       <div class="side-content">
-        <Folder :shareReports="shareReports"/>
+        <Folder :shareReports="shareReports" />
       </div>
     </div>
-    <Upload/>
-    <Footer/>
+    <Upload />
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from "~/components/header.vue";
-import {db, firebase} from "~/plugins/firebase";
+import { db, firebase } from "~/plugins/firebase";
 
 export default {
   components: {
@@ -100,6 +103,9 @@ export default {
       buying: [],
       count: 0,
       ownAmount: 0,
+      winners: [],
+      isWinner: false,
+      winner_doc: null,
     };
   },
   computed: {},
@@ -107,12 +113,14 @@ export default {
   methods: {
     async reward() {
       let ret = await this.$reportTokenContract.methods
-        .withdraw(this.ownAddress)
+        .withdraw(this.userAddress)
         .send({
-          from: this.ownAddress,
+          from: this.userAddress,
         });
-      console.log(ret)
-  },
+      await db.collection("winners").doc(this.winner_doc).update({
+        received: true,
+      });
+    },
 
     async handleClose(done) {
       if (this.loading) {
@@ -130,8 +138,7 @@ export default {
           }, 2000);
         }
       );
-      await this.purchaseToken().catch((_) => {
-      });
+      await this.purchaseToken().catch((_) => {});
     },
     async cancelForm() {
       this.loading = false;
@@ -140,7 +147,7 @@ export default {
     },
     async purchaseToken() {
       let decimals = await this.$web3.utils.toBN(18);
-      this.amount = await this.$web3.utils.toBN(this.form.amount);
+      this.amount = await this.$web3.utils.toBN(this.form.amount*100000000000);
       this.sendValue = await this.amount.valueOf(
         this.$web3.utils.toBN(10).pow(decimals)
       );
@@ -151,16 +158,21 @@ export default {
           value: this.sendValue,
         });
       this.number = ret;
-      this.ownAmount = await this.$reportTokenContract.methods.balanceOf(this.userAddress).call();
+      this.ownAmount = await this.$reportTokenContract.methods
+        .balanceOf(this.userAddress)
+        .call();
+      //TODO: firestoreにpurchased_token_amountを加算する
+      await db.collection("users").doc(this.userAddress).update({
+        purchased_token_amount: firebase.firestore.FieldValue.increment(this.form.amount),
+      })
     },
-
-
   },
   async mounted() {
-
     let accounts = await this.$web3.eth.getAccounts();
     this.userAddress = accounts[0];
-    this.ownAmount = await this.$reportTokenContract.methods.balanceOf(this.userAddress).call();
+    this.ownAmount = await this.$reportTokenContract.methods
+      .balanceOf(this.userAddress)
+      .call();
 
     if (this.userAddress != null) {
       db.collection("users")
@@ -172,13 +184,28 @@ export default {
             this.buying.push(doc.data());
           });
         });
+        //T0DO: 対象の期間のwinnersを読み取る
+      await db
+        .collection("winners")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            if (
+              doc.data().winner_address == this.userAddress &&
+              doc.data().received == false
+            )
+              this.isWinner = true;
+            this.winner_doc = doc.id;
+          });
+        });
+
       await db
         .collection("reports")
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
             if (doc.data().shareUser == this.userAddress) {
-              this.shareReports.push({id: doc.id, ...doc.data()});
+              this.shareReports.push({ id: doc.id, ...doc.data() });
             }
             if (this.buying.length != 0 && this.buying != null) {
               let count = 0;
@@ -247,5 +274,9 @@ element.style {
 .el-input__inner {
   width: 93%;
   margin-left: -30px;
+}
+
+.reward-content {
+  text-align: center;
 }
 </style>
