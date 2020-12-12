@@ -1,8 +1,13 @@
 <template>
-  <div class="filecard-content">
+  <div class="filecard-content" v-if="report != null">
+    <h3 class="report-subject">科目:{{report.subject}}</h3>
     <div class="file-card">
-      <div class="report-details" v-if="report != null">
-        <h5 class="report-title">{{ report.subject }}</h5>
+      <div class="report-details">
+        <h5 class="report-title">{{ report.detail }}</h5>
+        <img
+        src="~/assets/images/reportoken-logo.png"
+        class="reportoken"
+        style="text-align:center"/>
       </div>
     </div>
   </div>
@@ -64,6 +69,7 @@ export default {
 .report-details {
   position: relative;
   padding: 10px;
+  text-align: center;
 }
 .report-semester {
   position: absolute;
@@ -85,6 +91,19 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
+}
+.reportoken{
+  margin: 0 auto;
+  padding-top:50px;
+  width: 80px;
+  height: auto;
+  z-index: -1;
+  opacity: 0.2;
+}
+
+.report-subject{
+  color: rgba(0, 0, 0, 0.38);
 }
 .download {
   position: absolute;
