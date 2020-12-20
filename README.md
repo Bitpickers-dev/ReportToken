@@ -1,9 +1,11 @@
 # ReportToken
-### ReportTokenはブロックチェーン技術を用いた、世界初の分散型レポート共有アプリケーションです。
+### ReportTokenはブロックチェーン技術を用いた、世界初の分散型レポート共有アプリケーション
 
 [チャレキャラ 2020](https://challecara.org/)にて、NFSソリューションイノベータ賞を受賞しました。
 
 ![image](https://user-images.githubusercontent.com/55534054/101998984-8fbef580-3d1b-11eb-8715-86da91a36e79.png)
+
+このアプリケーションは仮想通貨ETHを扱っているため、ETHを扱うことのできるGoogle Chromeでしか動きません。また、それに合わせてETHを取得するために拡張機能Metamaskをインストール+アカウント作成する必要があります。
 
 ## アーキテクチャ
 
