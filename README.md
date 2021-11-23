@@ -1,7 +1,7 @@
 # ReportToken
 ### ReportTokenはブロックチェーン技術を用いた、世界初の分散型レポート共有アプリケーション
 
-[チャレキャラ 2020](https://challecara.org/)にて、NFTソリューションイノベータ賞を受賞しました。
+[チャレキャラ 2020](https://challecara.org/)にて、NECソリューションイノベータ賞を受賞しました。
 
 ![image](https://user-images.githubusercontent.com/55534054/101998984-8fbef580-3d1b-11eb-8715-86da91a36e79.png)
 
